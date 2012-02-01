@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lange="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>CoApp - Binding Events to .NET 4.0 Tasks instead of Objects (Part 2)</title>
+    <meta name="description" content="">
+    <meta name="author" content="Garrett Serack">
+
+    <meta property="og:title" content="CoApp - Binding Events to .NET 4.0 Tasks instead of Objects (Part 2)"/>
+    
+        <meta property="og:type" content="article"/>
+    
+    <meta property="og:image" content="http://coapp.org/images/logo-small.png"/>
+    <meta property="og:url" content="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html"/>
+    <meta property="og:site_name" content="CoApp"/>
+    <meta property="og:admins" content="CoApp - fearthecowboy"/>
+
+    <meta name="docid" content="news:201104132" />
+    <meta name="srclocation" content="https://github.com/coapp/coapp.org/blob/master/src/dynamic/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html.md" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Shims: IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <link href="/styles/prettify.css" rel="stylesheet"/>
+    <link href="/styles/mediaelementplayer.min.css" rel="stylesheet"  />
+    
+</head>
+<body >
+    
+    <!-- Scripts -->
+    <script src="/scripts/jquery-1.6.4.min.js"></script>
+    <script src="/scripts/prettify.js"></script>
+    <script src="/scripts/jquery.tweet.js"></script>
+    <script src="/scripts/mediaelement-and-player.js"></script>
+    <script src="/scripts/bootstrap/bootstrap-dropdown.js"></script>
+    <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+      <script type="text/javascript">
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15630590-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script>
+        // $('#topbar').dropdown();
+    </script>
+    <!-- Markup -->
+    <div class="topbar" data-dropdown="dropdown">
+        <div class="fill">
+            <div class="container-fluid">
+                <h3><a href="/index.html"><image style="margin:0; padding:0; position:absolute; top:2px; left:-2px;" src="/images/logo-small_32x32.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoApp</a></h3>
+                <ul>
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/news.html" class="">
+                            <a href="/pages/news.html" property="dc:title">News</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/help.html" class="">
+                            <a href="/pages/help.html" property="dc:title">Help</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/packages.html" class="">
+                            <a href="/pages/packages.html" property="dc:title">Packages</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/publishers.html" class="">
+                            <a href="/pages/publishers.html" property="dc:title">Publishers</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle">Developers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/developers">Developer Tutorials</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Source Repositories</a></li>
+                                <li><a href="http://github.com/coapp-packages"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub"> Package Source Repositories</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/coapp/coapp.org/wiki"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > Developer Wiki</a></li>
+                                <li><a href="https://github.com/coapp/coapp/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Bugtracker</a></li>
+                                <li><a href="https://github.com/coapp/devtools/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > DevTools Bugtracker</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/organizations/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp GitHub Home</a></li>
+                            </ul>
+                        </li>
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/reference.html" class="">
+                            <a href="/pages/reference.html" property="dc:title">Reference</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/about.html" class="">
+                            <a href="/pages/about.html" property="dc:title">About</a>
+                        </li>
+
+                        
+                    
+                </ul>
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+    <div class="container-fluid pushdown">
+        <div class="sidebar">
+            
+        </div> 
+        <section id="content" class="content">
+        <div class="spanonethird rightsidebox" > <!-- float:right; display: inline; veritical-align:top; -->
+            
+        </div> 
+            <div class="spantwothirds">
+            
+
+
+<span style="display:inline-block;">
+    <h1>Binding Events to .NET 4.0 Tasks instead of Objects (Part 2)</h1>
+    <p>Apr 13 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a><br>
+    <span class="label warning">Tags</span><span style="display:inline-block;">developer,coding</span></p>
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+<div id="post" class="post">
+    <p>In my [last post][news:201104131], I showed how we're binding event handlers to the Task after it's already been started. This of course, is probably not what you want, as it's possible to lose some events if the task starts up quick enough.</p>
+
+<p>So, the <strong>CoTask</strong> task factory also lets you pass the event listeners as part of the task creation call, you just have to instantiate the TestEvents class and use an object initializer to set the value of the event handler:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="c1">// *** Example Two ***</span>
+<span class="c1">// Listening to events</span>
+<span class="c1">// but attaching before the task is started</span>
+<span class="n">var</span> <span class="n">taskTwo</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span><span class="p">--)</span> <span class="p">{</span>
+        <span class="c1">// simulate a longer running operation</span>
+        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
+
+        <span class="c1">// that occasionally notifies anyone who cares to listen.</span>
+        <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message From taskTwo&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="k">new</span> <span class="n">TestEvents</span> <span class="p">{</span>
+    <span class="n">Message1</span> <span class="p">=</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\r\n(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</pre></div>
+
+<p>
+
+<p>In line 12 you can see where I just tack on the instance of the TestEvents class as the last parameter in the call to StartNew() .  By passing the event listener earlier, this allows the caller to not miss out on any events:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/201104132_task_2.png" alt="task_0 output screenshot" title="" /></span></p>
+
+<p>Much Better!</p>
+
+<p>Now, what if the class that had the events in it had more than one event:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">TestEvents</span> <span class="p">:</span> <span class="n">MessageHandlers</span><span class="p">&lt;</span><span class="n">TestEvents</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">Message1</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message2</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<p>Well, can go ahead and implement the ones you want, and leave the ones you don't:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="c1">// *** Example Three ***</span>
+<span class="c1">// Listening to multiple events</span>
+<span class="n">var</span> <span class="n">taskThree</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span><span class="p">--)</span> <span class="p">{</span>
+        <span class="c1">// simulate a longer running operation</span>
+        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
+
+        <span class="c1">// fire a different message for different values:</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">q</span> <span class="p">%</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="m">0</span><span class="p">:</span>
+                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message1 From taskThree&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="m">1</span><span class="p">:</span>
+                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message2</span><span class="p">(</span><span class="s">&quot;Message2 From taskThree&quot;</span><span class="p">,</span> <span class="s">&quot;Just more text&quot;</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="m">2</span><span class="p">:</span>
+                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message3</span><span class="p">(</span><span class="s">&quot;Message3 From taskThree&quot;</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="k">new</span> <span class="n">TestEvents</span> <span class="p">{</span>
+    <span class="n">Message1</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said a string and an int: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="n">Message2</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said two strings: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\r\n(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</pre></div>
+
+<p>
+
+<p>And when you run that, you see that we're able to handle the messages that we're interested in:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/201104132_task_3.png" alt="task_0 output screenshot" title="" /></span></p>
+
+<p>Note the lack of messages for <strong>Message3</strong>.</p>
+
+<p>You can also have the Task actually ask for a result from the listener as well-if nobody's listening, it'll return the 'default' value (0 or null) for the type requested:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">TestEvents</span> <span class="p">:</span> <span class="n">MessageHandlers</span><span class="p">&lt;</span><span class="n">TestEvents</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">Message1</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message2</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message3</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;</span> <span class="n">ShouldWeCancel</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<p>And, a little code showing how it's used:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="c1">// *** Example Four ***</span>
+<span class="c1">// Listening to multiple events</span>
+<span class="n">var</span> <span class="n">taskFour</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">100</span><span class="p">;</span> <span class="n">q</span><span class="p">++)</span> <span class="p">{</span>
+        <span class="c1">// simulate a longer running operation</span>
+        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">ShouldWeCancel</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// Note: this is not a really good way to actually cancel a Task</span>
+            <span class="c1">//       you should really use a TaskCancellationSource object</span>
+            <span class="c1">//       and do it right.</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// fire a different message for different values:</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">q</span> <span class="p">%</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="m">0</span><span class="p">:</span>
+                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message1 From taskFour&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="m">1</span><span class="p">:</span>
+                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message2</span><span class="p">(</span><span class="s">&quot;Message2 From taskFour&quot;</span><span class="p">,</span> <span class="s">&quot;Just more text&quot;</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="m">2</span><span class="p">:</span>
+                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message3</span><span class="p">(</span><span class="s">&quot;Message3 From taskFour&quot;</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="k">new</span> <span class="n">TestEvents</span> <span class="p">{</span>
+    <span class="n">Message1</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said a string and an int: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="n">Message2</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said two strings: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="n">ShouldWeCancel</span> <span class="p">=</span> <span class="p">(</span><span class="n">anInt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="n">anInt</span> <span class="p">&gt;</span> <span class="m">12</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\r\n(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</pre></div>
+
+<p>
+
+<p>Voila! The task is now asking for information from the listener:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/201104132_task_4.png" alt="task_0 output screenshot" title="" /></span></p>
+
+<p>You can see that the Task broke out of the loop when the listener responded to the ShouldWeCancel query with true.</p>
+
+<p>There are obviously a few limitations in using a function to get data back from the listener - it's only able to get a value back from the first listener that responds (I've got an idea for how to aggregate up stuff, but not an actual personal use case yet, so unless someone asks, that'll be on the 'todo later' list ... :D) ... and you can't tell the difference between a zero or null response and the lack of response. Still, kinda handy in a couple of cases.</p>
+
+<p>Next time, I'll show you how events bubble their way up - from any code that the Task ends up calling, as well as from any child tasks that are created.</p>
+</div>
+
+<!-- Disqus Comment System -->
+<div id="disqus_thread"><div id="dsq-content"></div></div>
+<ul id="dsq-comments"></ul>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'coapp'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    
+    var disqus_identifier = '/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html';
+    var disqus_url = 'http://www.coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html';
+    var disqus_title = "Binding Events to .NET 4.0 Tasks instead of Objects (Part 2)";
+    var disqus_developer = 0; 
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    </div>  
+    <br>    
+    <div class="push" ></div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+        <p  style="float:left;">&copy; CoApp Contributors, 2011. 
+        <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html.md">in the github repository.</a></sub>
+        </p>
+        <p style="float:right;">
+            This website was generated on Feb 01 2012 and has 137 documents
+        </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lange="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>CoApp - How Does CoApp Handle Dependencies?</title>
+    <meta name="description" content="">
+    <meta name="author" content="Garrett Serack">
+
+    <meta property="og:title" content="CoApp - How Does CoApp Handle Dependencies?"/>
+    
+        <meta property="og:type" content="article"/>
+    
+    <meta property="og:image" content="http://coapp.org/images/logo-small.png"/>
+    <meta property="og:url" content="http://coapp.org/news/2012-01-10-How-does-CoApp-handle-dependencies.html"/>
+    <meta property="og:site_name" content="CoApp"/>
+    <meta property="og:admins" content="CoApp - fearthecowboy"/>
+
+    <meta name="docid" content="news:20120110faq" />
+    <meta name="srclocation" content="https://github.com/coapp/coapp.org/blob/master/src/dynamic/news/2012-01-10-How-does-CoApp-handle-dependencies.html.md" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Shims: IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <link href="/styles/prettify.css" rel="stylesheet"/>
+    <link href="/styles/mediaelementplayer.min.css" rel="stylesheet"  />
+    
+</head>
+<body >
+    
+    <!-- Scripts -->
+    <script src="/scripts/jquery-1.6.4.min.js"></script>
+    <script src="/scripts/prettify.js"></script>
+    <script src="/scripts/jquery.tweet.js"></script>
+    <script src="/scripts/mediaelement-and-player.js"></script>
+    <script src="/scripts/bootstrap/bootstrap-dropdown.js"></script>
+    <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+      <script type="text/javascript">
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15630590-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script>
+        // $('#topbar').dropdown();
+    </script>
+    <!-- Markup -->
+    <div class="topbar" data-dropdown="dropdown">
+        <div class="fill">
+            <div class="container-fluid">
+                <h3><a href="/index.html"><image style="margin:0; padding:0; position:absolute; top:2px; left:-2px;" src="/images/logo-small_32x32.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoApp</a></h3>
+                <ul>
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/news.html" class="">
+                            <a href="/pages/news.html" property="dc:title">News</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/help.html" class="">
+                            <a href="/pages/help.html" property="dc:title">Help</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/packages.html" class="">
+                            <a href="/pages/packages.html" property="dc:title">Packages</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/publishers.html" class="">
+                            <a href="/pages/publishers.html" property="dc:title">Publishers</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle">Developers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/developers">Developer Tutorials</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Source Repositories</a></li>
+                                <li><a href="http://github.com/coapp-packages"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub"> Package Source Repositories</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/coapp/coapp.org/wiki"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > Developer Wiki</a></li>
+                                <li><a href="https://github.com/coapp/coapp/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Bugtracker</a></li>
+                                <li><a href="https://github.com/coapp/devtools/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > DevTools Bugtracker</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/organizations/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp GitHub Home</a></li>
+                            </ul>
+                        </li>
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/reference.html" class="">
+                            <a href="/pages/reference.html" property="dc:title">Reference</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/about.html" class="">
+                            <a href="/pages/about.html" property="dc:title">About</a>
+                        </li>
+
+                        
+                    
+                </ul>
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+    <div class="container-fluid pushdown">
+        <div class="sidebar">
+            
+        </div> 
+        <section id="content" class="content">
+        <div class="spanonethird rightsidebox" > <!-- float:right; display: inline; veritical-align:top; -->
+            
+        </div> 
+            <div class="spantwothirds">
+            
+
+
+<span style="display:inline-block;">
+    <h1>How Does CoApp Handle Dependencies?</h1>
+    <p>Jan 10 2012 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a><br>
+    <span class="label warning">Tags</span><span style="display:inline-block;">design</span></p>
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-01-10-How-does-CoApp-handle-dependencies.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-01-10-How-does-CoApp-handle-dependencies.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+<div id="post" class="post">
+    <p>Recently, on the mailing list, Mateusz Loskot <a href="https://lists.launchpad.net/coapp-developers/msg01234.html">asked the question</a>:</p>
+
+<blockquote>
+  <p>Perhaps it has been discussed and solution's already established,<br />but I'm wondering how CoApp is going to solve dependencies between<br />packages?</p>
+</blockquote>
+
+<p>Well, get your pencils ready kids, 'cause I'm about to drop the knowledge hammer down.</p>
+
+<p>CoApp (over the longer term) handles dependencies in two ways:</p>
+
+<p><strong>Fixed</strong> dependencies and <strong>Flexible</strong> dependencies. Fixed dependencies are specific bindings to another package (Package <code>B-1.0.0.0-x86-AAAABBBBCCCCDDDD</code> requires Package <code>A-1.0.0.0-x86-DDDDEEEEFFFF1111</code>). Flexible dependencies are far more fluid, and simply state that "this package requires any package that satisfies <code>feature-XYZ</code> with a version matching range <code>NNNN</code>".</p>
+
+<p><strong>Fixed</strong> dependencies are tied very tightly to how Windows' [Side-by-Side][news:20100415faq] technology works.  Each package has a <code>name</code> (e.g. <code>B</code>), <code>version</code> (e.g <code>1.0.0.0</code>), <code>platform architecture</code> (e.g. <code>x86</code>), and a <code>public-key-token</code> (e.g. <code>AAAABBBBCCCCDDDD</code>, which is calculated from the hash of the signing key of the package-publisher's certificate).  These create somewhat rigid requirements of other packages, where the only flexibility is that the publisher of a package can specify that a newer version of a package is <a href="http://en.wikipedia.org/wiki/Application_binary_interface"><strong>binary-compatible</strong></a> with an older version, and should be used instead. In Windows, the binary-compatibility expressed by packages is called the <em>publisher-policy</em>. </p>
+
+<p>In CoApp, we refer to this as the <strong>compatibility-policy</strong>. When a package asks for a version of a package, the package manager looks for the highest version of the package that satisfies the dependency, given the compatibility-policy. For example if a package binds to <code>zlib-1.2.0.0-x86-AAAABBBBCCCCDD</code> , and the highest binary-compatible package is <code>zlib-1.2.7.11-AAAABBBBCCCCDDDD</code> , CoApp will attempt to install the later package.  This does seem to place a great deal of trust in the publisher of a given package--but really, if you're trusting them by making a dependency on them, you should be trusting them to make sure that they are not breaking binary compatibility when they say they are not. Conversely, publishers should be <em>extremely careful not to break binary compatibility when publishing updates</em>. </p>
+
+<p>
+    <table class="zebra-striped condensed-table" style="width:;" ><thead><tr><th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Things your OS never told you about version numbers</th><th></th></tr></thead>
+    <tbody>    <tr><td></td><td></td><td>You may have noticed that CoApp version numbers are always represented as a four 16-bit positive integers, containing <strong>[major-version].[minor-version].[build-number].[revision]</strong>. For example, version 1.5.1254.0 indicates 1 as the major version number, 5 as the minor version number, 1254 as the build number and 0 as the revision number.  Windows Side-by-Side technology (and it's sibling, .NET assemblies) <strong>requires</strong> this standard for versioning everything.  <br/><br/> When Side-by-side is asked to find an assembly of a given version, it first looks at just the <strong>[major-version].[minor-version]</strong> of the assembly, and checks to see if there is a publisher-policy for that version combination. If there are any policies found (as <a href="msdn.microsoft.com/en-us/library/ms973843.aspx">there can be several</a>), it then checks the version ranges in the policy to see if the requested version has been redirected to a new one.<br/><br/> From this behavior, you can infer that the designers of SxS generally intended that binary-compatible libraries would be constrained to the same major/minor versions, as you'd have to explicitly create a policy for every major/minor version that you wish to redirect (which is possible, but not encouraged).  Those of us in the real world realize that controlling these numbers is not always as easy as that, so CoApp tries to make building policies bridging major/minor versions easier, and hides the details. </td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody></table>
+</p>
+
+<p>When the package manager resolves the dependency tree where all the dependencies are <code>Fixed</code>, it does so in a predictable, fault-tolerant way.  By examining the publisher policies, it works it's way back from the <strong>most appropriate</strong> version down to the <strong>least appropriate</strong> version. The most appropriate is the highest version that has a compatibility-policy that covers the given version, and where that package's entire dependency tree can be satisfied. If a failure happens during the downloading of the dependencies, or during the installation of one of the dependencies, that package gets marked as <em>unable to be fulfilled</em> for that installation session, and the package manager starts back at the top, and tries to identify the best package that can be fulfilled. This form of dependency resolution is always straightforward and doesn't require any special judgement or decision making ability, since every installable package has a very explicit expectation of what it requires.</p>
+
+<p>Some fundamental difference between CoApp and package management resolution systems found on other platforms:</p>
+
+<p>
+    <table class="zebra-striped condensed-table" style="width:;" ><thead><tr><th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th></th><th></th></tr></thead>
+    <tbody>    <tr><td></td><td></td><td>CoApp packages <em>never</em> collide. Each and every package can be installed side-by-side with each other, and while one may be 'active' for purposes of a given configuration, the presence of another version of the same package can never result in the failure of it's sibling.</td><td></td></tr>
+    <tr><td></td><td></td><td>CoApp packages are always <a href="http://msdn.microsoft.com/en-us/library/wd40t7ad.aspx"><strong>strong named</strong></a>. With the <code>name</code>, <code>version</code>, <code>platform architecture</code> and <code>public-key-token</code>, no package can be poisoned/broken by installing a package from another publisher.</td><td></td></tr>
+    <tr><td></td><td></td><td>With no possibility of package collision or conflicts, we have no need to support negative conditions on package dependencies (ie, install <code>A</code> &amp; <code>B</code> unless <code>C</code> is installed.) This removes an order of complexity in package resolution.</td><td></td></tr>
+    </tbody></table>
+</p>
+
+<p>We also have the ability to place markers on packages that affect resolution in a few ways:</p>
+
+<p>
+    <table class="zebra-striped condensed-table" style="width:;" ><thead><tr><th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Markers</th><th></th></tr></thead>
+    <tbody>    <tr><td></td><td></td><td><code>Requested</code> packages are packages that the user explicitly asked for. For example, I wanted to use OpenSSL-1.0.0.0 and it brought in zlib-1.2.5.0. OpenSSL is a requested package, zlib is not. When upgrading, a requested package can be upgraded to a newer version that may not be binary compatible (since you don't have a binary dependency you're breaking with installing a new one)</td><td></td></tr>
+    <tr><td></td><td></td><td><code>Required</code> packages are packages that are the result of a dependency resolution. In the previous example, zlib is a required  package. These can be automatically be upgraded to a newer, binary-compatible package.</td><td></td></tr>
+    <tr><td></td><td></td><td><code>Frozen</code> packages are ones that the user has specifically stated that it is not to be upgraded, for whatever reason</td><td></td></tr>
+    <tr><td></td><td></td><td><code>Blocked</code> packages are ones that the user has specifically stated that it is not to be installed, for whatever reason</td><td></td></tr>
+    </tbody></table>
+</p>
+
+<p><strong>Flexible</strong> dependencies on the other hand, are not yet implemented in CoApp, so even this definition is somewhat fluid. Generally, we're looking to make sure that we can have packages that simply state things like <em>"I need any version of a python interpreter"</em>, or <em>"I need a version of Java greater than Java 5"</em> .  Exactly how these are specified is still a topic for discussion, and I'm eagerly accepting ideas and feedback for how this plays out.</p>
+
+<p>This is where it's going to get a little bit dicey, and we're going to have to build a set of rules to determine the most appropriate course of action.  </p>
+
+<p>
+    <table class="zebra-striped condensed-table" style="width:;" ><thead><tr><th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Questions about happy package resolution</th><th></th></tr></thead>
+    <tbody>    <tr><td></td><td></td><td>When two packages can satisfy a Flexible dependency, and you have neither installed, how do you choose which one to install? This ranges from the very trivial <code>"I need any version of grep"</code> to <code>"I need a version of python 3.2+"</code> <br/><br/>What criteria can we use to satisfy these dependencies (especially when the publisher has absolutely no preference) </td><td></td></tr>
+    <tr><td></td><td></td><td>CoApp prides itself (in the default case) of never requiring the user to make decisions for package satisfaction. Do we want to make it so that advanced users can be asked to choose a course for Flexible package resolution? </td><td></td></tr>
+    <tr><td></td><td></td><td>How do we set--or more appropriately, allow communities to--set standards for determining if a given package actually fulfills a given 'feature', and when in the event a package is found to not be adequately fulfilling a feature, how does the community push that feedback back to others? <br/><br/>Does this mean that a publisher should be able to say <code>"I want any Perl 5 implementation, but not *Cheesy-Perl*"</code> ? If so, what happens when we need to install a second Perl, just because a publisher didn't want or can't use the currently available one? Does that replace the 'active' installed Perl?  </td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody></table>
+</p>
+
+<p>I've looked at resolver algorithms like <a href="http://en.opensuse.org/openSUSE:Libzypp_satsolver_basics">Libzypp</a> and the <a href="http://en.wikipedia.org/wiki/Boolean_satisfiability_problem">general theories</a> on the subject, and they appear to solve issues that our philosophical boundaries generally eliminate (XOR and negative conditions are unnecessary). </p>
+
+<p>The only other random thought I've had is that there may be cases where a dependency tree is already installed for a less-than-most-appropriate dependency tree, but the package manager would try to update as much as it can.  To me, this sounds like the packages are due for an update, but for whatever reason the user hasn't updated them. Should the package manager simply accept the given resolved dependency tree without additional installs, if possible?</p>
+</div>
+
+<!-- Disqus Comment System -->
+<div id="disqus_thread"><div id="dsq-content"></div></div>
+<ul id="dsq-comments"></ul>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'coapp'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    
+    var disqus_identifier = '/news/2012-01-10-How-does-CoApp-handle-dependencies.html';
+    var disqus_url = 'http://www.coapp.org/news/2012-01-10-How-does-CoApp-handle-dependencies.html';
+    var disqus_title = "How Does CoApp Handle Dependencies?";
+    var disqus_developer = 0; 
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    </div>  
+    <br>    
+    <div class="push" ></div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+        <p  style="float:left;">&copy; CoApp Contributors, 2011. 
+        <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/news/2012-01-10-How-does-CoApp-handle-dependencies.html.md">in the github repository.</a></sub>
+        </p>
+        <p style="float:right;">
+            This website was generated on Feb 01 2012 and has 137 documents
+        </p>
+        </div>
+    </footer>
+</body>
+</html>

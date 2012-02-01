@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html lange="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>CoApp - ptk - The Porting Toolkit</title>
+    <meta name="description" content="">
+    <meta name="author" content="CoApp Project">
+
+    <meta property="og:title" content="CoApp - ptk - The Porting Toolkit"/>
+    
+        <meta property="og:type" content="article"/>
+    
+    <meta property="og:image" content="http://coapp.org/images/logo-small.png"/>
+    <meta property="og:url" content="http://coapp.org/reference/ptk.html"/>
+    <meta property="og:site_name" content="CoApp"/>
+    <meta property="og:admins" content="CoApp - fearthecowboy"/>
+
+    <meta name="docid" content="reference:ptk" />
+    <meta name="srclocation" content="https://github.com/coapp/coapp.org/blob/master/src/dynamic/reference/ptk.html.md" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Shims: IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <link href="/styles/prettify.css" rel="stylesheet"/>
+    <link href="/styles/mediaelementplayer.min.css" rel="stylesheet"  />
+    
+</head>
+<body >
+    
+    <!-- Scripts -->
+    <script src="/scripts/jquery-1.6.4.min.js"></script>
+    <script src="/scripts/prettify.js"></script>
+    <script src="/scripts/jquery.tweet.js"></script>
+    <script src="/scripts/mediaelement-and-player.js"></script>
+    <script src="/scripts/bootstrap/bootstrap-dropdown.js"></script>
+    <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+      <script type="text/javascript">
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15630590-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script>
+        // $('#topbar').dropdown();
+    </script>
+    <!-- Markup -->
+    <div class="topbar" data-dropdown="dropdown">
+        <div class="fill">
+            <div class="container-fluid">
+                <h3><a href="/index.html"><image style="margin:0; padding:0; position:absolute; top:2px; left:-2px;" src="/images/logo-small_32x32.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoApp</a></h3>
+                <ul>
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/news.html" class="">
+                            <a href="/pages/news.html" property="dc:title">News</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/help.html" class="">
+                            <a href="/pages/help.html" property="dc:title">Help</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/packages.html" class="">
+                            <a href="/pages/packages.html" property="dc:title">Packages</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/publishers.html" class="">
+                            <a href="/pages/publishers.html" property="dc:title">Publishers</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle">Developers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/developers">Developer Tutorials</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Source Repositories</a></li>
+                                <li><a href="http://github.com/coapp-packages"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub"> Package Source Repositories</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/coapp/coapp.org/wiki"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > Developer Wiki</a></li>
+                                <li><a href="https://github.com/coapp/coapp/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Bugtracker</a></li>
+                                <li><a href="https://github.com/coapp/devtools/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > DevTools Bugtracker</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/organizations/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp GitHub Home</a></li>
+                            </ul>
+                        </li>
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/reference.html" class="">
+                            <a href="/pages/reference.html" property="dc:title">Reference</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/about.html" class="">
+                            <a href="/pages/about.html" property="dc:title">About</a>
+                        </li>
+
+                        
+                    
+                </ul>
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+    <div class="container-fluid pushdown">
+        <div class="sidebar">
+            
+        </div> 
+        <section id="content" class="content">
+        <div class="spanonethird rightsidebox" > <!-- float:right; display: inline; veritical-align:top; -->
+            
+                
+                    <h2>Documentation Sprint</h2>
+
+<p>We're starting a documentation phase right now, since there's so much that people <em>can</em> do, but there's little documentation. </p>
+
+<p>Keep checking back daily to see what's new! </p>
+                
+                    <h4><u>In the twittersphere...</u></h4>
+
+<p><div class="tweet"></div></p>
+
+<div style="text-align: right;    ">
+    <br>
+    <a class="btn info" href="http://search.twitter.com/search?q=&ands=CoAppCommits&phrase=&ors=&nots=&tag=&lang=all&from=&to=&ref=&near=&within=15&units=mi&since=&until=&rpp=15" >
+    Read more</a> <br><br><br></div>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+        $(".tweet").tweet({
+            query: "CoAppCommits",
+
+            avatar_size: 48,
+            count: 5,
+
+            loading_text: "loading tweets...",
+            refresh_interval: 60
+        });
+    });
+</script>
+                
+            
+        </div> 
+            <div class="spantwothirds">
+            
+
+
+<span style="display:inline-block;">
+    <h1>ptk - The Porting Toolkit</h1>
+    <h4>Version:1.0</h4>
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/reference/ptk.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/reference/ptk.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+
+<div id="post" class="post">
+    <h2>ptk - The Porting Toolkit</h2>
+
+<p><strong>pTk</strong> uses CoApp's [common command line conventions][reference:cli] as well as uses an input file based on the CoApp [common property sheet][reference:propertysheet]</p>
+
+<h4>Purpose</h4>
+
+<p><strong>pTk</strong> is designed to automate the build process of virtually anything.  </p>
+
+<p>By providing a consistent method for checking out and building any given software project, pTk makes it significantly simpler to offer automated build services, and in the future, using automated tools to improve the quality of a given build of a project, as well as transforming project builds from one compiler to another.</p>
+
+<p>Additionally, it allows developers to specify the development environment (ie, needs a particular SDK) without having resort to a lot of complicated batch commands.</p>
+
+<p>pTk doesn't <strong>change</strong> the existing build process, it merely wraps it so that any given project can always be built with the same command as any other, regardless if it has a batch file, makefile, visual studio project or whatever crazy machinations it takes to build something.</p>
+
+<h4>Functionality</h4>
+
+<p>By default, pTk searches the <code>copkg</code> folder of the current directory to find the .buildinfo file, which it then loads performs the command given on the command line (build, verify, clean, status, etc).</p>
+
+<h4>Command Line Help</h4>
+
+
+<p>
+<div class="highlight"><pre>Outercurve Foundation pTk  Version 1.1.2.1252 for x64
+Copyright (c) Garrett Serack, CoApp Contributors 2010-2011. All rights reserved
+CoApp portingToolkit for porting apps
+-------------------------------------------------------------------------------
+
+Usage:
+-------
+
+pTK [options] action [buildconfiguration...]
+
+    Options:
+    --------
+    <a class="lnk" href="/reference/cli.html#help">--help</a>                      this help 
+    <a class="lnk" href="/reference/cli.html#nologo">--nologo</a>                    don&#39;t display the logo
+    <a class="lnk" href="/reference/cli.html#loadconfig">--load-config=&lt;file&gt;</a>        loads configuration from &lt;file&gt;
+    <a class="lnk" href="/reference/cli.html#verbose">--verbose</a>                   prints verbose messages
+
+    <a class="lnk" href="#rescantools">--rescan-tools</a>              rescan for tool paths
+    <a class="lnk" href="#showtools">--show-tools</a>                prints the path of the tools
+
+    <a class="lnk" href="#load">--load=&lt;file&gt;</a>               loads the build ptk buildinfo
+                                defaults to .\COPKG\.buildinfo
+
+    <a class="lnk" href="#mingw">--mingw-install=&lt;path&gt;</a>      specifies the location of the mingw install
+    <a class="lnk" href="#msys">--msys-install=&lt;path&gt;</a>       specifies the location of the msys install
+
+    Actions:
+        <a class="lnk" href="#build">build</a>                   builds the product
+
+        <a class="lnk" href="#clean">clean</a>                   removes all files that are not part of the
+                                project source
+
+        <a class="lnk" href="#status">status</a>                  shows any files present that should not be
+
+        <a class="lnk" href="#verify">verify</a>                  ensures that the product source matches the
+                                built and cleaned
+
+        <a class="lnk" href="#trace">trace</a>                   performs a build using CoApp Trace to gather
+                                build data
+
+        <a class="lnk" href="#list">list</a>                    lists availible builds from buildinfo
+
+    <a class="lnk" href="#configuration">[buildconfiguration]</a>        optional; indicates the builds from the
+                                buildinfo file to act on. Defaults to all
+</pre></div>
+
+<p>
+
+<h3>Option <a id="rescantools" href="#rescantools">rescan-tools</a></h3>
+
+<p>Forces pTk to rescan for all the location of all tools and sdks on the system.</p>
+
+<h3>Option <a id="showtools" href="#showtools">showtools</a></h3>
+
+<p>Dumps the location where of the tools and SDKs is found on the system.</p>
+
+<h3>Option <a id="load" href="#load">load</a></h3>
+
+<p>Loads a specific .buildinfo file from the given path.</p>
+
+<h3>Option <a id="mingw" href="#mingw">mingw-install</a></h3>
+
+<p>Since the location of the mingw tools may be difficult to locate programatically, you may pass the root folder of its location as <code>--mingw-install=&lt;path&gt;</code>.</p>
+
+<p>By default it searches for directories matching <code>c:\M*</code> (and program files) for the mingw tools, and works out the location of the tools within.</p>
+
+<h3>Option <a id="msys" href="#msys">msys-install</a></h3>
+
+<p>Since the location of the mingw tools may be difficult to locate programatically, you may pass the root folder of its location as <code>--msys-install=&lt;path&gt;</code>.</p>
+
+<p>By default it searches for directories matching <code>c:\M*</code> (and program files) for the mingw tools, and works out the location of the tools within.</p>
+
+<h3>Action <a id="build" href="#build">build</a></h3>
+
+<p>Runs the automation steps to build the given configuration.  </p>
+
+<p>Defaults to building all the configurations</p>
+
+<h3>Action <a id="clean" href="#clean">clean</a></h3>
+
+<p>Runs the automation steps to clean all temporary and generated files from the source folder.</p>
+
+<p>This should restore everything back to the same state that the source was checked out from Git in.</p>
+
+<h3>Action <a id="status" href="#status">status</a></h3>
+
+<p>Checks to see if the current state is identical to the state the code was checked out from Git.</p>
+
+<h3>Action <a id="verify" href="#verify">verify</a></h3>
+
+<p>Runs clean, build, verify on the given configuration.  </p>
+
+<p>Defaults to running thru all the configurations</p>
+
+<h3>Action <a id="trace" href="#trace">trace</a></h3>
+
+<p>Runs build on the configuration, tracing the build with CoApp trace. </p>
+
+<p>Defaults to running thru all the configurations</p>
+
+<h3>Action <a id="list" href="#list">list</a></h3>
+
+<p>Lists the build configurations in the .buildinfo file</p>
+
+<h3>Parameter <a href="configuration">buildconfiguration</a></h3>
+
+<p>You may pass the desired configuration on the command line (or multiple configurations). </p>
+
+<p>Accepts wildcards.</p>
+
+<p>If this is not passed, it assumes <code>*</code> -- all configurations.</p>
+
+<h3>.buildinfo file format</h3>
+
+<p>pTk .buildinfo files are based on the [common property sheet format][reference:propertysheet].</p>
+
+<p>The .buildinfo file consists of a <code>#product-info</code> rule, which contains the costmetic information about a given project, along with one or more build configuration rules, each which details how to build and clean a given build configuration.</p>
+
+<h5>product-info Rule</h5>
+
+
+<p>
+<div class="highlight"><pre><span class="c1">// .buildinfo file example</span>
+<span class="err"><a class="lnk" href="#productinfo">#</span><span class="n">product</span><span class="p">-</span><span class="n">info</span></a>  <span class="p">{</span>
+    <a class="lnk" href="#productname"><span class="n">product</span><span class="p">-</span><span class="n">name</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <a class="lnk" href="#version"><span class="n">version</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <a class="lnk" href="#originalsourcelocation"><span class="n">original</span><span class="p">-</span><span class="n">source</span><span class="p">-</span><span class="n">location</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <a class="lnk" href="#originalsourcewebsite"><span class="n">original</span><span class="p">-</span><span class="n">source</span><span class="p">-</span><span class="n">website</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <a class="lnk" href="#license"><span class="n">license</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <a class="lnk" href="#packager"><span class="n">packager</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">name</span> <span class="p">{</span>
+    <a class="lnk" href="#default"><span class="k">default</span></a><span class="p">:</span> <span class="k">true</span> <span class="n">or</span> <span class="k">false</span><span class="p">;</span> <span class="c1">// default is true by default :)</span>
+    <a class="lnk" href="#set"><span class="k">set</span></a><span class="p">:</span> <span class="k">true</span> <span class="n">or</span> <span class="k">false</span><span class="p">;</span> <span class="c1">// for setting environment variables</span>
+
+    <a class="lnk" href="#platform"><span class="n">platform</span></a><span class="p">:</span> <span class="n">compiler</span><span class="p">-</span><span class="n">tag</span> <span class="p">;</span><span class="cm">/* optional -- defaults to x86 */</span>
+    <a class="lnk" href="#compiler"><span class="n">compiler</span></a><span class="p">:</span> <span class="n">compiler</span><span class="p">-</span><span class="n">tag</span><span class="p">;</span> <span class="cm">/* optional -- defaults to vc10 */</span>
+    <a class="lnk" href="#sdk"><span class="n">sdk</span></a><span class="p">:</span> <span class="n">sdk</span><span class="p">-</span><span class="n">tag</span><span class="p">;</span>                <span class="cm">/* optional -- defaults to sdk7.1 */</span>
+
+    <a class="lnk" href="#uses"><span class="n">uses</span></a><span class="p">:</span> <span class="n">cfg</span><span class="p">=</span><span class="s">&quot;..\path&quot;</span> <span class="p">;</span>
+            <span class="cm">/* optional -- only used if this project has dependencies on others-may be specified mutiple times */</span>
+
+
+    <a class="lnk" href="#targets"><span class="n">targets</span></a><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="p">;</span>
+            <span class="c1">// a comma seperated list of the binary files that are output </span>
+            <span class="c1">// that are of significance</span>
+
+    <a class="lnk" href="#buildcommand"><span class="n">build</span><span class="p">-</span><span class="n">command</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+            <span class="c1">// either a single command line, or a batch script </span>
+            <span class="c1">// that has the commands to build the targets listed above.</span>
+
+    <a class="lnk" href="#cleancommand"><span class="n">clean</span><span class="p">-</span><span class="n">command</span></a><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+            <span class="c1">// either a single command line, or a batch script </span>
+            <span class="c1">// that has the commands to remove all temporary files </span>
+            <span class="c1">// created during a build.</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<h4>.buildinfo <a id="productinfo" href="#productinfo">#product-info</a></h4>
+
+<p>The <code>#product-info</code> rule contains cosmetic information that may be used later to assist in packaging up the binaries of the project, and is present to assist maintainers on understanding where the source code originally came from.</p>
+
+<h5>.buildinfo <a id="productname" href="#productname">#product-info/product-name</a></h5>
+
+<p>The <code>product-name</code> property reflects the name of the project being compiled.</p>
+
+<p>Example:</p>
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">product</span><span class="p">-</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;libjpeg&quot;</span><span class="p">;</span> <span class="c1">// the name of the project is &quot;libjpeg&quot;</span>
+</pre></div>
+
+<p>
+
+##### .buildinfo <a id="version" href="#version">#product-info/version</a>
+The `version` is the original project version of the source code.
+
+Example:
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">version</span><span class="p">:</span> <span class="s">&quot;8c&quot;</span><span class="p">;</span> <span class="c1">// the version of the project is &quot;8c&quot; </span>
+</pre></div>
+
+<p>
+
+##### .buildinfo <a id="originalsourcelocation" href="#originalsourcelocation">#product-info/original-source-location</a>
+The `original-source-location` is the repository or tarball location of the source code 
+
+Example:
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">original</span><span class="p">-</span><span class="n">source</span><span class="p">-</span><span class="n">location</span><span class="p">:</span> <span class="s">&quot;&lt;a href=&#39;http://ijg.org/files/jpegsr8c.zip&#39;&gt;http://ijg.org/files/jpegsr8c.zip&lt;/a&gt;&quot;</span><span class="p">;</span> <span class="c1">// the source was downloaded from there</span>
+</pre></div>
+
+<p>
+
+##### .buildinfo <a id="originalsourcewebsite" href="#originalsourcewebsite">#product-info/original-source-website</a>
+The `original-source-website` is the human-readable website where the developer can go for more information
+
+Example:
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">original</span><span class="p">-</span><span class="n">source</span><span class="p">-</span><span class="n">website</span><span class="p">:</span> <span class="s">&quot;&lt;a href=&#39;http://ijg.org&#39;&gt;http://ijg.org&lt;/a&gt;&quot;</span><span class="p">;</span> <span class="c1">// the jpeg website</span>
+</pre></div>
+
+<p>
+
+##### .buildinfo <a id="license" href="#license">#product-info/license</a>
+The `license` refers to the license the source code is licensed under
+
+Example:
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">license</span><span class="p">:</span> <span class="s">&quot;Custom license, see README&quot;</span><span class="p">;</span> <span class="c1">// not a gpl/bsd/etc...</span>
+</pre></div>
+
+<p>
+
+##### .buildinfo <a id="packager" href="#packager">#product-info/packager</a>
+The `packager` refers to the individual who is currently maintaining this source code
+
+Example:
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">packager</span><span class="p">:</span> <span class="s">&quot;Rafael Rivera &lt;&lt;a href=&#39;mailto:rafael@withinwindows.com&#39;&gt;rafael@withinwindows.com&lt;/a&gt;&gt;&quot;</span><span class="p">;</span> <span class="c1">// blame him!</span>
+</pre></div>
+
+<p>
+
+#### .buildinfo <a id="configuration" href="#configuration">build configuration</a>
+A "**build bonfiguration**" is analogous to a build configuration with Visual Studio You can create builds for x86, x64, as well as for different flavors (static library vs. dynamic library) etc. 
+> It's not necessary to explicitly create multiple build configuration for x86 and x64 if project compiles well under both without different commands (save for the selection of which platform).   
+
+You **do** want multiple configurations when the steps change between platforms (or you know that different files get processed in some libraries, there are separate files for x86 vs. x64), or if you have different expected outputs i.e. some libraries allow you to generate a static and a dynamic version of the same library).  Generally speaking, err on the side of caution and don't create multiple build configurations excessively for projects that behave themselves, we'll autogenerate the alternate configurations when we get around to creating new Visual Studio projects. 
+
+Build configuration names should be composed of alphanumeric characters (plus dashes and underscores). It is recommended that they are kept simple and follow some kind of standard. 
+> TODO : Perhaps we should set this standard down somewhere?
+
+##### .buildinfo <a id="default" href="#default">configuration/default</a>
+The `default` property can be used to turn off a build configuration from building by default (good for turning off shared or dependent tasks).
+
+Permitted Values:
+>    `true` -- by default, it will build (the default)
+>    `false` -- will not build unless explicitly used (or used from a 'uses' statement)
+
+##### .buildinfo <a id="set" href="#set">configuration/set</a>
+The `set` property is used to set an environment variable for a given build. Persists thru to the child builds as well.
+
+Example:
+
+<p>
+<div class="highlight"><pre>   <span class="k">set</span><span class="p">:</span> <span class="n">cfg</span><span class="p">=</span><span class="s">&quot;Debug&quot;</span><span class="p">;</span>  <span class="c1">// now cfg is set to Debug </span>
+</pre></div>
+
+<p>
+
+<h5>.buildinfo <a id="platform" href="#platform">configuration/platform</a></h5>
+
+<p>The <code>platform</code> property refers to target platform that this configuration is building for.<br />Permitted values:</p>
+
+<blockquote>
+  <p><code>x86</code> -- for Windows 32 bit, x86 builds<br />   <code>x64</code> -- for Windows 64 bit, x64 builds (ie, amd64, EMT64, etc)</p>
+</blockquote>
+
+<h5>.buildinfo <a id="compiler" href="#compiler">configuration/compiler</a></h5>
+
+<p>The <code>compiler</code> refers to the c/c++ compiler configuration to use to compile files with.</p>
+
+<p>Permitted values:</p>
+
+<blockquote>
+  <p><code>vc10</code>- Visual Studio 2010 <br />   <code>vc9</code> - Visual Studio 2008<br />   <code>vc8</code> - Visual Studio 2005<br />   <code>vc7.1</code> - Visual Studio 2003<br />   <code>vc7</code> - Visual Studio 2002 <br />   <code>vc6</code> - Visual Studio 98 (VC6)<br />   <code>sdk7.1</code> - Windows SDK 7.1 C++ compiler<br />   <code>sdk7</code> - Windows SDK 7.0 c++ compiler (untested)<br />   <code>sdk6</code> - Windows SDK 6.0 c++ compiler (untested)<br />   <code>mingw</code> - mingw compiler  </p>
+</blockquote>
+
+<h5>.buildinfo <a id="sdk" href="#sdk">configuration/sdk</a></h5>
+
+<p>The <code>sdk</code> refers to the SDK to build with.</p>
+
+<p>Permitted Values:</p>
+
+<blockquote>
+  <p><code>sdk7.1</code> - Windows SDK 7.1 <br />  <code>sdk7</code> - Windows SDK 7.0<br />  <code>sdk6</code> - Windows SDK 6.0<br />  <code>feb2003</code> - Platform SDK Feb2003 -- last known version that works with VC6<br />  <code>wdk7600</code> - Windows driver kit build 7600 (Windows 7 version)</p>
+</blockquote>
+
+<h5>.buildinfo <a id="uses" href="#uses">configuration/uses</a></h5>
+
+<p>This is for specifying that another build must precede this one. The <code>uses</code> property has a key and a value.</p>
+
+<p>The Key (<code>cfg</code>) is the name of the build configuration in the target project's .buildinfo file<br />The Value (<code>"..\foo"</code>) is the relative directory for the project to build. You can specify the current directory if the build configuration is in the current project. (ie, <code>uses: common=".\"</code>)</p>
+
+<p>If only the value is specified (ie, <code>uses: x86;</code>) it will look up the buildconfiguration in the use the .buildinfo file.</p>
+
+<p><strong>Note: DOES NOT currently pull in the dependent project from Git</strong></p>
+
+<h5>.buildinfo <a id="targets" href="#targets">configuration/targets</a></h5>
+
+<p>The <code>targets</code> property lists the relative paths to the generated files that indicate that a successful build has completed.</p>
+
+<p>Example:</p>
+
+
+<p>
+
+<p>
+
+<h5>.buildinfo <a id="buildcommand" href="#buildcommand">configuration/build-command</a></h5>
+
+<p>The <code>build-command</code> is the command or script that needs to be executed to build the targets</p>
+
+<p>Any command or commands can be specified as necessary. (if it's a batch script, make sure you use the at-symbol @"" string literal)</p>
+
+<p>Example:</p>
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">build</span><span class="p">-</span><span class="n">command</span><span class="p">:</span><span class="s">@&quot;</span>
+<span class="s">        copy jconfig.vc jconfig.h       </span>
+<span class="s">        copy makejsln.v10 makejsln.sln</span>
+<span class="s">        copy makeasln.v10 makeasln.sln</span>
+<span class="s">        copy makejvcx.v10 jpeg.vcxproj</span>
+<span class="s">        copy makecvcx.v10 cjpeg.vcxproj</span>
+<span class="s">        copy makedvcx.v10 djpeg.vcxproj</span>
+<span class="s">        copy maketvcx.v10 jpegtran.vcxproj</span>
+<span class="s">        copy makewvcx.v10 wrjpgcom.vcxproj</span>
+<span class="s">        copy makervcx.v10 rdjpgcom.vcxproj</span>
+<span class="s">        msbuild /p:Platform=Win32 /p:Configuration=Release makejsln.sln</span>
+<span class="s">        msbuild /p:Platform=Win32 /p:Configuration=Release makeasln.sln</span>
+<span class="s">    &quot;</span><span class="p">;</span>
+</pre></div>
+
+<p>
+
+<h5>.buildinfo <a id="cleancommand" href="#cleancommand">configuration/clean-command</a></h5>
+
+<p>The <code>clean-command</code> is the command or script that needs to be executed to clean any files out to restore the working directory to the pristine state.</p>
+
+<p>Any command or commands can be specified as necessary. (if it's a batch script, make sure you use the at-symbol @"" string literal)</p>
+
+<p>Example:</p>
+
+
+<p>
+<div class="highlight"><pre>    <span class="n">clean</span><span class="p">-</span><span class="n">command</span><span class="p">:</span><span class="s">@&quot;</span>
+<span class="s">                attrib -S -H -R *</span>
+<span class="s">        del /Q *.sdf *.suo *.sln *.vcxproj *.user jconfig.h 2&gt;NUL</span>
+<span class="s">        rmdir /S /Q Release 2&gt;NUL</span>
+
+<span class="s">        rmdir /S /Q cjpeg 2&gt;NUL</span>
+<span class="s">        rmdir /S /Q djpeg 2&gt;NUL</span>
+<span class="s">        rmdir /S /Q ipch 2&gt;NUL</span>
+<span class="s">        rmdir /S /Q jpegtran 2&gt;NUL</span>
+<span class="s">        rmdir /S /Q rdjpgcom 2&gt;NUL</span>
+<span class="s">        rmdir /S /Q wrjpgcom 2&gt;NUL</span>
+<span class="s">    &quot;</span><span class="p">;</span>
+</pre></div>
+
+<p>
+
+<h4>Macro Values</h4>
+
+<p>Use of <code>${macro}</code> style macros will look up the value in the current environment. These values can be set using the <a href="#set">set</a> property.</p>
+</div>
+
+<script>
+$('video').mediaelementplayer({
+    enableAutosize: true,
+    features: ['playpause','progress','current','duration','volume','fullscreen']
+});
+</script>
+
+<!-- Disqus Comment System -->
+<div id="disqus_thread"><div id="dsq-content"></div></div>
+<ul id="dsq-comments"></ul>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'coapp'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    
+    var disqus_identifier = "/reference/ptk.html/1.0";
+    var disqus_url = 'http://www.coapp.org/reference/ptk.html?version=1.0';
+    var disqus_title = "ptk - The Porting Toolkit/1.0";
+    var disqus_developer = 0; 
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    </div>  
+    <br>    
+    <div class="push" ></div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+        <p  style="float:left;">&copy; CoApp Contributors, 2011. 
+        <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/reference/ptk.html.md">in the github repository.</a></sub>
+        </p>
+        <p style="float:right;">
+            This website was generated on Feb 01 2012 and has 137 documents
+        </p>
+        </div>
+    </footer>
+</body>
+</html>

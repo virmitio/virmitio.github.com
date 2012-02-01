@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html lange="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>CoApp - Making modifications to CoApp website</title>
+    <meta name="description" content="">
+    <meta name="author" content="CoApp Project">
+
+    <meta property="og:title" content="CoApp - Making modifications to CoApp website"/>
+    
+        <meta property="og:type" content="article"/>
+    
+    <meta property="og:image" content="http://coapp.org/images/logo-small.png"/>
+    <meta property="og:url" content="http://coapp.org/developers/modify-website.html"/>
+    <meta property="og:site_name" content="CoApp"/>
+    <meta property="og:admins" content="CoApp - fearthecowboy"/>
+
+    <meta name="docid" content="developer:modifywebsite" />
+    <meta name="srclocation" content="https://github.com/coapp/coapp.org/blob/master/src/dynamic/developers/modify-website.html.md" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Shims: IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <link href="/styles/prettify.css" rel="stylesheet"/>
+    <link href="/styles/mediaelementplayer.min.css" rel="stylesheet"  />
+    
+</head>
+<body >
+    
+    <!-- Scripts -->
+    <script src="/scripts/jquery-1.6.4.min.js"></script>
+    <script src="/scripts/prettify.js"></script>
+    <script src="/scripts/jquery.tweet.js"></script>
+    <script src="/scripts/mediaelement-and-player.js"></script>
+    <script src="/scripts/bootstrap/bootstrap-dropdown.js"></script>
+    <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+      <script type="text/javascript">
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15630590-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script>
+        // $('#topbar').dropdown();
+    </script>
+    <!-- Markup -->
+    <div class="topbar" data-dropdown="dropdown">
+        <div class="fill">
+            <div class="container-fluid">
+                <h3><a href="/index.html"><image style="margin:0; padding:0; position:absolute; top:2px; left:-2px;" src="/images/logo-small_32x32.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoApp</a></h3>
+                <ul>
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/news.html" class="">
+                            <a href="/pages/news.html" property="dc:title">News</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/help.html" class="">
+                            <a href="/pages/help.html" property="dc:title">Help</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/packages.html" class="">
+                            <a href="/pages/packages.html" property="dc:title">Packages</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/publishers.html" class="">
+                            <a href="/pages/publishers.html" property="dc:title">Publishers</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle">Developers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/developers">Developer Tutorials</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Source Repositories</a></li>
+                                <li><a href="http://github.com/coapp-packages"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub"> Package Source Repositories</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/coapp/coapp.org/wiki"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > Developer Wiki</a></li>
+                                <li><a href="https://github.com/coapp/coapp/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Bugtracker</a></li>
+                                <li><a href="https://github.com/coapp/devtools/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > DevTools Bugtracker</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/organizations/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp GitHub Home</a></li>
+                            </ul>
+                        </li>
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/reference.html" class="">
+                            <a href="/pages/reference.html" property="dc:title">Reference</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/about.html" class="">
+                            <a href="/pages/about.html" property="dc:title">About</a>
+                        </li>
+
+                        
+                    
+                </ul>
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+    <div class="container-fluid pushdown">
+        <div class="sidebar">
+            
+        </div> 
+        <section id="content" class="content">
+        <div class="spanonethird rightsidebox" > <!-- float:right; display: inline; veritical-align:top; -->
+            
+                
+                    <h2>Documentation Sprint</h2>
+
+<p>We're starting a documentation phase right now, since there's so much that people <em>can</em> do, but there's little documentation. </p>
+
+<p>Keep checking back daily to see what's new! </p>
+                
+                    <h4><u>In the twittersphere...</u></h4>
+
+<p><div class="tweet"></div></p>
+
+<div style="text-align: right;    ">
+    <br>
+    <a class="btn info" href="http://search.twitter.com/search?q=&ands=CoAppCommits&phrase=&ors=&nots=&tag=&lang=all&from=&to=&ref=&near=&within=15&units=mi&since=&until=&rpp=15" >
+    Read more</a> <br><br><br></div>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+        $(".tweet").tweet({
+            query: "CoAppCommits",
+
+            avatar_size: 48,
+            count: 5,
+
+            loading_text: "loading tweets...",
+            refresh_interval: 60
+        });
+    });
+</script>
+                
+            
+        </div> 
+            <div class="spantwothirds">
+            
+
+
+<span style="display:inline-block;">
+    <h1>Making modifications to CoApp website</h1>
+    <h4>Version:1</h4>
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/developers/modify-website.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/developers/modify-website.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+
+<div id="post" class="post">
+    <h3>Requirements</h3>
+
+<p>You need to make sure that you've [checked out the website source code][developer:checkoutwebsite], and can run the site generator.</p>
+
+<h4>Website Project Layout</h4>
+
+<p>The CoApp website project is built using a static-site generator called DocPad, written in coffee-script (which actually uses node.js and runs as JavaScript).</p>
+
+<p>The generator (along with node.js) is entirely contained within the project, so no additional tools are needed.</p>
+
+<p>The project as a whole is laid out in the following form:</p>
+
+
+<p>
+<div class="highlight"><pre>├───documentation                   // documentation for components used to build the website
+│   └───bootstrap                   // documentation for bootstrap (the base css layout we use)
+├───node_modules                    // the node.js modules that make up the DocPad system
+│   ├───coappcms                    // nearly all the custom work in docpad for CoApp is here
+│   ├───coffee-script               
+│   ├───docpad
+│   ├───ejs                         // ejs is the javascript templating engine (when you see .html.ejs)
+│   ├───enumerable                  // a linq-like library for javascript. 
+│   ├───express
+│   ├───github-flavored-markdown    // the basis for the markdown support (the rest is in coappcms)
+│   └───MD5                         
+├───out                             // the output of the generate command dumps in here
+├───plugins                         // DocPad plugin modules (in coffee-script, ew!)
+│   ├───coappmarkdown               // the skeleton plugin (real guts are in coappcms above)
+│   ├───ejs 
+│   └───totaldocuments
+├───src                             // the website content (see below)
+└───tools                           // the binary tools needed to generate the site (node.js, etc)
+</pre></div>
+
+<p>
+
+<p>Unless you plan on making changes to DocPad itself, most of that isn't of much concern.</p>
+
+<p>The "source code" to the website content is all contained in the <code>src</code> folder.</p>
+
+<h4>Website Content Layout</h4>
+
+<p>The overall layout of the <code>src</code> folder is as follows:</p>
+
+
+<p>
+<div class="highlight"><pre>src
+├───dynamic                         // all the dynamic content in the website is under here
+│   │
+│   ├───developers                  // developer pages
+│   ├───help                        // help pages
+│   ├───news                        // blog posts
+│   ├───pages                       // top-level pages
+│   ├───reference                   // reference pages
+│   ├───scripts                     // client side javascript files that are transformed before sent out
+│   └───styles                      // css (.less to .css) files -- all style info in heree
+│       └───bootstrap               // bootstrap css files
+│
+├───includes                        // these are small templates that can be included in multiple pages.
+├───layouts                         // these contain the layouts for all the pages in the site
+└───static                          // all static content (things that don&#39;t change at generation time) are here
+    ├───images                      // image files go in here
+    │   ├───blog
+    │   ├───Flags
+    │   ├───player
+    │   ├───social
+    │   └───tutorials
+    ├───scripts                     // client-side javascript
+    │   └───bootstrap               // bootstrap client-side scripts
+    └───styles                      // static css files
+</pre></div>
+
+<p>
+
+<p>The website content is essentially composed of 4 parts:</p>
+
+<h5>Static Content</h5>
+
+<p>The <em>static content</em> of the website is just that--files that are copied verbatim without modification to the final website. Images, client-side-scripts and some CSS can be found in this section.</p>
+
+<p>All of the static content is copied as a tree into the root of the target website.</p>
+
+<h5>Dynamic Content</h5>
+
+<p>The <em>dynamic content</em> of the website consists of files that are transfomed in one way or another. The transformation they go thru is specified by the extensions that a given file has.  Reading from the end of the file backwards, you can see the transformations a given file will go thru.</p>
+
+<p>For example, a file named <code>index.html.md.ejs</code> will go from an <code>ejs</code>(embedded javascript template) file to <code>md</code> (markdown) and finally <code>html</code> .  DocPad will run the different transformers on the file as it makes its way thru the pipeline.</p>
+
+<p>Before the content is transformed, there is an optional section at the top of any text file called the "Front Matter", in a <a href="#yaml">format called <code>yaml</code></a>. You can think of the front matter as the ability to set some variables for the page before it makes its journey thru the transformation pipeline.</p>
+
+<p>The different formats that are generally used in CoApp's Website are:</p>
+
+<table class="zebra-striped">
+    <thead><tr><th>Extension</th><th>Format</th><th>Details</th></tr></thead><tbody>
+    <tr><td>.ejs</td><td>Embedded Javascript Template</td><td>The actual EJS library used is from <a href='https://github.com/visionmedia/ejs'>https://github.com/visionmedia/ejs</a> , however the documentation at the site <a href='http://embeddedjs.com/'>http://embeddedjs.com/</a> may be useful for understanding  </td></tr>
+    <tr><td>.md</td><td>Markdown</td><td>The CoApp website uses a variant of <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> called <a href="/reference/garrett-flavored-markdown">garrett-flavored-markdown</a>, which itself is a variant of <a href="http://github.github.com/github-flavored-markdown">GitHub-Flavored-Markdown</a>. </td></tr>
+    <tr><td>.less</td><td>Lesscss - dynamic css</td><td>You can learn more about lesscss at it's website: <a href='http://lesscss.org/'>http://lesscss.org/</a></td></tr>
+    <tr><td>.styl</td><td>Stylus -- "Expressive CSS"</td><td>Only used in one file, but you can find out more: <a href='http://learnboost.github.com/stylus/docs/executable.html'>http://learnboost.github.com/stylus/docs/executable.html</a></td></tr>
+    </tbody>
+</table>
+
+<h5>Layouts</h5>
+
+<blockquote>
+  <p>TODO : Layouts are how the content is stuffed into pages. For now, if you need to know, ask.</p>
+</blockquote>
+
+<h5>Includes</h5>
+
+<blockquote>
+  <p>TODO : Includes are common boxes that go in the side areas (kinda like mini-content) For now, if you need to know, ask.</p>
+</blockquote>
+
+<h3><a id="yaml" href="#yaml">YAML Front matter</a></h3>
+
+<p>Each file can declare some values that are passed to the transformation pipeline.</p>
+
+<p>YAML must always appear at the very beginning of the file, and always starts and ends with triple-dash (<code>---</code>) on a line by iself:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&#39;article&#39;</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&#39;Modifying</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoApp</span><span class="nv"> </span><span class="s">Website&#39;</span>
+<span class="l-Scalar-Plain">version</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1.0</span>
+<span class="l-Scalar-Plain">docid</span><span class="p-Indicator">:</span> <span class="s">&#39;developer:modifywebsite&#39;</span>
+<span class="nn">---</span>
+</pre></div>
+
+<p>
+
+<table class="zebra-striped" >
+    <thead><tr><th>Header Variable</th><th>Pages Used</th><th>Purpose</th></tr></thead><tbody>
+    <tr><td>layout</td><td>All Pages</td><td>Determines what template (or chain of templates, as a layout template can refer to another) is used for the page.</td></tr>
+    <tr><td>title</td><td>All Pages</td><td>The title is used by the master layout page to set the HMTL title, as well as for metadata in the headers for things like facebook integration.</td></tr>
+    <tr><td>version</td><td>Articles</td><td>Article pages can set a version. If the version number changes, the disqus comment thread ID gets changed, and starts a new thread. (this makes it so we can 'dump' old threads when they cease to be relevant)</td></tr>
+    <tr><td>docid</td><td>All Pages</td><td>Pages can set their docid so that they can use <a href="/reference/garrett-flavored-markdown.html#links">GFM reference links</a> instead of linking to the physical filename </td></tr>
+    <tr><td>order</td><td>Top level pages (ones in the <code>src/dynamic/pages</code> folder)</td><td>Order determines what order the pages appear in the top navigation bar.</td></tr>
+    <tr><td>rightsideboxes, leftsideboxes</td><td>All Pages*</td><td>Pages can declare 'included' boxes on the left and right side of content</td></tr>
+    <tr><td>author</td><td>News posts (blog)</td><td>Blog posts specify the post author.</td></tr>
+    <tr><td>twitter</td><td>News posts (blog)</td><td>Blog posts link to the twitter id of the author if specified</td></tr>
+    <tr><td>tags</td><td>News posts (blog)</td><td>for tagging blog posts.</td></tr>
+    </tbody>
+</table>
+
+<h3><a id="gfm" href="#gfm">Garrett-Flavored Markdown Guide</a></h3>
+
+<p>Visit the guide for [Garrett Flavored Markdown][gfm]</p>
+
+<h3><a id="html" href="#html">Falling back to HTML</a></h3>
+
+<p>Markdown (specifically <a href="#gfm">garrett-flavored-markdown</a> ) doesn't cover all the formatting that is required to build a website, so occasionally we have to fall back to using plain old HTML.</p>
+
+<p>We do however, have an excellent CSS layout foundation provided by <a href="http://twitter.github.com/bootstrap/">bootstrap</a>, so most of what we need is pretty trivial to do.</p>
+
+<h4>Tables</h4>
+
+<p>Markdown doesn't have any support for tables, other than they embed them just fine.<br />The content in a table must be HTML too--markdown doesn't process inside of tables.</p>
+
+<p>Use the following template for laying out tables:</p>
+
+
+<p>
+<div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">&quot;zebra-striped&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;&lt;tr&gt;</span>
+        <span class="nt">&lt;th&gt;</span>Column1 Header<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span>Column2 Header<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span>Column3 Header<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td&gt;</span>text<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>text<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>text<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td&gt;</span>text2<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>text2<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>text2<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+</pre></div>
+
+<p>
+
+<p>Which will render a table that looks like:</p>
+
+<table class="zebra-striped" >
+    <thead><tr>
+        <th>Column1 Header</th>
+        <th>Column2 Header</th>
+        <th>Column3 Header</th>
+    </tr></thead>
+    <tbody>
+        <tr>
+            <td>text</td>
+            <td>text</td>
+            <td>text</td>
+        </tr>
+        <tr>
+            <td>text2</td>
+            <td>text2</td>
+            <td>text2</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Labels</h4>
+
+<p>Bootstrap provides excellent label support:</p>
+
+<table class="zebra-striped" >
+    <thead>
+        <tr>
+        <th style="width: 50%;">Label</th>
+        <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>
+        <code>&lt;span class="label"&gt;Default&lt;/span&gt;</code>
+        </td>
+        <td>
+        <span class="label">Default</span>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <code>&lt;span class="label success"&gt;New&lt;/span&gt;</code>
+        </td>
+        <td>
+        <span class="label success">New</span>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <code>&lt;span class="label warning"&gt;Warning&lt;/span&gt;</code>
+        </td>
+        <td>
+        <span class="label warning">Warning</span>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <code>&lt;span class="label important"&gt;Important&lt;/span&gt;</code>
+        </td>
+        <td>
+        <span class="label important">Important</span>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <code>&lt;span class="label notice"&gt;Notice&lt;/span&gt;</code>
+        </td>
+        <td>
+        <span class="label notice">Notice</span>
+        </td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Alert Messages</h4>
+
+<p>Bootstrap supports alert messages that you can use in paragraph blocks with <code>class="alert-message"</code> class declaration (along with an optional <code>success</code>, <code>warning</code>, <code>error</code>, or <code>info</code>)</p>
+
+
+<p>
+<div class="highlight"><pre><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;alert-message error&quot;</span><span class="nt">&gt;</span>
+    Danger! This is important! See? You Looked?
+<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+<p>
+
+<p>Renders as : </p>
+
+<p class="alert-message error">
+    Danger! This is important! See? You Looked?
+</p>
+
+<h4>Block Messages</h4>
+
+<p>Bootstrap also gives us very nice block messages-- You can use paragraph blocks with <code>class="alert-message block-message"</code> class declaration (along with an optional <code>success</code>, <code>warning</code>, <code>error</code>, or <code>info</code>)</p>
+
+
+<p>
+<div class="highlight"><pre><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;alert-message block-message success&quot;</span><span class="nt">&gt;</span>
+    This message shows something important that you should consider ... 
+<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+<p>
+
+<p>Renders as:</p>
+
+<p class="alert-message block-message success">
+    This message shows something important that you should consider ... 
+</p>
+</div>
+
+<script>
+$('video').mediaelementplayer({
+    enableAutosize: true,
+    features: ['playpause','progress','current','duration','volume','fullscreen']
+});
+</script>
+
+<!-- Disqus Comment System -->
+<div id="disqus_thread"><div id="dsq-content"></div></div>
+<ul id="dsq-comments"></ul>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'coapp'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    
+    var disqus_identifier = "/developers/modify-website.html/1";
+    var disqus_url = 'http://www.coapp.org/developers/modify-website.html?version=1';
+    var disqus_title = "Making modifications to CoApp website/1";
+    var disqus_developer = 0; 
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    </div>  
+    <br>    
+    <div class="push" ></div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+        <p  style="float:left;">&copy; CoApp Contributors, 2011. 
+        <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/developers/modify-website.html.md">in the github repository.</a></sub>
+        </p>
+        <p style="float:right;">
+            This website was generated on Feb 01 2012 and has 137 documents
+        </p>
+        </div>
+    </footer>
+</body>
+</html>

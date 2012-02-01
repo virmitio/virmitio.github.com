@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lange="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>CoApp - The Common Opensource Application Publishing Platform (CoApp)</title>
+    <meta name="description" content="">
+    <meta name="author" content="Garrett Serack">
+
+    <meta property="og:title" content="CoApp - The Common Opensource Application Publishing Platform (CoApp)"/>
+    
+        <meta property="og:type" content="article"/>
+    
+    <meta property="og:image" content="http://coapp.org/images/logo-small.png"/>
+    <meta property="og:url" content="http://coapp.org/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html"/>
+    <meta property="og:site_name" content="CoApp"/>
+    <meta property="og:admins" content="CoApp - fearthecowboy"/>
+
+    <meta name="docid" content="news:20100331" />
+    <meta name="srclocation" content="https://github.com/coapp/coapp.org/blob/master/src/dynamic/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html.md" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Shims: IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <link href="/styles/prettify.css" rel="stylesheet"/>
+    <link href="/styles/mediaelementplayer.min.css" rel="stylesheet"  />
+    
+</head>
+<body >
+    
+    <!-- Scripts -->
+    <script src="/scripts/jquery-1.6.4.min.js"></script>
+    <script src="/scripts/prettify.js"></script>
+    <script src="/scripts/jquery.tweet.js"></script>
+    <script src="/scripts/mediaelement-and-player.js"></script>
+    <script src="/scripts/bootstrap/bootstrap-dropdown.js"></script>
+    <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+      <script type="text/javascript">
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15630590-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script>
+        // $('#topbar').dropdown();
+    </script>
+    <!-- Markup -->
+    <div class="topbar" data-dropdown="dropdown">
+        <div class="fill">
+            <div class="container-fluid">
+                <h3><a href="/index.html"><image style="margin:0; padding:0; position:absolute; top:2px; left:-2px;" src="/images/logo-small_32x32.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoApp</a></h3>
+                <ul>
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/news.html" class="">
+                            <a href="/pages/news.html" property="dc:title">News</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/help.html" class="">
+                            <a href="/pages/help.html" property="dc:title">Help</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/packages.html" class="">
+                            <a href="/pages/packages.html" property="dc:title">Packages</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/publishers.html" class="">
+                            <a href="/pages/publishers.html" property="dc:title">Publishers</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle">Developers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/developers">Developer Tutorials</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Source Repositories</a></li>
+                                <li><a href="http://github.com/coapp-packages"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub"> Package Source Repositories</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/coapp/coapp.org/wiki"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > Developer Wiki</a></li>
+                                <li><a href="https://github.com/coapp/coapp/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Bugtracker</a></li>
+                                <li><a href="https://github.com/coapp/devtools/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > DevTools Bugtracker</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/organizations/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp GitHub Home</a></li>
+                            </ul>
+                        </li>
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/reference.html" class="">
+                            <a href="/pages/reference.html" property="dc:title">Reference</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/about.html" class="">
+                            <a href="/pages/about.html" property="dc:title">About</a>
+                        </li>
+
+                        
+                    
+                </ul>
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+    <div class="container-fluid pushdown">
+        <div class="sidebar">
+            
+        </div> 
+        <section id="content" class="content">
+        <div class="spanonethird rightsidebox" > <!-- float:right; display: inline; veritical-align:top; -->
+            
+        </div> 
+            <div class="spantwothirds">
+            
+
+
+<span style="display:inline-block;">
+    <h1>The Common Opensource Application Publishing Platform (CoApp)</h1>
+    <p>Mar 31 2010 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a><br>
+    <span class="label warning">Tags</span><span style="display:inline-block;">news,planning</span></p>
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+<div id="post" class="post">
+    <p>Listen up folks, this stuff is big.</p>
+
+<p>Today, I'm announcing the beginning of a project that intends to bring a little joy into the hearts of Open Source aficionados on the Windows Platform.</p>
+
+<p>The biggest challenge to using/building/maintaining many Open Source applications on Windows, is that Windows does a lot of things differently than Linux and Unix . Different filesystems, command lines, APIs, user experiences ... well, pretty much everything. Regardless of personal opinions about it being the 'right-way' or 'wrong-way', it suffices to say that it is just simply different. </p>
+
+<p>In order to build an Open Source application like PHP for Windows from scratch, I need to have a collection of libraries created from a fair number of different projects.  This creates a dependency between the code that I'm working on-PHP-and the project that supplies the library that I need.  It's pretty important that I not simply rely upon a previously compiled version of the library (provided either by the project itself, or a third party) for a number of reasons:</p>
+
+<ul>
+<li>I want to make sure that the library is compiled with the same version of the compiler and libraries as I use.</li>
+<li>In order to fine-tune performance, I'm going to need to change the compiler settings.</li>
+<li>As a security precaution against malicious third parties creating flawed binaries.</li>
+<li>Hey! - It's Open Source. It's pretty much a <strong>moral imperative</strong> that I compile the code for myself. Well, it is for me anyway.</li>
+</ul>
+
+<p>Now, unfortunately, those dependencies don't necessarily share the same development environments, practices, tools, operating systems, or even ideas as to how things should-from one's own perspective-be done (because, as every developer knows, one's own way is the 'one true way').</p>
+
+<p>Interestingly, this problem really doesn't happen on Linux (and other *NIX-like substances).  When someone builds that same application (PHP) on Unix, they do so knowing that the OS works a certain way (generally speaking), and along with the dark magic known as autoconf, you can put the source code on nearly any Unix-variant and just build it.</p>
+
+<blockquote>
+  <p>Let me take a moment to talk about how this is done in the Linux/Unix world.<br />This isn't nearly a problem there because nearly all libraries come with a<br />'configure' script of sorts which the developer runs prior to building the code,<br />and the script checks the local development environment,  determines the<br />appropriate settings, compilers and dependencies, and creates a build<br />script to match.</p>
+  
+  <p>You download the source, unpack it, run:</p>
+</blockquote>
+
+
+<p>
+<div class="highlight"><pre> ./configure, make &amp;&amp; make install.
+</pre></div>
+
+<p>
+
+<blockquote>
+  <p>If you are missing any dependencies, you download them, unpack, run:</p>
+</blockquote>
+
+
+<p>
+<div class="highlight"><pre> ./configure &amp;&amp; make &amp;&amp; make install, and go back to the app.
+</pre></div>
+
+<p>
+
+<blockquote>
+  <p>Shared Libraries end up in a common spot (/usr/lib), header files end up in a<br />common spot (/usr/include) and binaries can go into a common spot (/usr/bin).</p>
+  
+  <p>There are some tools and conventions that make this all work pretty darn good,<br />and when it doesn't, it's usually not much of a stretch to get it there.      </p>
+</blockquote>
+
+<p>When that same application needs to be built on Windows, it takes some effort. Finding the dependencies (like OpenSSL or zlib), and getting <strong>them</strong> to compile (which is inconsistent from library-to-library on Windows) and then building the application itself-again, inconsistent-generates a binary that you can run. Nearly all of the time, if someone posts those binaries, they bundle up their copies of the shared libraries along with the application.  The trouble is, that there is no common versioning, or really, sharing of shared libraries on Windows. If your app and my app both use the same library, they could (and often do) ship with a different version of it.</p>
+
+<h2>And, there is the user side of the equation...</h2>
+
+<p>Of course. Consumers of open source software on Windows have been relegated to manually scouring the Internet for binaries, and they are often out-of-date, compiled against older compilers and libraries, and pretty hard to get working. Clearly there is a strong need for a package management system, along the same lines as apt, rpm, synaptic (and others) but built for the Windows platform, and compatible with Windows features.</p>
+
+<h2>Why not adapt the Unix-way on Windows?</h2>
+
+<p>There are two fundamental reasons: Primarily, because it's just not done that way on Windows.  And since Windows doesn't "look" like Unix, it's not very easy to use the same scripts on Windows as Unix. Sure, there are Unix-like environments for Windows (Cygwin, Mingw and Microsoft's own SUA), but they really isolate the developer from Windows itself. While they do try to create a very Unix-like environment, you end up building Unix-style apps on Windows, and pretty much forego the platform benefits that are available.</p>
+
+<p>Secondly, open source software that was originally written for Windows won't be using Linux-style tools anyway. Since I want to unify these two groups, I'm going to want a one-size-fits-all solution.</p>
+
+<p>Really, the solution is to <strong>build it right</strong> for Windows.</p>
+
+<h2>So, what exactly does "Building it Right" mean anyway?</h2>
+
+<p>That is, in a nutshell, the sixty-four kilobyte question.</p>
+
+<p>For starters, this means using the tools, methodologies and technologies on Windows, as they were meant to be used, in order to take advantage of everything that Windows has to offer. I'm not interested in simply making a knock-off of the Unix-style way of doing things. Windows doesn't store binaries in c:\usr\bin (/usr/bin) and libraries in c:\usr\lib (/usr/lib), so we're not going to do things like that.</p>
+
+<p>CoApp will:</p>
+
+<ul>
+<li>Provide a distributed, community driven package management system for open source applications on the Windows Platform</li>
+<li>Handle multiple versions of binaries using WinSxS (I know, even the <strong>mention</strong> of side-by-side components evokes fear, anger and the desire to go off-diet, but bear with me, I think we've got a solution), including multiple copies of the same version of the same library, compiled with different compilers.</li>
+<li>Support 64 bit and 32 bit systems, without hassle or collisions.</li>
+<li>Place binaries, libraries and header files in a logical and consistent location.</li>
+<li>Have tools and methods for handling dependencies.</li>
+<li>Create reliable installer packages (MSIs) for installing open source software.</li>
+<li>Facilitate sharing of components and allow multiple projects to easily both participate and consume them.</li>
+<li>Allow for upgrades and patching of both libraries and applications.</li>
+<li>Be Windows developer friendly. No forcing of building using 'make', but rather taking advantage of the nifty IDEs we already have.</li>
+<li>Also be Windows admin friendly. Even if it's open source, you shouldn't have to be a developer to put Open Source applications on Windows.</li>
+<li>Use advanced optimization techniques like Profile Guided Optimization to produce optimized binaries.</li>
+<li>Support future technologies as they come along.</li>
+<li>Aid in the adoption of Windows Error Reporting (WinQual) to assist in making software run better on Windows.</li>
+<li>End the eternal struggle between Green and Purple. Unless of course you're a Drazi and are conducting elections.</li>
+</ul>
+
+<p>Tall order? You bet. Still, I believe that it's all achievable. I've spent the last several months working on some proof-of-concepts, fleshing out some ideas, and talking with some open source community members. Nothing is currently set in stone, and even the specifications are very fluid at this point.</p>
+
+<p>I've started a project on Launchpad at <a href='http://launchpad.net/coapp'>http://launchpad.net/coapp</a> and the wiki at <a href='http://CoApp.org'>http://CoApp.org</a>. I'm just starting the specifications and tools to make this happen, and I welcome everyone's input and contributions.</p>
+</div>
+
+<!-- Disqus Comment System -->
+<div id="disqus_thread"><div id="dsq-content"></div></div>
+<ul id="dsq-comments"></ul>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'coapp'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    
+    var disqus_identifier = '/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html';
+    var disqus_url = 'http://www.coapp.org/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html';
+    var disqus_title = "The Common Opensource Application Publishing Platform (CoApp)";
+    var disqus_developer = 0; 
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </section>
+    </div>  
+    <br>    
+    <div class="push" ></div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+        <p  style="float:left;">&copy; CoApp Contributors, 2011. 
+        <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/news/2010-03-31-The-common-opensource-application-publishing-platform-CoApp.html.md">in the github repository.</a></sub>
+        </p>
+        <p style="float:right;">
+            This website was generated on Feb 01 2012 and has 137 documents
+        </p>
+        </div>
+    </footer>
+</body>
+</html>

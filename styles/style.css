@@ -1,0 +1,6 @@
+@import 'bootstrap/bootstrap.css';
+@import 'syntax.css';
+@import 'tweet.css';
+@import 'custom.css';
+a,a:link{cursor:pointer}
+table tfoot th,table tbody th{border-top:1px solid #ddd}
