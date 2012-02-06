@@ -201,13 +201,7 @@
 <li>CoApp:  Digging deeper...</li>
 </ol>
 
-<h1>CoApp:  What it <strong>IS</strong> and is <strong>NOT</strong>.</h1>
-
-<h2>What CoApp is:</h2>
-
-<ul>
-<li>CoApp <strong>IS</strong> a package management system for Windows, the likes of which has not been seen before.  CoApp provides a convenient way to distribute, locate, develop, and use software on Windows systems.  Dependencies are tracked and updated seamlessly according to binary compatibility, meaning that any software you run will always be running with the most stable and secure versions available <strong>without</strong> breaking your programs.</li>
-</ul>
+<h1>1) CoApp:  What it <strong>IS</strong> and is <strong>NOT</strong>.</h1>
 
 <h2>What CoApp is <strong>not</strong>:</h2>
 
@@ -217,6 +211,36 @@
 <li><p>CoApp is <strong>NOT</strong> GetIt.  CoApp will likely not list big brand-name closed-source products, at least not right away.  We have no need or desire to try packaging up these large programs and declaring them proper CoApp packages.  If those various companies wish to use CoApp to package their own software, that's fine with us, but it will be their signatures on the packages and I really hope they slim down the installers for everyday use and rethink their update schemes.</p></li>
 <li><p>CoApp is <strong>NOT</strong> dpkg.  CoApp shares some characteristics with dpkg and there is the potential for dpkg to someday change its ways to solve many of the problems we have solved with CoApp, but these two systems are NOT equal.  Our team has put in a great deal of effort to ensure that there can be <strong><em>no package collisions</em></strong>, either during dependency resolution or at install-time.  You want to have 6 or 10 versions of PHP being used at the same time?  We think you're crazy, but you can absolutely do that.  You have 20 programs all requiring different versions of zlib?  Not a problem.</p></li>
 </ul>
+
+<h2>What CoApp is:</h2>
+
+<ul>
+<li><p>CoApp <strong>IS</strong> a package management system for Windows, the likes of which has not been seen before.  CoApp provides a convenient way to distribute, locate, develop, and use software on Windows systems.  Dependencies are tracked and updated seamlessly according to binary compatibility, meaning that any software you run will always be running with the most stable and secure versions available <strong>without</strong> breaking your programs.</p></li>
+<li><p>CoApp <strong>IS</strong> a unique set of tools that allows developers to painlessly and seamlessly leverage powerful features provided by the Windows operating system as well as effortlessly package and distribute software across multiple Windows platforms.</p></li>
+<li><p>CoApp <strong>IS</strong> open source, meaning that anyone with a desire to do so can see <em>exactly</em> how CoApp does what it does.  No tricks here.  No black boxes or magic curtains.  If you would like to help contribute to the project, just drop us a line <a href="/developers/irc.html">on IRC</a>.</p></li>
+</ul>
+
+<h1>2) How does it do what we claim?</h1>
+
+<p>The greatest single technology that allows us to make these claims of greatness is <a href="http://www.wikipedia.org/wiki/Side-by-side_assembly">Windows Side-by-Side</a>.  CoApp also makes gratuitous use of symbolic links in the file system to avoid keeping unnecessary copies of files and thus reducing the drivespace footprint of any packages that are installed.  In addition to both of these items, there are a number of tools and functions that were purpose-built by the CoApp team to ensure seamless operation.</p>
+
+<h2>Windows Side-by-Side technology</h2>
+
+<p>Windows Side-by-Side (SxS) has been built into Windows since XP with a direct intention to reduce or remove <a href="http://www.wikipedia.org/wiki/DLL_hell">DLL hell</a>.  SxS allows multiple version of an assembly (library, executable, or other versioned files) to be installed and used simultaneously on the same system.  SxS also provides controls for declaring version forwarding rules of an assembly, meaning that if version 1.0.0.0 of somthing is installed but has a bug, installing version 1.0.1.3 (which fixes the bug) can include a rule saying that all versions 1.0.0.0 - 1.0.1.2 may instead use version 1.0.1.3 and be fully compatable.  If a piece of software was compiled with and is only aware of version 1.0.0.0 then when it requests this version of the assembly from Windows, it will instead be given version 1.0.1.3 automatically.  Thus SxS allows any software to always use the most recent versions available of any librares or other assemblies that are campatable with the versions the software requires.</p>
+
+<p>In addition to this, all assemblies stored in SxS must be digitally signed and can be identified by hash of the public key of the signer (publisher).  In this way assembly collisions can be avoided, as a collision would require two assemblies with the same name, version, and public key signature hash.  While this is not impossible, it is sufficiently unlikely that we're willing to ignore it until it becomes a problem (our tester assures us that computers will likely be obsolete by then).  Not only does this allow multiple versions of an assembly and from different publishers to be installed and used simultaneously, but it also ensures that software which references a specific publisher's assembly can never be poisoned by another publisher's assembly on the same system.</p>
+
+<p>Unfortunately, the tools available to create and install SxS libraries and executables are generally difficult at best to use, and the requirements to actually place such assemblies into SxS make doing so manually a herculean task.  This has resulted in almost nobody using SxS for versioning their assemblies.  Use of SxS is sufficiently difficult out-of-the-box that Microsoft actually <em>stopped</em> using SxS to store their Visual C runtime library after VC9 (see 'Differences between Visual C++ 2008 and Visual C++ 2010' on <a href="http://msdn.microsoft.com/en-us/library/dd293574(VS.100).aspx">this page</a>).  Our solution to this problem was to remove all of the difficulty and confusion in using SxS and build the CoApp toolset to make use of SxS seamlessly in the background of everything else.  This has imposed some relatively minor requirements on developers seeking to publish packages with CoApp (such as the requirements of code signing and versioning), but we have done our best to make even these requirements painless.  More information on how to make your own packages can be found <a href="/pages/publishers.html">here</a>.</p>
+
+<h2>Windows symbolic links (Symlinks)</h2>
+
+<p>Anyone familiar with *nix systems likly knows what symlinks are.  What may not be so well known is that symlinks have been supported in the Windows operating system since XP.  Much like SxS, symlinks have been available for quite a while, but are generally less than intuitive to use on Windows unless you already know how.  CoApp uses symlinks to provide 'copies' of files in appropriate location in the file system for easy use and access, while housing the original files in a location that can be easily managed by CoApp itself.  No, we're not trying to hide the actual files from you.  In fact, Windows will tell you exactly where those files are if you actually look at one of the symlinks.  Handling the files in this way provides us the greatest flexibility while also keeping a minimal footprint in actual drivespace.</p>
+
+<h2>Seamless usage</h2>
+
+<p>CoApp has built a number of tools that are intended to make a developer's life easier.  Want to make a SxS assembly but don't want to make it a CoApp package?  We've got a tool for that.  Want to build your project with 2 compilors for 3 different platforms with only one command?  We've got a tool for that.  Want to convert your gcc Makefile into a VC10 project?  We've got a tool for that. <em>(This one is still under construction.)</em></p>
+
+<p>Our aim is to make everything about developing for Windows easier.  If you try out CoApp and find it to be lacking a critical tool or mechanism, please talk to us about it <a href="/developers/irc.html">on IRC</a> or submit a <a href="developers/bugs.html">feature request</a>.</p>
             </div>
         </section>
     </div>  
@@ -229,7 +253,7 @@
         <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/reference/tech-background.html.md.ejs">in the github repository.</a></sub>
         </p>
         <p style="float:right;">
-            This website was generated on Feb 01 2012 and has 138 documents
+            This website was generated on Feb 06 2012 and has 138 documents
         </p>
         </div>
     </footer>
