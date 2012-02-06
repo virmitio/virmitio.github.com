@@ -198,6 +198,7 @@
 <ol>
 <li>CoApp:  What it <strong>IS</strong> and is <strong>NOT</strong>.</li>
 <li>CoApp:  How does it do what we claim?</li>
+<li>CoApp:  Enterprise and consumer friendly.</li>
 <li>CoApp:  Digging deeper...</li>
 </ol>
 
@@ -208,7 +209,7 @@
 <ul>
 <li><p>CoApp is <strong>NOT</strong> the FreeBSD Ports collection, or any other source code distribution system.  While a source package may be available for a given piece of software, it is still distributed in the CoApp Package format and is handled internally in a functionally identical manner to binary packages.  In addition, we <em>expect</em> that there will be many packages available for binary executables that do not have an equivilant source package.  We're not trying to say that you can't grab only source packages and "roll your own" binaries, but we won't promise that everything will have source available to the public.</p></li>
 <li><p>CoApp is <strong>NOT</strong> a source code versioning system.  As stated above, there may be source packages available for various software, but these are static, atomic packages containing a snapshot of that source code, not its versioning and history.  You're looking for something like SVN, git, or CVS (which we DO have installation packages for, if you need them).</p></li>
-<li><p>CoApp is <strong>NOT</strong> GetIt.  CoApp will likely not list big brand-name closed-source products, at least not right away.  We have no need or desire to try packaging up these large programs and declaring them proper CoApp packages.  If those various companies wish to use CoApp to package their own software, that's fine with us, but it will be their signatures on the packages and I really hope they slim down the installers for everyday use and rethink their update schemes.</p></li>
+<li><p>CoApp is <strong>NOT</strong> GetIt, or AppSnap, or any other Windows apt-get clone.  Unlike apt-get look-alikes for Windows, CoApp focuses on packages of very small granularity.  This means that a specific individual package should contain ONLY those files which it needs AND which are not part of a dependency package.  This means that even if you install 40+ programs that depend on zlib, you will only ever need 1 copy of the zlib libraries installed on the system, and that none of those 40+ other packages will include the zlib package.  This keps individual packages slim and easily transferable over even the lowest bandwidth connection.  Additionally, this means that if you copy all of the installers to a flash drive (or even a floppy disk, for the sake of argument) you only have 1 copy of each shared library that you need to transfer, instead of 1 copy for every program you want to install on the target computer.</p></li>
 <li><p>CoApp is <strong>NOT</strong> dpkg.  CoApp shares some characteristics with dpkg and there is the potential for dpkg to someday change its ways to solve many of the problems we have solved with CoApp, but these two systems are NOT equal.  Our team has put in a great deal of effort to ensure that there can be <strong><em>no package collisions</em></strong>, either during dependency resolution or at install-time.  You want to have 6 or 10 versions of PHP being used at the same time?  We think you're crazy, but you can absolutely do that.  You have 20 programs all requiring different versions of zlib?  Not a problem.</p></li>
 </ul>
 
@@ -242,7 +243,11 @@
 
 <p>Our aim is to make everything about developing for Windows easier.  If you try out CoApp and find it to be lacking a critical tool or mechanism, please talk to us about it <a href="/developers/irc.html">on IRC</a> or submit a <a href="developers/bugs.html">feature request</a>.</p>
 
-<h1>3. CoApp:  Digging deeper...</h1>
+<h1>3. CoApp:  Enterprise and consumer friendly.</h1>
+
+<p>Everyday consumers can feel confident about the software they're installing, as every package in the primary <a href="/pages/packages.html">package repository</a> is vetted by the CoApp team to ensure that the package is properly signed and that they install and uninstall cleanly without complications.  Enterprise users can fully customize the operation of CoApp to suit their needs, including (but not limited to):<br />* Disabling access to the primary repository to prevent undesired installs.<br />* Host a private repository containing only those packages which are desired internally.  This also ensures that this software is always up to date on every computer.<br />* Lock down package management to a select set of publishers (internal certificates only, perhaps?).<br />* Automatically push new packages to client machines or virtual servers.  <em>(coming soon)</em></p>
+
+<h1>4. CoApp:  Digging deeper...</h1>
 
 <p>If you'd like to see the details of the road CoApp has tried to pave over the difficulties in developing for Windows, an <a href="/reference/in-depth-tech.html">in-depth technical review</a> is available.</p>
             </div>
