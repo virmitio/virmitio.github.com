@@ -237,7 +237,7 @@
 
 <h3>Windows XP</h3>
 
-<p>Handling the problem of symlinks on Windows XP was actually fairly straightforward.  XP <em>does</em> provide the ability to create hardlinks (a symlink that you can't copy, move, or otherwise handle like a normal file).  We simply check if the system we are on is Windows XP at the time we try to create a symlink, and if it is we create a hardlink instead.  It's not terribly elegant, but it works and doesn't have any significant side effects (yet).</p>
+<p>Handling the problem of symlinks on Windows XP was actually fairly straightforward.  XP <em>does</em> provide the ability to create hardlinks (a symlink that you can't copy, move, or otherwise handle like a normal file).  We simply check if the system we are on is Windows XP at the time we try to create a symlink, and if it is we create a hardlink instead.  It's not terribly elegant, but it works and as yet does not have any apparent side effects.</p>
 
 <h3>Installation</h3>
 
