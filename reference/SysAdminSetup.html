@@ -172,11 +172,49 @@
 <h4>Topics:</h4>
 
 <ol>
+<li>Pre-setup considerations</li>
 <li>Basic setup walkthrough</li>
 <li>Common settings for setup</li>
 <li>Settings available in the Windows Registry</li>
 <li>Settings available in Group Policy</li>
 </ol>
+
+<hr />
+
+<h2>1. Pre-setup considerations</h2>
+
+<p>Before deploying CoApp on a system or domain, there are some initial settings to review and possibly change according to your situation.  Any of these settings may be changed in the registry (to only affect the local computer) or by group policy using the <a href="/">CoApp Administrative Templates</a>.</p>
+
+<ul>
+<li><p>CoApp installs a root certificate by default.  This certificate is only used as a root for trusted CoApp package publishers.  If you disable this root certificate, many CoApp-trusted packages may prompt for comfirmation before installation can continue.</p>
+
+<ul><li>Registry preference: <code>HKLM\Software\CoApp\PackageManager\DisableRootCert</code> = 1</li>
+<li>Policy:  `Computer\Administrative Templates\CoApp\Package Manager\Disable CoApp Root Certificate'</li></ul></li>
+<li><p>CoApp's default behaviour is to install software packages to the system default <code>Program Files</code> location.  This root install location may be altered (for CoApp and CoApp packages only!).  Be aware that CoApp creates a tree of symbolic links in the system default <code>ProgramData</code> folder regardless of this setting.  <em><strong>Note for Windows XP and Server 2003 systems:</strong> This setting has no effect on Windows XP or Server 2003 systems due to a lack of proper symlink support.  Read details on how symlinks are handled on these systems <a href="/reference/in-depth-tech.html">here</a>.</em></p>
+
+<ul><li>Registry preference: <code>HKLM\Software\CoApp\PackageManager\AltProgramFiles</code></li>
+<li>Policy:  <code>Computer\Administrative Templates\CoApp\Package Manager\Alternate Program Files Location</code></li></ul></li>
+<li><p>CoApp will send very basic usage information to the CoApp team for our statistics.  If you wish to opt out, you can do so during the initial installation of CoApp or by adjusting the settings below:</p>
+
+<ul><li>Registry preference: <code>HKLM\Software\CoApp\PackageManager\UsageOptOut</code> = 1</li>
+<li>Policy:  `Computer\Administrative Templates\CoApp\Package Manager\Usage Information Opt-Out'</li></ul></li>
+</ul>
+
+<h2>2. Basic setup walkthrough</h2>
+
+<p><em>Coming Soon!</em></p>
+
+<h2>3. Common settings for setup</h2>
+
+<p><em>Coming Soon!</em></p>
+
+<h2>4. Settings available in the Windows Registry</h2>
+
+<p><em>Coming Soon!</em></p>
+
+<h2>5. Settings available in Group Policy</h2>
+
+<p><em>Coming Soon!</em></p>
             </div>
         </section>
     </div>  
@@ -189,7 +227,7 @@
         <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/reference/sysadminsetup.html.md.ejs">in the github repository.</a></sub>
         </p>
         <p style="float:right;">
-            This website was generated on Feb 06 2012 and has 138 documents
+            This website was generated on Feb 08 2012 and has 138 documents
         </p>
         </div>
     </footer>
