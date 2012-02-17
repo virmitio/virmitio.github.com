@@ -238,24 +238,24 @@ $(document).ready(function(){
 <p>The following targets must be implemented in the <code>.buildinfo</code> file in any order.</p>
 
 <ol>
-<li>�Test�#Test-Target�</li>
-<li>�Package�#Package-Target�</li>
-<li>�Release�#Release-Target�</li>
-<li>�Sign�#Sign-Target�</li>
+<li><a href="#Test-Target">Test</a></li>
+<li><a href="#Package-Target">Package</a></li>
+<li><a href="#Release-Target">Release</a></li>
+<li><a href="#Sign-Target">Sign</a></li>
 </ol>
 
 <p>The following targets are <em>highly encouraged</em> to be implemented in the <code>.buildinfo</code> file.</p>
 
 <ol>
-<li>�Debug�#Debug-Target�</li>
-<li>�x86�#x86-Target�  (if applicable)</li>
-<li>�x64�#x64-Target�  (if applicable)</li>
-<li>�Any�#Any-Target�  (if applicable)</li>
+<li><a href="#Debug-Target">Debug</a></li>
+<li><a href="#x86-Target">x86</a>  (if applicable)</li>
+<li><a href="#x64-Target">x64</a>  (if applicable)</li>
+<li><a href="#Any-Target">Any</a>  (if applicable)</li>
 </ol>
 
 <h4><a id="Test-Target" href="#Test-Target">Test</a> target</h4>
 
-<p>This target should depend on the �Release�#Release-Target�, and then run any project-specific tests that the developer provides.  <em><strong>*It is expected that developers will provide tools and/or libraries for testing the function of their software.  The CoApp team WILL NOT perform additional tests on arbitrary packages before release.  Failure to provide testing functionality is grounds for removal from publishing by the CoApp team.</strong></em></p>
+<p>This target should depend on the <a href="#Release-Target">Release</a>, and then run any project-specific tests that the developer provides.  <em><strong>*It is expected that developers will provide tools and/or libraries for testing the function of their software.  The CoApp team WILL NOT perform additional tests on arbitrary packages before release.  Failure to provide testing functionality is grounds for removal from publishing by the CoApp team.</strong></em></p>
 
 <p>Example:</p>
 
@@ -273,7 +273,7 @@ MyTestProg.exe -doStuff&quot;
 
 <h4><a id="Package-Target" href="#Package-Target">Package</a> target</h4>
 
-<p>This required target must call the �Sign�#Sign-Target� and �Release�#Release-Target� targets (as appropriate for the �Sign�#Sign-Target� target), followed by any post-build actions necessary to produce all intended final package files.  This includes running <code>AutoPackage</code> with any relavent <code>*.autopkg</code> files.</p>
+<p>This required target must call the <a href="#Sign-Target">Sign</a> and <a href="#Release-Target">Release</a> targets (as appropriate for the <a href="#Sign-Target">Sign</a> target), followed by any post-build actions necessary to produce all intended final package files.  This includes running <code>AutoPackage</code> with any relavent <code>*.autopkg</code> files.</p>
 
 <p>Example:</p>
 
@@ -289,7 +289,7 @@ MyTestProg.exe -doStuff&quot;
 
 <h4><a id="Release-Target" href="#Release-Target">Release</a> target</h4>
 
-<p>This required target is expected to set necessary environment variables, then either call the appropriate �x86�#x86-Target�, �x64�#x64-Target�, and/or �Any�#Any-Target� targets or provide direct build commands to produce officailly releaseable binaries/libraries/etc. for the project.</p>
+<p>This required target is expected to set necessary environment variables, then either call the appropriate <a href="#x86-Target">x86</a>, <a href="#x64-Target">x64</a>, and/or <a href="#Any-Target">Any</a> targets or provide direct build commands to produce officailly releaseable binaries/libraries/etc. for the project.</p>
 
 <p>Example:</p>
 
@@ -306,7 +306,7 @@ MyTestProg.exe -doStuff&quot;
 
 <h4><a id="Sign-Target" href="#Sign-Target">Sign</a> target</h4>
 
-<p>This required target may operate in one of two ways at the developer's descretion:<br />1. This target may call the �Release�#Release-Target� target, followed by a script to run <code>simplesigner</code> on all relavent output files.<br />2. This target may assume that the �Release�#Release-Target� target has already been run and attempt to operate on the output files appropriately.</p>
+<p>This required target may operate in one of two ways at the developer's descretion:<br />1. This target may call the <a href="#Release-Target">Release</a> target, followed by a script to run <code>simplesigner</code> on all relavent output files.<br />2. This target may assume that the <a href="#Release-Target">Release</a> target has already been run and attempt to operate on the output files appropriately.</p>
 
 <p>Example:</p>
 
@@ -322,7 +322,7 @@ MyTestProg.exe -doStuff&quot;
 
 <h4><a id="Debug-Target" href="#Debug-Target">Debug</a> target</h4>
 
-<p>If present, it is expected that this target would set necessary environment variables and then call the relavant �x86�#x86-Target�, �x64�#x64-Target�, or �Any�#Any-Target� targets (or directly build the software if those targets are not provided).</p>
+<p>If present, it is expected that this target would set necessary environment variables and then call the relavant <a href="#x86-Target">x86</a>, <a href="#x64-Target">x64</a>, or <a href="#Any-Target">Any</a> targets (or directly build the software if those targets are not provided).</p>
 
 <p>Example:</p>
 
