@@ -235,34 +235,34 @@ $(document).ready(function(){
 
 <h3>The .buildinfo file</h3>
 
-<p>The following targets must be implemented in the <code>.buildinfo</code> file in any order.</p>
+<p>The following targets <strong>must</strong> be implemented in the <code>.buildinfo</code> file in any order.</p>
 
 <ol>
-<li><a href="#Test-Target">Test</a></li>
-<li><a href="#Package-Target">Package</a></li>
-<li><a href="#Release-Target">Release</a></li>
-<li><a href="#Sign-Target">Sign</a></li>
+<li><a href="#Test-Target">test</a></li>
+<li><a href="#Package-Target">package</a></li>
+<li><a href="#Release-Target">release</a></li>
+<li><a href="#Sign-Target">sign</a></li>
 </ol>
 
-<p>The following targets are <em>highly encouraged</em> to be implemented in the <code>.buildinfo</code> file.</p>
+<p>The following targets <em>should</em> be implemented in the <code>.buildinfo</code> file.</p>
 
 <ol>
-<li><a href="#Debug-Target">Debug</a></li>
+<li><a href="#Debug-Target">debug</a></li>
 <li><a href="#x86-Target">x86</a>  (if applicable)</li>
 <li><a href="#x64-Target">x64</a>  (if applicable)</li>
-<li><a href="#Any-Target">Any</a>  (if applicable)</li>
+<li><a href="#Any-Target">any</a>  (if applicable)</li>
 </ol>
 
-<h4><a id="Test-Target" href="#Test-Target">Test</a> target</h4>
+<h4><a id="Test-Target" href="#Test-Target">test</a> target</h4>
 
-<p>This target should depend on the <a href="#Release-Target">Release</a>, and then run any project-specific tests that the developer provides.  <em><strong>*It is expected that developers will provide tools and/or libraries for testing the function of their software.  The CoApp team WILL NOT perform additional tests on arbitrary packages before release.  Failure to provide testing functionality is grounds for removal from publishing by the CoApp team.</strong></em></p>
+<p>This target should depend on the <a href="#Release-Target">Release</a>, and then run any project-specific tests that the developer provides.  <em><strong>*It is expected that developers will provide tools and/or libraries for testing the function of their software.  The CoApp team WILL NOT perform additional tests on arbitrary packages before release.  Failure to provide testing functionality is grounds for removal from publishing by the CoApp team.*</strong></em></p>
 
 <p>Example:</p>
 
 
 <p>
-<div class="highlight"><pre>Test {
-    uses: Release
+<div class="highlight"><pre>test {
+    uses: release
     build-command: &quot;call MyTestRoutine.bat
 mstest MyTestSuite.dll
 MyTestProg.exe -doStuff&quot;
@@ -271,31 +271,31 @@ MyTestProg.exe -doStuff&quot;
 
 <p>
 
-<h4><a id="Package-Target" href="#Package-Target">Package</a> target</h4>
+<h4><a id="Package-Target" href="#Package-Target">package</a> target</h4>
 
-<p>This required target must call the <a href="#Sign-Target">Sign</a> and <a href="#Release-Target">Release</a> targets (as appropriate for the <a href="#Sign-Target">Sign</a> target), followed by any post-build actions necessary to produce all intended final package files.  This includes running <code>AutoPackage</code> with any relavent <code>*.autopkg</code> files.</p>
+<p>This required target must call the <a href="#Sign-Target">Sign</a> and <a href="#Release-Target">Release</a> targets (as appropriate for the <a href="#Sign-Target">Sign</a> target), followed by any post-build actions necessary to produce all intended final package files.  This includes running <code>AutoPackage</code> with any relevant <code>*.autopkg</code> files.</p>
 
 <p>Example:</p>
 
 
 <p>
-<div class="highlight"><pre>Package {
-    uses: Sign
+<div class="highlight"><pre>package {
+    uses: sign
     build-command: &quot;autopackage.exe COPKG\*.autopkg&quot;
 }
 </pre></div>
 
 <p>
 
-<h4><a id="Release-Target" href="#Release-Target">Release</a> target</h4>
+<h4><a id="Release-Target" href="#Release-Target">release</a> target</h4>
 
-<p>This required target is expected to set necessary environment variables, then either call the appropriate <a href="#x86-Target">x86</a>, <a href="#x64-Target">x64</a>, and/or <a href="#Any-Target">Any</a> targets or provide direct build commands to produce officailly releaseable binaries/libraries/etc. for the project.</p>
+<p>This required target is expected to set necessary environment variables, then either call the appropriate <a href="#x86-Target">x86</a>, <a href="#x64-Target">x64</a>, and/or <a href="#Any-Target">Any</a> targets or provide direct build commands to produce officially releasable binaries/libraries/etc. for the project.</p>
 
 <p>Example:</p>
 
 
 <p>
-<div class="highlight"><pre>Release {
+<div class="highlight"><pre>release {
     set: BuildCfg=&quot;Release&quot;
     uses: x86
     uses: x64
@@ -304,33 +304,33 @@ MyTestProg.exe -doStuff&quot;
 
 <p>
 
-<h4><a id="Sign-Target" href="#Sign-Target">Sign</a> target</h4>
+<h4><a id="Sign-Target" href="#Sign-Target">sign</a> target</h4>
 
-<p>This required target may operate in one of two ways at the developer's descretion:<br />1. This target may call the <a href="#Release-Target">Release</a> target, followed by a script to run <code>simplesigner</code> on all relavent output files.<br />2. This target may assume that the <a href="#Release-Target">Release</a> target has already been run and attempt to operate on the output files appropriately.</p>
+<p>This required target may operate in one of two ways at the developer's discretion:<br />1. This target may call the <a href="#Release-Target">Release</a> target, followed by a script to run <code>simplesigner</code> on all relevant output files.<br />2. This target may assume that the <a href="#Release-Target">Release</a> target has already been run and attempt to operate on the output files appropriately.</p>
 
 <p>Example:</p>
 
 
 <p>
-<div class="highlight"><pre>Sign {
-    uses: Release
-    build-command: &quot;simplesigner.exe out\**.dll&quot;
+<div class="highlight"><pre>sign {
+    uses: release
+    build-command: &quot;simplesigner.exe out\**.dll out\**.exe&quot;
 }
 </pre></div>
 
 <p>
 
-<h4><a id="Debug-Target" href="#Debug-Target">Debug</a> target</h4>
+<h4><a id="Debug-Target" href="#Debug-Target">debug</a> target</h4>
 
-<p>If present, it is expected that this target would set necessary environment variables and then call the relavant <a href="#x86-Target">x86</a>, <a href="#x64-Target">x64</a>, or <a href="#Any-Target">Any</a> targets (or directly build the software if those targets are not provided).</p>
+<p>If present, it is expected that this target would set necessary environment variables and then call the relevant <a href="#x86-Target">x86</a>, <a href="#x64-Target">x64</a>, or <a href="#Any-Target">Any</a> targets (or directly build the software if those targets are not provided).</p>
 
 <p>Example:</p>
 
 
 <p>
-<div class="highlight"><pre>Release {
+<div class="highlight"><pre>debug {
     set: BuildCfg=&quot;Debug&quot;
-    uses: Any
+    uses: any
 }
 </pre></div>
 
@@ -338,13 +338,13 @@ MyTestProg.exe -doStuff&quot;
 
 <h4><a id="x86-Target" href="#x86-Target">x86</a>, <a id="x64-Target" href="#x64-Target">x64</a>, <a id="Any-Target" href="#Any-Target">Any</a> targets</h4>
 
-<p>These would typically be the individual sets of build commands for each targetted archetecture.  If present, it is expected that each of these would contain all necessary information to build the project as either Debug or Release for the appropriate archetecture.</p>
+<p>These would typically be the individual sets of build commands for each targeted architecture.  If present, it is expected that each of these would contain all necessary information to build the project as either Debug or Release for the appropriate architecture.</p>
 
 <p>Example:</p>
 
 
 <p>
-<div class="highlight"><pre>Any {
+<div class="highlight"><pre>any {
     build-command: &quot;if defined BuildCfg (msbuild /p:Configuration=%BuildCfg% MyProject.sln) else (msbuild MyProject.sln)&quot;
 }
 </pre></div>
