@@ -263,7 +263,7 @@ $(document).ready(function(){
 <p>
 <div class="highlight"><pre>test {
     uses: release
-    build-command: &quot;call MyTestRoutine.bat
+    build-command: @&quot;call MyTestRoutine.bat
 mstest MyTestSuite.dll
 MyTestProg.exe -doStuff&quot;
 }
@@ -281,7 +281,7 @@ MyTestProg.exe -doStuff&quot;
 <p>
 <div class="highlight"><pre>package {
     uses: sign
-    build-command: &quot;autopackage.exe COPKG\*.autopkg&quot;
+    build-command: @&quot;autopackage.exe COPKG\*.autopkg&quot;
 }
 </pre></div>
 
@@ -314,7 +314,7 @@ MyTestProg.exe -doStuff&quot;
 <p>
 <div class="highlight"><pre>sign {
     uses: release
-    build-command: &quot;simplesigner.exe out\**.dll out\**.exe&quot;
+    build-command: @&quot;simplesigner.exe out\**.dll out\**.exe&quot;
 }
 </pre></div>
 
@@ -345,7 +345,11 @@ MyTestProg.exe -doStuff&quot;
 
 <p>
 <div class="highlight"><pre>any {
-    build-command: &quot;if defined BuildCfg (msbuild /p:Configuration=%BuildCfg% MyProject.sln) else (msbuild MyProject.sln)&quot;
+    targets:{
+        MyLib.dll,
+        MyProg.exe
+    }
+    build-command: @&quot;if defined BuildCfg (msbuild /p:Configuration=%BuildCfg% MyProject.sln) else (msbuild MyProject.sln)&quot;
 }
 </pre></div>
 
