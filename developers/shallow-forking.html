@@ -384,7 +384,17 @@ git push --tags
 
 <h4><a id="update-github" href="#update-github"></a>Update a fork made from Github:</h4>
 
-<p>1) Clone/pull the repo from CoApp-Packages<br />2) Make sure that the current branch is <code>upstream</code></p>
+<p>1) Clone/pull the repo from CoApp-Packages<br />2) Add the original source repo as a remote </p>
+
+
+<p>
+<div class="highlight"><pre>git remote add top &lt;original_github_source_url&gt;
+git fetch -t top
+</pre></div>
+
+<p>
+
+<p>3) Make sure that the current branch is <code>upstream</code></p>
 
 
 <p>
@@ -393,7 +403,7 @@ git push --tags
 
 <p>
 
-<p>3) Apply/merge latest stable tag/branch</p>
+<p>4) Apply/merge latest stable tag/branch</p>
 
 
 <p>
@@ -402,7 +412,7 @@ git push --tags
 
 <p>
 
-<p>4) Change current branch to <code>CoApp</code></p>
+<p>5) Change current branch to <code>CoApp</code></p>
 
 
 <p>
@@ -411,7 +421,7 @@ git push --tags
 
 <p>
 
-<p>5) Merge changes from <code>upstream</code></p>
+<p>6) Merge changes from <code>upstream</code></p>
 
 
 <p>
@@ -420,12 +430,11 @@ git push --tags
 
 <p>
 
-<p>6) Make any necessary adjustments to continue building with CoApp<br />7) Commit changes (if any)<br />8) Push to CoApp-Packages</p>
+<p>7) Make any necessary adjustments to continue building with CoApp<br />8) Commit changes (if any)<br />9) Push to CoApp-Packages</p>
 
 
 <p>
-<div class="highlight"><pre>git push origin upstream
-git push origin CoApp
+<div class="highlight"><pre>git push --tags --all origin
 </pre></div>
 
 <p>
@@ -482,8 +491,7 @@ git fetch -t top
 
 
 <p>
-<div class="highlight"><pre>git push origin upstream
-git push origin CoApp
+<div class="highlight"><pre>git push --tags --all origin
 </pre></div>
 
 <p>
