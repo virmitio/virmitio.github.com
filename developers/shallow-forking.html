@@ -227,9 +227,24 @@ $(document).ready(function(){
 
 <p>You will be prompted for the certificate password, and will then receive an error about missing files.  Ignore the error.  From now on, unless you explicitly specify a different signing certificate, SimpleSigner will use the certificate you just saved to perform any code signing.</p>
 
+<hr />
+
+<ul>
+<li><strong>Making a new fork</strong>
+<ul><li><a href="#new-github">Github-based fork</a></li>
+<li><a href="#new-git">Other Git-based fork</a></li>
+<li><a href="#new-snapshot">New fork from snapshot</a></li></ul></li>
+<li><strong>Updating forks</strong>
+<ul><li><a href="#update-github">Github-based update</a></li>
+<li><a href="#update-git">Other Git-based update</a></li>
+<li><a href="#update-snapshot">Update fork from snapshot</a></li></ul></li>
+</ul>
+
+<hr />
+
 <h2>Making a new fork</h2>
 
-<h4>Github-based Fork:</h4>
+<h4><a id="new-github" href="#new-github"></a>Github-based Fork:</h4>
 
 <p>1) Perform a github fork to the CoApp-Packages organization<br />2) Clone the newly forked repository<br />3) Create a branch named <code>upstream</code> from latest <strong>stable</strong> release</p>
 
@@ -263,7 +278,7 @@ git push other CoApp
 
 <p>8) Optional (but recommended):<br />- On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></p>
 
-<h4>Other Git-based Fork:</h4>
+<h4><a id="new-git" href="#new-git"></a>Other Git-based Fork:</h4>
 
 <p>1) On Github, create a new repo in CoApp-Packages for the new fork<br />2) Clone source repository to your local computer<br />3) Add the Github repo (created in step 1) as a remote</p>
 
@@ -306,7 +321,7 @@ git push other CoApp
 
 <p>9) Optional (but recommended):<br />- On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></p>
 
-<h4>New fork from snapshot:</h4>
+<h4><a id="new-snapshot" href="#new-snapshot"></a>New fork from snapshot:</h4>
 
 <p>1) On Github, create a new repo in CoApp-Packages for the new fork<br />2) Download and unpack/unzip/untar the snapshot to a convenient location (such as C:\repo\MyRepo)<br />3) Initialize that location as a new git repository</p>
 
@@ -364,7 +379,7 @@ git push --tags
 
 <h2>Updating forks</h2>
 
-<h4>Update a package in CoApp-Packages (from Github):</h4>
+<h4><a id="update-github" href="#update-github"></a>Update a fork made from Github:</h4>
 
 <p>1) Clone/pull the repo from CoApp-Packages<br />2) Make sure that the current branch is <code>upstream</code></p>
 
@@ -379,7 +394,7 @@ git push --tags
 
 
 <p>
-<div class="highlight"><pre>git merge &lt;tag/branch&gt;
+<div class="highlight"><pre>git merge --ff-only &lt;tag/branch&gt;
 </pre></div>
 
 <p>
@@ -412,7 +427,7 @@ git push origin CoApp
 
 <p>
 
-<h4>Update a package in CoApp-Packages (from non-Github git repo):</h4>
+<h4><a id="update-git" href="#update-git"></a>Update a made from a non-Github git repo:</h4>
 
 <p>1) Clone the repo from CoApp-Packages<br />2) Add the original source repo as a remote </p>
 
@@ -437,7 +452,7 @@ git fetch -t top
 
 
 <p>
-<div class="highlight"><pre>git merge &lt;tag/branch&gt;
+<div class="highlight"><pre>git merge --ff-only &lt;tag/branch&gt;
 </pre></div>
 
 <p>
@@ -470,7 +485,7 @@ git push origin CoApp
 
 <p>
 
-<h4>Update fork from snapshot:</h4>
+<h4><a id="update-snapshot" href="#update-snapshot"></a>Update a fork from a snapshot:</h4>
 
 <p>1) Clone the repo from CoApp-Packages<br />2) Make sure that the current branch is <code>upstream</code></p>
 
