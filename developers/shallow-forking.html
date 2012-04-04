@@ -231,11 +231,7 @@ $(document).ready(function(){
 
 <h4>Github-based Fork:</h4>
 
-<ol>
-<li>Perform a github fork to the CoApp-Packages organization</li>
-<li>Clone the newly forked repository</li>
-<li>Create a branch named <code>CoApp</code> from latest <strong>stable</strong> release</li>
-</ol>
+<p>1) Perform a github fork to the CoApp-Packages organization<br />2) Clone the newly forked repository<br />3) Create a branch named <code>CoApp</code> from latest <strong>stable</strong> release</p>
 
 
 <p>
@@ -244,22 +240,11 @@ $(document).ready(function(){
 
 <p>
 
-<ol>
-<li>Add COPKG dir and make any necessary changes to allow building via ptk
-<ul><li>See <a href="/developers/packagingbestpractices.html">Packaging best practices</a></li></ul></li>
-<li>Commit changes</li>
-<li>Push to CoApp-Packages</li>
-<li>Optional (but recommended):
-<ul><li>On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></li></ul></li>
-</ol>
+<p>4) Add COPKG dir and make any necessary changes to allow building via ptk<br />    * See <a href="/developers/packagingbestpractices.html">Packaging best practices</a><br />5) Commit changes<br />6) Push to CoApp-Packages<br />7) Optional (but recommended):<br />    * On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></p>
 
 <h4>Other Git-based Fork:</h4>
 
-<ol>
-<li>On Github, create a new repo in CoApp-Packages for the new fork</li>
-<li>Clone source repository to your local computer</li>
-<li>Add the Github repo (created in step 1) as a remote</li>
-</ol>
+<p>1) On Github, create a new repo in CoApp-Packages for the new fork<br />2) Clone source repository to your local computer<br />3) Add the Github repo (created in step 1) as a remote</p>
 
 
 <p>
@@ -268,9 +253,7 @@ $(document).ready(function(){
 
 <p>
 
-<ol>
-<li>Create a branch named <code>upstream</code> from latest <strong>stable</strong> release</li>
-</ol>
+<p>4) Create a branch named <code>upstream</code> from latest <strong>stable</strong> release</p>
 
 
 <p>
@@ -279,9 +262,7 @@ $(document).ready(function(){
 
 <p>
 
-<ol>
-<li>Create a branch named <code>CoApp</code> from <code>upstream</code></li>
-</ol>
+<p>5) Create a branch named <code>CoApp</code> from <code>upstream</code></p>
 
 
 <p>
@@ -290,12 +271,7 @@ $(document).ready(function(){
 
 <p>
 
-<ol>
-<li>Add COPKG dir and make any necessary changes to allow building via ptk
-<ul><li>See <a href="/developers/packagingbestpractices.html">Packaging best practices</a></li></ul></li>
-<li>Commit changes</li>
-<li>Push to CoApp-Packages</li>
-</ol>
+<p>6) Add COPKG dir and make any necessary changes to allow building via ptk<br />    * See <a href="/developers/packagingbestpractices.html">Packaging best practices</a><br />7) Commit changes<br />8) Push to CoApp-Packages</p>
 
 
 <p>
@@ -305,18 +281,11 @@ git push other CoApp
 
 <p>
 
-<ol>
-<li>Optional (but recommended):
-<ul><li>On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></li></ul></li>
-</ol>
+<p>9) Optional (but recommended):<br />    * On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></p>
 
 <h4>New fork from snapshot:</h4>
 
-<ol>
-<li>On Github, create a new repo in CoApp-Packages for the new fork</li>
-<li>Download and unpack/unzip/untar the snapshot to a convenient location (such as C:\repo\MyRepo)</li>
-<li>Initialize that location as a new git repository</li>
-</ol>
+<p>1) On Github, create a new repo in CoApp-Packages for the new fork<br />2) Download and unpack/unzip/untar the snapshot to a convenient location (such as C:\repo\MyRepo)<br />3) Initialize that location as a new git repository</p>
 
 
 <p>
@@ -329,9 +298,7 @@ git branch -m master upstream
 
 <p>
 
-<ol>
-<li>Tag the repo with the current version of the forked software</li>
-</ol>
+<p>4) Tag the repo with the current version of the forked software</p>
 
 
 <p>
@@ -340,9 +307,7 @@ git branch -m master upstream
 
 <p>
 
-<ol>
-<li>Add the Github repo (created in step 1) as a remote</li>
-</ol>
+<p>5) Add the Github repo (created in step 1) as a remote</p>
 
 
 <p>
@@ -351,9 +316,7 @@ git branch -m master upstream
 
 <p>
 
-<ol>
-<li>Create a branch named <code>CoApp</code> from <code>upstream</code></li>
-</ol>
+<p>6) Create a branch named <code>CoApp</code> from <code>upstream</code></p>
 
 
 <p>
@@ -362,12 +325,7 @@ git branch -m master upstream
 
 <p>
 
-<ol>
-<li>Add COPKG dir and make any necessary changes to allow building via ptk
-<ul><li>See <a href="/developers/packagingbestpractices.html">Packaging best practices</a></li></ul></li>
-<li>Commit changes</li>
-<li>Push to CoApp-Packages</li>
-</ol>
+<p>7) Add COPKG dir and make any necessary changes to allow building via ptk<br />    * See <a href="/developers/packagingbestpractices.html">Packaging best practices</a><br />8) Commit changes<br />9) Push to CoApp-Packages</p>
 
 
 <p>
@@ -377,19 +335,13 @@ git push --tags
 
 <p>
 
-<ol>
-<li>Optional (but recommended):
-<ul><li>On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></li></ul></li>
-</ol>
+<p>10) Optional (but recommended):<br />    * On Github, set the "Default Branch" for the newly forked and pushed repo to <code>CoApp</code></p>
 
 <h2>Updating forks</h2>
 
 <h4>Update a package in CoApp-Packages (from Github):</h4>
 
-<ol>
-<li>Clone/pull the repo from CoApp-Packages</li>
-<li>Make sure that the current branch is <code>CoApp</code></li>
-</ol>
+<p>1) Clone/pull the repo from CoApp-Packages<br />2) Make sure that the current branch is <code>CoApp</code></p>
 
 
 <p>
@@ -398,9 +350,7 @@ git push --tags
 
 <p>
 
-<ol>
-<li>Apply/merge latest stable tag/branch</li>
-</ol>
+<p>3) Apply/merge latest stable tag/branch</p>
 
 
 <p>
@@ -409,11 +359,7 @@ git push --tags
 
 <p>
 
-<ol>
-<li>Make any necessary adjustments to continue building with CoApp</li>
-<li>Commit changes (if any)</li>
-<li>Push to CoApp-Packages</li>
-</ol>
+<p>4) Make any necessary adjustments to continue building with CoApp<br />5) Commit changes (if any)<br />6) Push to CoApp-Packages</p>
 
 
 <p>
@@ -424,10 +370,7 @@ git push --tags
 
 <h4>Update a package in CoApp-Packages (from non-Github git repo):</h4>
 
-<ol>
-<li>Clone the repo from CoApp-Packages</li>
-<li>Add the original source repo as a remote </li>
-</ol>
+<p>1) Clone the repo from CoApp-Packages<br />2) Add the original source repo as a remote </p>
 
 
 <p>
@@ -437,9 +380,7 @@ git fetch -t top
 
 <p>
 
-<ol>
-<li>Make sure that the current branch is <code>upstream</code></li>
-</ol>
+<p>3) Make sure that the current branch is <code>upstream</code></p>
 
 
 <p>
@@ -448,9 +389,7 @@ git fetch -t top
 
 <p>
 
-<ol>
-<li>Apply/merge latest stable tag/branch</li>
-</ol>
+<p>4) Apply/merge latest stable tag/branch</p>
 
 
 <p>
@@ -459,9 +398,7 @@ git fetch -t top
 
 <p>
 
-<ol>
-<li>Make sure that the current branch is <code>CoApp</code></li>
-</ol>
+<p>5) Make sure that the current branch is <code>CoApp</code></p>
 
 
 <p>
@@ -470,9 +407,7 @@ git fetch -t top
 
 <p>
 
-<ol>
-<li>Merge changes from <code>upstream</code></li>
-</ol>
+<p>6) Merge changes from <code>upstream</code></p>
 
 
 <p>
@@ -481,11 +416,7 @@ git fetch -t top
 
 <p>
 
-<ol>
-<li>Make any necessary adjustments to continue building with CoApp</li>
-<li>Commit changes (if any)</li>
-<li>Push to CoApp-Packages</li>
-</ol>
+<p>7) Make any necessary adjustments to continue building with CoApp<br />8) Commit changes (if any)<br />9) Push to CoApp-Packages</p>
 
 
 <p>
@@ -497,10 +428,7 @@ git push origin CoApp
 
 <h4>Update fork from snapshot:</h4>
 
-<ol>
-<li>Clone the repo from CoApp-Packages</li>
-<li>Make sure that the current branch is <code>upstream</code></li>
-</ol>
+<p>1) Clone the repo from CoApp-Packages<br />2) Make sure that the current branch is <code>upstream</code></p>
 
 
 <p>
@@ -509,9 +437,7 @@ git push origin CoApp
 
 <p>
 
-<ol>
-<li>Clear workspace for new snapshot</li>
-</ol>
+<p>3) Clear workspace for new snapshot</p>
 
 
 <p>
@@ -521,10 +447,7 @@ for /d %d in (*) do rd /s /q %d
 
 <p>
 
-<ol>
-<li>Download and unpack/unzip/untar the new snapshot into the workspace.</li>
-<li>Commit and push the new snapshot</li>
-</ol>
+<p>4) Download and unpack/unzip/untar the new snapshot into the workspace.<br />5) Commit and push the new snapshot</p>
 
 
 <p>
@@ -537,9 +460,7 @@ git push --tags
 
 <p>
 
-<ol>
-<li>Switch to branch <code>CoApp</code></li>
-</ol>
+<p>6) Switch to branch <code>CoApp</code></p>
 
 
 <p>
@@ -548,9 +469,7 @@ git push --tags
 
 <p>
 
-<ol>
-<li>Merge changes from <code>upstream</code></li>
-</ol>
+<p>7) Merge changes from <code>upstream</code></p>
 
 
 <p>
@@ -559,11 +478,7 @@ git push --tags
 
 <p>
 
-<ol>
-<li>Make any necessary adjustments to continue building with CoApp</li>
-<li>Commit changes (if any)</li>
-<li>Push to CoApp-Packages</li>
-</ol>
+<p>8) Make any necessary adjustments to continue building with CoApp<br />9) Commit changes (if any)<br />10) Push to CoApp-Packages</p>
 
 
 <p>
