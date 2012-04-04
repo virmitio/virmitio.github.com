@@ -272,8 +272,8 @@ $(document).ready(function(){
 
 
 <p>
-<div class="highlight"><pre>git push other upstream
-git push other CoApp
+<div class="highlight"><pre>git push origin upstream
+git push origin CoApp
 </pre></div>
 
 <p>
@@ -282,11 +282,12 @@ git push other CoApp
 
 <h4><a id="new-git" href="#new-git"></a>Other Git-based Fork:</h4>
 
-<p>1) On Github, create a new repo in CoApp-Packages for the new fork<br />2) Clone source repository to your local computer<br />3) Add the Github repo (created in step 1) as a remote</p>
+<p>1) On Github, create a new repo in CoApp-Packages for the new fork<br />2) Clone source repository to your local computer<br />3) Rename the existing remote and add the Github repo (created in step 1) as a remote</p>
 
 
 <p>
-<div class="highlight"><pre>git remote add other &lt;github_repo_url&gt;
+<div class="highlight"><pre>git remote rename origin top
+git remote add origin &lt;github_repo_url&gt;
 </pre></div>
 
 <p>
@@ -315,8 +316,8 @@ git push other CoApp
 
 
 <p>
-<div class="highlight"><pre>git push other upstream
-git push other CoApp
+<div class="highlight"><pre>git push origin upstream
+git push origin CoApp
 </pre></div>
 
 <p>
