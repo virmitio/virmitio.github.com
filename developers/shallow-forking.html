@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width">
-    <title>CoApp - XXXXXX</title>
+    <title>CoApp - Shallow-Forking</title>
     <meta name="description" content="">
     <meta name="author" content="CoApp Project">
 
-    <meta property="og:title" content="CoApp - XXXXXX"/>
+    <meta property="og:title" content="CoApp - Shallow-Forking"/>
     
         <meta property="og:type" content="article"/>
     
@@ -197,8 +197,8 @@ $(document).ready(function(){
 
 
 <span style="display:inline-block;">
-    <h1>XXXXXX</h1>
-    <h4>Version:0</h4>
+    <h1>Shallow-Forking</h1>
+    <h4>Version:1</h4>
 </span>
 <span style="display:inline-block; float:right;">
     <br><br>
@@ -207,17 +207,371 @@ $(document).ready(function(){
 </span>  
 
 <div id="post" class="post">
-    <div class="alert-message warning">
-    <p>This is a placeholder document -- actual content coming soon</p>
-</div>
+    <h3>Forking prerequisites:</h3>
 
-<h3>Requirements</h3>
+<ul>
+<li>CoApp Toolkit and Devtools must be installed</li>
+<li>A git client (such as msys-git) must be installed</li>
+<li>WiX 3.6 (or higher) must be installed</li>
+<li>A code-signing certificate (typically a .pfx file) will be required.  A self-signed certificate is fine.</li>
+</ul>
 
-<p>...</p>
+<p>If you have not already set up a default signing certificate for SimpleSigner, it is suggested that you do that now with the following command:</p>
 
-<h3>XXXXX</h3>
 
-<p>...</p>
+<p>
+<div class="highlight"><pre>simplesigner --certificate-path=&lt;path_to_pfx_file&gt; --remember
+</pre></div>
+
+<p>
+
+<p>You will be prompted for the certificate password, and will then receive an error about missing files.  Ignore the error.  From now on, unless you explicitly specify a different signing certificate, SimpleSigner will use the certificate you just saved to perform any code signing.</p>
+
+<h2>Making a new fork</h2>
+
+<h4>Github-based Fork:</h4>
+
+<ol>
+<li>Perform a github fork to the CoApp-Packages organization</li>
+<li>Clone the newly forked repository</li>
+<li>Create a branch named <code>CoApp</code> from latest <strong>stable</strong> release</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout  -b CoApp refs/tags/&lt;tag_name&gt;
+</pre></div>
+
+<p>
+
+<ol>
+<li>Add COPKG dir and make any necessary changes to allow building via ptk
+<ul><li>See [[Packaging best practices]]</li></ul></li>
+<li>Commit changes</li>
+<li>Push to CoApp-Packages</li>
+<li>Optional (but recommended):
+<ul><li>On Github, set the �Default Branch� for the newly forked and pushed repo to <code>CoApp</code></li></ul></li>
+</ol>
+
+<h4>Other Git-based Fork:</h4>
+
+<ol>
+<li>On Github, create a new repo in CoApp-Packages for the new fork</li>
+<li>Clone source repository to your local computer</li>
+<li>Add the Github repo (created in step 1) as a remote</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git remote add other &lt;github_repo_url&gt;
+</pre></div>
+
+<p>
+
+<ol>
+<li>Create a branch named <code>upstream</code> from latest <strong>stable</strong> release</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout  -b upstream refs/tags/&lt;tag_name&gt;
+</pre></div>
+
+<p>
+
+<ol>
+<li>Create a branch named <code>CoApp</code> from <code>upstream</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout  -b CoApp
+</pre></div>
+
+<p>
+
+<ol>
+<li>Add COPKG dir and make any necessary changes to allow building via ptk
+<ul><li>See [[Packaging best practices]]</li></ul></li>
+<li>Commit changes</li>
+<li>Push to CoApp-Packages</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git push other upstream
+git push other CoApp
+</pre></div>
+
+<p>
+
+<ol>
+<li>Optional (but recommended):
+<ul><li>On Github, set the �Default Branch� for the newly forked and pushed repo to <code>CoApp</code></li></ul></li>
+</ol>
+
+<h4>New fork from snapshot:</h4>
+
+<ol>
+<li>On Github, create a new repo in CoApp-Packages for the new fork</li>
+<li>Download and unpack/unzip/untar the snapshot to a convenient location (such as C:\repo\MyRepo)</li>
+<li>Initialize that location as a new git repository</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>cd &lt;repo_dir&gt;
+git init
+git add *
+git commit -m &quot;Initial commit&quot;
+git branch -m master upstream
+</pre></div>
+
+<p>
+
+<ol>
+<li>Tag the repo with the current version of the forked software</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git tag SomeSoftware-1.2.3
+</pre></div>
+
+<p>
+
+<ol>
+<li>Add the Github repo (created in step 1) as a remote</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git remote add origin &lt;github_repo_url&gt;
+</pre></div>
+
+<p>
+
+<ol>
+<li>Create a branch named <code>CoApp</code> from <code>upstream</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout  -b CoApp
+</pre></div>
+
+<p>
+
+<ol>
+<li>Add COPKG dir and make any necessary changes to allow building via ptk
+<ul><li>See [[Packaging best practices]]</li></ul></li>
+<li>Commit changes</li>
+<li>Push to CoApp-Packages</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git push --all -u origin
+git push --tags
+</pre></div>
+
+<p>
+
+<ol>
+<li>Optional (but recommended):
+<ul><li>On Github, set the �Default Branch� for the newly forked and pushed repo to <code>CoApp</code></li></ul></li>
+</ol>
+
+<h2>Updating forks</h2>
+
+<h4>Update a package in CoApp-Packages (from Github):</h4>
+
+<ol>
+<li>Clone/pull the repo from CoApp-Packages</li>
+<li>Make sure that the current branch is <code>CoApp</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout CoApp
+</pre></div>
+
+<p>
+
+<ol>
+<li>Apply/merge latest stable tag/branch</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git merge &lt;tag/branch&gt;
+</pre></div>
+
+<p>
+
+<ol>
+<li>Make any necessary adjustments to continue building with CoApp</li>
+<li>Commit changes (if any)</li>
+<li>Push to CoApp-Packages</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git push origin CoApp
+</pre></div>
+
+<p>
+
+<h4>Update a package in CoApp-Packages (from non-Github git repo):</h4>
+
+<ol>
+<li>Clone the repo from CoApp-Packages</li>
+<li>Add the original source repo as a remote </li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git remote add top &lt;git_source_url&gt;
+git fetch -t top
+</pre></div>
+
+<p>
+
+<ol>
+<li>Make sure that the current branch is <code>upstream</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout upstream
+</pre></div>
+
+<p>
+
+<ol>
+<li>Apply/merge latest stable tag/branch</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git merge &lt;tag/branch&gt;
+</pre></div>
+
+<p>
+
+<ol>
+<li>Make sure that the current branch is <code>CoApp</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout CoApp
+</pre></div>
+
+<p>
+
+<ol>
+<li>Merge changes from <code>upstream</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git merge upstream
+</pre></div>
+
+<p>
+
+<ol>
+<li>Make any necessary adjustments to continue building with CoApp</li>
+<li>Commit changes (if any)</li>
+<li>Push to CoApp-Packages</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git push origin upstream
+git push origin CoApp
+</pre></div>
+
+<p>
+
+<h4>Update fork from snapshot:</h4>
+
+<ol>
+<li>Clone the repo from CoApp-Packages</li>
+<li>Make sure that the current branch is <code>upstream</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout upstream
+</pre></div>
+
+<p>
+
+<ol>
+<li>Clear workspace for new snapshot</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>del *
+for /d %d in (*) do rd /s /q %d
+</pre></div>
+
+<p>
+
+<ol>
+<li>Download and unpack/unzip/untar the new snapshot into the workspace.</li>
+<li>Commit and push the new snapshot</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git add .
+git commit -a -m &quot;Import snapshot of SomeSoftware, version 2.0.1&quot;
+git tag SomeSoftware-2.0.1
+git push origin upstream
+git push --tags
+</pre></div>
+
+<p>
+
+<ol>
+<li>Switch to branch <code>CoApp</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git checkout CoApp
+</pre></div>
+
+<p>
+
+<ol>
+<li>Merge changes from <code>upstream</code></li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git merge upstream
+</pre></div>
+
+<p>
+
+<ol>
+<li>Make any necessary adjustments to continue building with CoApp</li>
+<li>Commit changes (if any)</li>
+<li>Push to CoApp-Packages</li>
+</ol>
+
+
+<p>
+<div class="highlight"><pre>git push origin CoApp
+</pre></div>
+
+<p>
+
 </div>
 
 <script>
@@ -237,9 +591,9 @@ $('video').mediaelementplayer({
 
     // The following are highly recommended additional parameters. Remove the slashes in front to use.
     
-    var disqus_identifier = "/developers/shallow-forking.html/0";
-    var disqus_url = 'http://www.coapp.org/developers/shallow-forking.html?version=0';
-    var disqus_title = "XXXXXX/0";
+    var disqus_identifier = "/developers/shallow-forking.html/1";
+    var disqus_url = 'http://www.coapp.org/developers/shallow-forking.html?version=1';
+    var disqus_title = "Shallow-Forking/1";
     var disqus_developer = 0; 
     
     /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -262,7 +616,7 @@ $('video').mediaelementplayer({
         <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/developers/shallow-forking.html.md">in the github repository.</a></sub>
         </p>
         <p style="float:right;">
-            This website was generated on Feb 17 2012 and has 140 documents
+            This website was generated on Apr 04 2012 and has 148 documents
         </p>
         </div>
     </footer>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lange="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>CoApp - CoApp Technical Background Information</title>
+    <meta name="description" content="">
+    <meta name="author" content="CoApp Project">
+
+    <meta property="og:title" content="CoApp - CoApp Technical Background Information"/>
+    
+        <meta property="og:type" content="article"/>
+    
+    <meta property="og:image" content="http://coapp.org/images/logo-small.png"/>
+    <meta property="og:url" content="http://coapp.org/reference/what-coapp-does.html"/>
+    <meta property="og:site_name" content="CoApp"/>
+    <meta property="og:admins" content="CoApp - fearthecowboy"/>
+
+    <meta name="docid" content="undefined" />
+    <meta name="srclocation" content="https://github.com/coapp/coapp.org/blob/master/src/dynamic/reference/what-coapp-does.html.md.ejs" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Shims: IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <link href="/styles/prettify.css" rel="stylesheet"/>
+    <link href="/styles/mediaelementplayer.min.css" rel="stylesheet"  />
+    
+</head>
+<body >
+    
+    <!-- Scripts -->
+    <script src="/scripts/jquery-1.6.4.min.js"></script>
+    <script src="/scripts/prettify.js"></script>
+    <script src="/scripts/jquery.tweet.js"></script>
+    <script src="/scripts/mediaelement-and-player.js"></script>
+    <script src="/scripts/bootstrap/bootstrap-dropdown.js"></script>
+    <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+      <script type="text/javascript">
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-15630590-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script>
+        // $('#topbar').dropdown();
+    </script>
+    <!-- Markup -->
+    <div class="topbar" data-dropdown="dropdown">
+        <div class="fill">
+            <div class="container-fluid">
+                <h3><a href="/index.html"><image style="margin:0; padding:0; position:absolute; top:2px; left:-2px;" src="/images/logo-small_32x32.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CoApp</a></h3>
+                <ul>
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/news.html" class="">
+                            <a href="/pages/news.html" property="dc:title">News</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/help.html" class="">
+                            <a href="/pages/help.html" property="dc:title">Help</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/packages.html" class="">
+                            <a href="/pages/packages.html" property="dc:title">Packages</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/publishers.html" class="">
+                            <a href="/pages/publishers.html" property="dc:title">Publishers</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle">Developers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/developers">Developer Tutorials</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Source Repositories</a></li>
+                                <li><a href="http://github.com/coapp-packages"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub"> Package Source Repositories</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/coapp/coapp.org/wiki"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > Developer Wiki</a></li>
+                                <li><a href="https://github.com/coapp/coapp/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp Bugtracker</a></li>
+                                <li><a href="https://github.com/coapp/devtools/issues"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > DevTools Bugtracker</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://github.com/organizations/coapp"><img style="margin-bottom:-3px;" src="/images/github.png" title="GitHub" > CoApp GitHub Home</a></li>
+                            </ul>
+                        </li>
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/reference.html" class="">
+                            <a href="/pages/reference.html" property="dc:title">Reference</a>
+                        </li>
+
+                        
+                      
+                        
+                        <li typeof="sioc:Page" about="/pages/about.html" class="">
+                            <a href="/pages/about.html" property="dc:title">About</a>
+                        </li>
+
+                        
+                    
+                </ul>
+                
+                
+                <span style="display:inline-block; float:right;">
+                    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/reference/what-coapp-does.html"></g:plusone></span>
+                    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/reference/what-coapp-does.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+                </span>                
+                
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+    <div class="container-fluid pushdown">
+        <div class="sidebar">
+            
+        </div> 
+        <section id="content" class="content">
+        <div class="spanonethird rightsidebox" > <!-- float:right; display: inline; veritical-align:top; -->
+            
+                
+                    <h2>Documentation Sprint</h2>
+
+<p>We're starting a documentation phase right now, since there's so much that people <em>can</em> do, but there's little documentation. </p>
+
+<p>Keep checking back daily to see what's new! </p>
+                
+                    <h2>Connect with us</h2>
+
+<div style="text-align: right;">
+<a href="/pages/news.html"><img src="/images/social/blogger-64x64.png" /></a>
+<a href=""><img src="/images/social/rss-64x64.png" /></a>
+<a href="https://twitter.com/coapp"><img src="/images/social/twitter-64x64.png" /></a>
+<a href="http://www.youtube.com/user/gserack"><img src="/images/social/youtube-64x64.png" /></a>
+
+</div>
+                
+            
+        </div> 
+            <div class="spantwothirds">
+            <h1>What Does CoApp Do?</h1>
+
+<p>The answer to this question comes in many parts, many of which matter to very few people.  In this document we will try to provide the most direct answer to the various parts of this question.  Further information can be found by following the related links in each section.</p>
+
+<hr />
+
+<h3>Topics</h3>
+
+<ol>
+<li><a href="#HowToInstall">How does the software get installed?</a></li>
+<li><a href="#ActiveVersion">How does my computer which version of a program to run?</a></li>
+<li><a href="#ManyVersions">Can I have multiple versions of something installed?</a></li>
+<li><a href="#OtherVersions">How do I use the other versions I installed?</a></li>
+<li>(TBA)</li>
+</ol>
+
+<h2>1) <a id="HowToInstall" href="#HowToInstall">How does the software get installed?</a></h2>
+
+<h3>Indirect method</h3>
+
+<p>The first and most common way that CoApp packages will be installed is as dependencies of another package.  To clarify, it is expected that the average user will not be looking specifically for zlib, or openssl, or any other development or runtime library directly.  Rather, we expect that most users will go looking for end-products such as Apache, PHP, or MySQL.  Downloading and running the installers for these "top-level" products will automatically download and install any packages that are needed to run them.  In this way, many packages will be consumed (downloaded and installed) almost exclusively by other packages.  A major benefit to this is that the end-user never needs to worry if the version of Apache or PHP they're installing has all of the latest patches built it.  (More on this later in this document.)</p>
+
+<h3>Direct method</h3>
+
+<p>Suppose for a moment that you are a developer instead of an end-user, though.  How do you install a package so you can build with it?  Well that's no great effort either.  Developer libraries are available in packages as well to simplify building programs.  All that's needed is to locate the package you need (zlib-dev, for an example), and install it like any other program.  Alternatively, if you have CoApp installed already (which you do if you've ever installed a CoApp package) you can install from the command line like so:</p>
+
+
+<p>
+
+<p>
+
+<p>This will download and install everything needed to start developing with the zlib library without any further effort on your part.</p>
+
+<h2>2) <a id="ActiveVersion" href="#ActiveVersion">How does my computer which version of a program to run?</a></h2>
+
+<h3>sub</h3>
+
+<h2>3) <a id="ManyVersions" href="#ManyVersions">Can I have multiple versions of something installed?</a></h2>
+
+<h2>4) <a id="OtherVersions" href="#OtherVersions">How do I use the other versions I installed?</a></h2>
+
+<h2>5) <span class="label warning">Coming Soon!</span></h2>
+            </div>
+        </section>
+    </div>  
+    <br>    
+    <div class="push" ></div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+        <p  style="float:left;">&copy; CoApp Contributors, 2011. 
+        <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/reference/what-coapp-does.html.md.ejs">in the github repository.</a></sub>
+        </p>
+        <p style="float:right;">
+            This website was generated on Apr 04 2012 and has 148 documents
+        </p>
+        </div>
+    </footer>
+</body>
+</html>

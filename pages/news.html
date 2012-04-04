@@ -200,6 +200,359 @@ $(document).ready(function(){
 
 
 <span style="display:inline-block;">
+    <a href="/news/2012-03-22-Google-Summer-Of-Code.html" property="dc:title"><h2>Google Summer of Code</h2></a>
+    Mar 22 2012 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> gsoc</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-03-22-Google-Summer-Of-Code.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-03-22-Google-Summer-Of-Code.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post"> <p>You may have heard that the <a href="http://www.outercurve.org/Blogs/EntryId/48/Outercurve-is-Participating-in-the-Google-Summer-of-Code">Outercurve Foundation</a> has been accepted as a Mentoring organization for Google Summer of Code.</p>
+
+<p>The <a href="http://www.outercurve.org/Overview/SummerofCode">Outercuve GSoC ideas Page</a></p>
+
+<p>What we need: </p>
+
+<ul>
+<li><p><strong>Students to build code!</strong> Please get the word out that CoApp (and Opensource on Windows in general) needs students for GSoC . <a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2012">Student applications start March 26th</a></p></li>
+<li><p><strong>Mentors</strong> -- I've got 3 or 4 folks already volunteered; if we get a few students, we may need more. Anyone who can act as a mentor, I'd ask that you <strong><a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2012">APPLY IMMEDIATELY</a></strong> so we can show strong support for our project. Request to be a Mentor for the Outercurve Foundation. (Mention <em>"Garrett told me to tell you that I'm applying as a mentor for the CoApp project"</em>  in the message)</p></li>
+<li><p><strong>More Ideas</strong> -- We can always use more ideas of things to build for #CoApp ... (not just making shallow-forks), but some new innovative tools.</p></li>
+</ul>
+
+<p>Student applications open March 26th (four days from now!)</p>
+
+<p>We need action on this ASAP. </p>
+
+<p>The More Students and Ideas we have, the more slots we should be able to get!</p> </div>
+    <p class="postmetadata">
+        <a href="/news/2012-03-22-Google-Summer-Of-Code.html#disqus_thread"  data-disqus-identifier="/news/2012-03-22-Google-Summer-Of-Code.html" title="Comment on Google Summer of Code">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
+    <a href="/news/2012-03-17-Getting-Started-with-Autopackage---Part-1.html" property="dc:title"><h2>Getting Started with Autopackage</h2></a>
+    Mar 17 2012 by <b>Eric Schultz</b> <a href="http://twitter.com/#!/wwahammy">@wwahammy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> gsoc</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-03-17-Getting-Started-with-Autopackage---Part-1.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-03-17-Getting-Started-with-Autopackage---Part-1.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post"> <p>One of CoApp's recommended Google Summer of Code ideas is a <a href="http://www.outercurve.org/Overview/SummerofCode">CoApp Package Maker GUI (Reference #2012-001)</a>. Currently package creation is performed with the autopackage which takes .autopkg files as input. Creating these .autopkg files can be rather daunting we intend the GUI tool to streamline the creation and management of these files.</p>
+
+<p>To help students interested in GSoC (and anyone else new to the project), I'm creating a set of tutorials teaching the basics of autopackage. I'll start with preparing your development system and creating very simple packages in this post.</p>
+
+<h2>Preparation</h2>
+
+<p>Autopackage currently has a few requirements outside of the CoApp ecosystem. You'll need to install these requirements before moving forward:</p>
+
+<ol>
+<li><a href="http://wix.codeplex.com/releases/view/75656">WiX Toolset v 3.6 Beta</a></li>
+<li><a href="http://www.microsoft.com/download/en/details.aspx?id=8279">Windows SDK v7.1</a></li>
+</ol>
+
+<p class="alert-message block-message success">
+    While not explicitly required yet, it's highly recommended that you <a href="http://code.google.com/p/msysgit/"> install Git</a> at this time as well.
+</p> 
+
+<p>After installing those, we have your system ready for Autopackage. Autopackage is part of the CoApp.Devtools package and can be downloaded from the <a href="http://coapp.org/pages/packages.html">CoApp package directory</a>. Download this file and follow the installation prompts.</p>
+
+<h3>Creating a signing certificate</h3>
+
+<p>All CoApp packages are required to be signed. In order to create a package, you need to have a code signing certificate. A simple shell script used for creating a test code signing certificate is available as a CoApp package called MakeTestCert.</p>
+
+<p>To install MakeTestCert, run the following command at an administrator command prompt:</p>
+
+
+
+<p>
+<div class="highlight"><pre>coapp install maketestcert
+</pre></div>
+
+<p>
+
+<p>Now we're going to create a test certificate. Once MakeTestCert is installed, open the Windows Sdk Command Prompt as an administrator. Once there navigate to a folder where you'd like to place your test certificate and type:</p>
+
+
+
+<p>
+<div class="highlight"><pre>MakeTestCert <span class="s2">&quot;test_cert&quot;</span>
+</pre></div>
+
+<p>
+
+<p>You'll be asked for a password, which is used to protect the private key for signing. Once you've entered a password and the command is complete. There will be two files created in the folder called "test_cert.cer" and "test_cert.pfx."  The first one just contains the public key and the second contains the public and private key and is used for signing packages. We'll need this later! </p>
+
+<p>Next let's make sure the key is added to the trusted root authorities on the computer. Run the following command:</p>
+
+
+
+<p>
+<div class="highlight"><pre>certmgr.exe /add test_cert.cer /s /r localMachine root
+</pre></div>
+
+<p>
+
+<p>This places your test certificate into the root of your certificate store on your computer. Additionally, your </p>
+
+<h3>Creating the sample package</h3>
+
+<p>Download the <a href="https://github.com/ericschultz/MakeTestCert/zipball/sample">sample package</a> and extract it. </p>
+
+<p class="alert-message block-message success">
+    You could use git to clone the repository at (<a href='https://github.com/ericschultz/MakeTestCert/'><a href='https://github.com/ericschultz/MakeTestCert/'>https://github.com/ericschultz/MakeTestCert/</a></a>).
+</p> 
+
+<p>This is a simplified source for the MakeTestCert package we installed earlier. In the root, you'll find a set of files and folders. Ignoring the readme and the files and folders used by Git, we have one file, MakeTestCert-Sample.cmd. This is the main shell script used by MakeTestCert.</p>
+
+<p>You'll also see the COPKG directory. In the root of the source of every coapp package, you'll find a COPKG directory. This contains the information necessary to build and create the package. Inside that folder is one file, in this case called MakeTestCert.autopkg, which defines a package. Let's open that file for editing.</p>
+
+<p>.autopkg files have a syntax similar to CSS files. In future posts, I'll discuss what all the rules mean but for now let's do a simple modification to the file to get our feet wet. Find the following line:</p>
+
+
+
+<p>
+<div class="highlight"><pre><span class="nt">publisher</span><span class="o">:</span> <span class="s2">&quot;YOURNAME&quot;</span><span class="o">;</span>
+</pre></div>
+
+<p>
+
+<p>Since you're the creating the package, you might as well get some credit as the publisher. :) Replace YOURNAME with your actual name and save the file.</p>
+
+<p>Now that we've finished the autopkg file, let's build the actual package. Navigate back to the root and run the following command:</p>
+
+
+
+<p>
+<div class="highlight"><pre>autopackage COPKG<span class="se">\M</span>akeTestCert.autopkg --certificate-path<span class="o">=</span><span class="s2">&quot;PATH\TO\test_cert.pfx&quot;</span> --password<span class="o">=</span>PASSWORD_YOU_USED_BEFORE --remember
+</pre></div>
+
+<p>
+
+<p>After the  command complete (it takes a while the first time while autopackage finds WiX), you will have a file called MakeTestCert-SAMPLE-1.0.0.0-any.msi in the COPKG directory. This is your package! Run this MSI and you'll install you're personally created copy of MakeTestCert-SAMPLE. Since the autopkg file puts MakeTestCert-SAMPLE, you can run MakeTestCert-SAMPLE from any command prompt.</p>
+
+<p class="alert-message block-message success">
+The --remember argument isn't required but you'll probably want to use it. Why you ask? --remember saves the certificate and your password  into the registry (in an encrypted form of course) for use by autopackage and a few other CoApp tools. Once you've used --remember, you won't have to provide a certificate path or password in the future for tools that need them. In that case you could run
+<br/>
+<br/>
+<code>
+autopackage COPKG\MakeTestCert.autopkg
+</code>
+</p> 
+
+<p class="alert-message block-message success">
+Normally, Autopackage can be run from any command prompt but a bug in the CoApp engine requires Autopackage to be run from an elevated command prompt. This bug should be fixed in the next week.
+</p>
+
+<h3>Where do I go from here?</h3>
+
+<p>Over the next few weeks, I will have additional tutorials that describe more features of Autopackage. In the mean time, play around with autopackage and look at the .autopkg files used by CoApp and by the packages in the <a href="https://github.com/coapp-packages">coapp-packages organization</a>. Additionally feel free to email me at (<a href='mailto:<a href='mailto:wwahammy@gmail.com'>wwahammy@gmail.com</a>'><a href='mailto:wwahammy@gmail.com'>wwahammy@gmail.com</a></a>), contact me on Twitter <a href="http://twitter.com/wwahammy">@wwahammy</a> or visit our <a href="http://coapp.org/developers/irc.html">IRC channel</a>. Feel free to ask questions! We know CoApp can be a bit daunting (that's why we have the GSoC projects!) and we're very interested in helping!</p> </div>
+    <p class="postmetadata">
+        <a href="/news/2012-03-17-Getting-Started-with-Autopackage---Part-1.html#disqus_thread"  data-disqus-identifier="/news/2012-03-17-Getting-Started-with-Autopackage---Part-1.html" title="Comment on Getting Started with Autopackage">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
+    <a href="/news/2012-02-23-State-of-the-Tester.html" property="dc:title"><h2>State of the Tester</h2></a>
+    Feb 23 2012 by <b>Tim Rogers</b> <a href="http://twitter.com/#!/virmitio">@virmitio</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> test,status</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-02-23-State-of-the-Tester.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-02-23-State-of-the-Tester.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post">  </div>
+    <p class="postmetadata">
+        <a href="/news/2012-02-23-State-of-the-Tester.html#disqus_thread"  data-disqus-identifier="/news/2012-02-23-State-of-the-Tester.html" title="Comment on State of the Tester">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
+    <a href="/news/2012-02-21-Preview-of-CoApp-GUI---Part-2.html" property="dc:title"><h2>Preview of CoApp GUI - Part 2</h2></a>
+    Feb 21 2012 by <b>Eric Schultz</b> <a href="http://twitter.com/#!/wwahammy">@wwahammy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> gui,updater</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-02-21-Preview-of-CoApp-GUI---Part-2.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-02-21-Preview-of-CoApp-GUI---Part-2.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post"> <p><strong><a href="http://coapp.org/news/2012-02-17-Preview-of-CoApp-GUI---Part-1.html">Part 1 of CoApp GUI preview</a></strong></p>
+
+<p>Today I'm going to summarize the mockup work I've completed on the general package manager for CoApp. Before I start, it's important to understand a few design decisions and the reasons for them.</p>
+
+<p>During the design of the UI, the general package manager is both a package manager and something more broad, what we call a product manager. As you may recall, a CoApp package is uniquely identified by a name, a processor architecture, a version number and the public key token of the publisher. For certain advanced uses, a user might need this information but for most uses a user just wants a particular piece of software and to have it updated, ie: you want the latest version of Firefox and I want it to stay updated. For this purpose we have a simpler view of a set of packages from the same publisher with the same name which we call a "product." Most interactions with the CoApp GUI is with software at the product level instead of the package level. This isn't to say that interacting directly with packages isn't allowed or easy to do, a user certainly can and it's straightforward to do. </p>
+
+<p>As we walk through the screenshots, you'll notice the similarity to the Windows App Store. This is not coincidental for a few reasons. First by making it as similar as possible to one of the primary methods of software distribution on Windows 8 we feel users will feel at home working with CoApp. Second, we know the App Store design has gone through numerous usability studies and redesign to become as straightforward for the end user. Considering we have very few resources to perform that kind of research, it seems practical to utilize the research that's already been performed.</p>
+
+<p>With all that out of the way, let's get to the screenshots and walk through of the GUI.</p>
+
+<p><em>Note: logos are used for illustration purposes only. While we certainly hope all of the open source projects illustrated will have CoApp packages, this isn't intended to indicate that they necessarily will.</em></p>
+
+<h1>Product/Package Manager</h1>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/homepage.png" alt="Home screen of the product manager" title="" /></span></p>
+
+<p>This is the home screen of the product manager that the user will see when they start the software. In fitting with Metro principles, the list of groups scroll left to right. The groups come from two places. First each package will be required to set a category. Secondly the user can use the Add a Feed button on the top right (or from the Setting screen) to add more feed urls. These feed URLs will be added to the home screen. Not shown is a link near the top right that would shows the user all installed products.</p>
+
+<h2>Universal Search</h2>
+
+<p>Not visible is that search is pervasive throughout the GUI. Simply typing begins a search (as long as a textbox doesn't have focus of course) or continues a search . In fact the search screen is reused for the installed products screen and the screen for showing all products in a category and from a feed.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/games.png" alt="Games/Search screen" title="" /></span></p>
+
+<p>The screenshot above illustrates the design of the search screen, in this case it's showing all products in the Games categories. Above the list of products are filters (no the filter doesn't really do anything in the mockup :). CoApp utilizes a filtering concept we're calling "frictionless filtering." To add a filter, the user presses the the create filter button with the plus on the right side of the list of filters. After pressing the button a menu drop down with a list of possible attributes that a user can filter based on and an appropriate UI elements to create a filter for the given attribute. Once the user creates a filter, the filter replaces the button that was originally pressed. A new create filter button is created to the right of all the filters. To delete a filter, the user presses one of the previously created filters. The system is straightforward, intuitive and extremely powerful.</p>
+
+<p>Once the user clicks on a product, the following screen will be displayed:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/product.png" alt="Product screen" title="" /></span></p>
+
+<p>Should the user click the name of the publisher or one of the contributors, a bit of UI will be display providing information about the selected entity:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/contributor.png" alt="Contributor information" title="" /></span></p>
+
+<p>When the user sees the details tab, it will look like so:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/productdetails.png" alt="Details" title="" /></span></p>
+
+<p>The details tab provides more advanced information that the user might be interested in. Selecting one of the package versions will send the user to the screen for that package.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/productreviews.png" alt="Reviews" title="" /></span></p>
+
+<p>Reviews for products are actually a combination of reviews for every package in a product. New reviews for a product are considered reviews of the latest package. This allows users to handle reviews in a way that feels natural but still provides all users with package level feedback should they want it. The slider above the reviews allows the user to filter based on how recent the reviewed version is.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/installpopup.png" alt="Installing Product" title="" /></span></p>
+
+<p>Installing a product with dependencies will ask the user whether they want to all the dependencies of the product. As you can see in the upper right corner, there is a link, in this case titled "4 packages installing"  to see what packages are being installed. If there is an error during installation, the link will note that an error occurred, turn red and an exclamation point will slowly flash next to the link.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/installblocked.png" alt="Install Blocked" title="" /></span></p>
+
+<p>If a product or one of it's dependencies is blocked, the user will be asked to unblock the blocked packages.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/packagedetails.png" alt="Package details" title="" /></span></p>
+
+<p>On the package page, the details tabs show slightly different information that the user might want to know versus the product page. Specifically, the license for the package is shown and which versions this package is binary compatible with.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/installing.png" alt="Installing screen" title="" /></span></p>
+
+<p>The installing screen is again available from pressing the link in the top right hand corner of the application.</p>
+
+<h1>Again, this looks neat but when do I get it?</h1>
+
+<p>The current timeline is to have this full GUI available for the release candidate which is around 8 weeks out.</p>
+
+<p>Any feedback you can provide would be greatly appreciated! Please provide feedback on this post, the CoApp <a href="https://launchpad.net/~coapp-developers">mailing list</a>, the CoApp <a href="http://coapp.org/developers/irc.html">IRC channel</a> or to me via <a href="https://twitter.com/wwahammy">Twitter</a>.</p> </div>
+    <p class="postmetadata">
+        <a href="/news/2012-02-21-Preview-of-CoApp-GUI---Part-2.html#disqus_thread"  data-disqus-identifier="/news/2012-02-21-Preview-of-CoApp-GUI---Part-2.html" title="Comment on Preview of CoApp GUI - Part 2">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
+    <a href="/news/2012-02-17-Preview-of-CoApp-GUI---Part-1.html" property="dc:title"><h2>Preview of CoApp GUI - Part 1</h2></a>
+    Feb 17 2012 by <b>Eric Schultz</b> <a href="http://twitter.com/#!/wwahammy">@wwahammy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> gui,updater</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-02-17-Preview-of-CoApp-GUI---Part-1.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-02-17-Preview-of-CoApp-GUI---Part-1.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post"> <p>Over the past few weeks, I've begun working full-time on creating a lo-fi mockup of the CoApp GUI as the beginning of my work on the GUI. At this point, I feel it's appropriate to share what's been accomplished, where we intend the GUI to going and how long I anticipate that taking. </p>
+
+<p>The mock up was made in Sketchflow in Expression Blend. Sketchflow provides us with a good enough idea of how the interface might work but it has low enough fidelity that we don't get mired in minute design details. This is not the final product but it gets us in that direction.</p>
+
+<p>The GUI consists of two major parts: an update client and the general package manager. This post will focus on the update client, while a future post will discuss the package manager.</p>
+
+<h1>Update Client</h1>
+
+<p>The update client is used to automate updates and upgrades of CoApp installed software. The update client follows a schedule and runs regularly in order to update CoApp software when needed in much the same way as Windows Update. Indeed, its user interface is very similar to Windows Update. The primary purpose of this is to put users at ease when they use the CoApp Updater.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/coappupdatingchecking.png" alt="The home screen of the CoApp Updater" title="" /></span></p>
+
+<p>A user can get into CoApp Updater in a couple of ways. First they could manually start CoApp Updater if they were interested in checking if any updates existed for their software. Second when CoApp Update automatically runs in the background as scheduled it places a small icon in the system notification area. The user may double click that icon to open the CoApp Updater.</p>
+
+<p>When user manually starts the CoApp Updater, the above screen is where they start. Once that's completed they go to the either a screen saying no packages are available or that packages are available.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/noupdates.png" alt="Your system is up to date" title="" /></span></p>
+
+<p>The above screen shows when no package are available. The user can recheck for updates if they'd like. If there are updates, the user sees the following screen:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/updatesavailable.png" alt="There are packages available" title="" /></span></p>
+
+<p>In this case, the user can either click on the link titled "5 updates available" to view the updates and upgrades or can press Install to install all the selected updates.</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/selectupdates.png" alt="Select packages" title="" /></span></p>
+
+<p>When the user views the updates they see the screen above. Again this is very similar to Windows Update. There are a few features that are not shown. One feature is that the user could block a particular update by right clicking on the name of the update. Additionally based upon community feedback during our conference call, I will be adding a method for the user to see which packages depend on a particular package to be updated. A user may want to know whether an updatable package, say OpenSSL, is used by another particularly vital package, say PHP. The user for whatever reason may want to verify that no packages used by PHP are ever updated. This allows the user to perform this verification.</p>
+
+<p>When the user clicks install, the following screen is shown:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/guipreview/installingupdates.png" alt="Installing" title="" /></span></p>
+
+<p>Again, this is very similar to the Windows Update installation screen.</p>
+
+<h1>That's neat, but when do I get this?</h1>
+
+<p>The update client is on a very aggressive schedule with the plan of having it committed into the main CoApp repository in about three weeks and to be officially released in the CoApp 1 RC.</p>
+
+<p>Because of this timeline, if you want your suggestions added into the Updater for this initial release, time is of the essence! Please provide feedback as soon as possible on this post, the CoApp <a href="https://launchpad.net/~coapp-developers">mailing list</a>, the CoApp <a href="http://coapp.org/developers/irc.html">IRC channel</a> and/or directly to me on <a href="https://twitter.com/wwahammy">Twitter</a></p> </div>
+    <p class="postmetadata">
+        <a href="/news/2012-02-17-Preview-of-CoApp-GUI---Part-1.html#disqus_thread"  data-disqus-identifier="/news/2012-02-17-Preview-of-CoApp-GUI---Part-1.html" title="Comment on Preview of CoApp GUI - Part 1">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
+    <a href="/news/2012-02-16-Important-Conference-Call-Tomorrow.html" property="dc:title"><h2>Important CoApp Conference Call for FEB 17 2012</h2></a>
+    Feb 16 2012 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> news</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2012-02-16-Important-Conference-Call-Tomorrow.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2012-02-16-Important-Conference-Call-Tomorrow.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post"> <p>There will be a CoApp Conference call on Friday, however, I'm going to move it up an hour, since I have a hard stop at 11:00am.</p>
+
+<p>So the conference call will be at <b><a href="http://www.timeanddate.com/worldclock/fixedtime.html?msg=CoApp+Conference+Call&amp;iso=20120210T1030&amp;p1=234&amp;ah=1">9:30 am PST</a></b></p>
+
+<p>
+    <table class="zebra-striped condensed-table" style="width:;" ><thead><tr><th></th><th>Topics:</th><th></th></tr></thead>
+    <tbody>    <tr><td></td><td>CoApp Beta 3 Announcement</td><td></td></tr>
+    <tr><td></td><td>CoApp UI design for Updater and GUI Package Manager</td><td></td></tr>
+    <tr><td></td><td>More on Google Summer of Code</td><td></td></tr>
+    <tr><td></td><td>More!</td><td></td></tr>
+    </tbody></table>
+</p>
+
+<p>Like always, everyone is welcome!</p>
+
+<p>
+    <table class="zebra-striped condensed-table" style="width:;" ><thead><tr><th></th><th>Connecting to the conference call</th><th></th></tr></thead>
+    <tbody>    <tr><td></td><td><a href="https://join.microsoft.com/meet/garretts/HZ96LF57">Click Here to join the online meeting</a>, starting 9:30AM PDT Friday<br/>If this is your first tiem, you should install the free Lync client <a href="http://r.office.microsoft.com/r/rlidOC10?clid=1033&amp;p1=4&amp;p2=1041&amp;pc=oc&amp;ver=4&amp;subver=0&amp;bld=7185&amp;bldver=0">click Here to see how to connect to the online meeting</a><br/>Or, Join by Phone<br/>Toll Free: 1(888)320-3585<br/>Local: 1(425)706-3500 or <a href="https://join.microsoft.com/dialin">Click Here to find a local number</a><br/><strong>Conference ID: 640823217</strong></td><td></td></tr>
+    </tbody></table>
+</p> </div>
+    <p class="postmetadata">
+        <a href="/news/2012-02-16-Important-Conference-Call-Tomorrow.html#disqus_thread"  data-disqus-identifier="/news/2012-02-16-Important-Conference-Call-Tomorrow.html" title="Comment on Important CoApp Conference Call for FEB 17 2012">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
     <a href="/news/2012-02-09-Conference-Call-Tomorrow.html" property="dc:title"><h2>Conference Call for FEB 10 2012</h2></a>
     Feb 09 2012 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
     <span class="label warning">Tags</span><span style="display:inline-block;"> news</span> 
@@ -1033,6 +1386,38 @@ or
 
 
 <span style="display:inline-block;">
+    <a href="/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html" property="dc:title"><h2>An updated feature in CoApp tools</h2></a>
+    Jul 12 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> github,developer</span> 
+</span>
+<span style="display:inline-block; float:right;">
+    <br><br>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+</span>  
+<hr>
+    <div id="post" class="post"> <p>I’ve added a feature to the command line parsing stuff that makes it simpler to get to the bug tracker for a given tool.</p>
+
+<p>Using <code>--list-bugtracker</code> on the command line will  display the tracker for every loaded assembly that has a bugtracker attribute:</p>
+
+<p><span class="scrollcontainer"><img src="/images/blog/bugtracker.png" alt="show bugtracker example" title="" /></span></p>
+
+<p>This works by adding a new attribute to the AssemblyInfo.cs file for any project in CoApp :</p>
+
+
+
+<p>
+
+<p>
+
+<p>Using <code>--open-bugtracker</code> on the command line will now open the default (the one in the EXE, or the first DLL if the EXE doesn't have one) bug tracker for the tool in the default browser.</p> </div>
+    <p class="postmetadata">
+        <a href="/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html#disqus_thread"  data-disqus-identifier="/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html" title="Comment on An updated feature in CoApp tools">View Comments</a>
+    </p> 
+    <hr>
+
+
+<span style="display:inline-block;">
     <a href="/news/2011-07-12-An-alternative-interface-to-github-issues.html" property="dc:title"><h2>An alternative interface for GitHub issues</h2></a>
     Jul 12 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
     <span class="label warning">Tags</span><span style="display:inline-block;"> github,developer1</span> 
@@ -1067,33 +1452,31 @@ or
 
 
 <span style="display:inline-block;">
-    <a href="/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html" property="dc:title"><h2>An updated feature in CoApp tools</h2></a>
-    Jul 12 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> github,developer</span> 
+    <a href="/news/2011-07-11-CoApp-Conference-Call-Today.html" property="dc:title"><h2>CoApp Conference Call Today</h2></a>
+    Jul 11 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
+    <span class="label warning">Tags</span><span style="display:inline-block;"> news,contest,packages,developer</span> 
 </span>
 <span style="display:inline-block; float:right;">
     <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-07-11-CoApp-Conference-Call-Today.html"></g:plusone></span>
+    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-07-11-CoApp-Conference-Call-Today.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
 </span>  
 <hr>
-    <div id="post" class="post"> <p>I’ve added a feature to the command line parsing stuff that makes it simpler to get to the bug tracker for a given tool.</p>
+    <div id="post" class="post"> <p>I'm hosting a CoApp conference call today--July 11th, 2011--to talk about where we are, and what's next<br />and to answer anyone's questions they may have.</p>
 
-<p>Using <code>--list-bugtracker</code> on the command line will  display the tracker for every loaded assembly that has a bugtracker attribute:</p>
+<p>The conference call is using Microsoft Lync, you download the necessary bits <strong><a href="http://r.office.microsoft.com/r/rlidOC10?clid=1033&amp;p1=4&amp;p2=1041&amp;pc=oc&amp;ver=4&amp;subver=0&amp;bld=7185&amp;bldver=0">here</a></strong></p>
 
-<p><span class="scrollcontainer"><img src="/images/blog/bugtracker.png" alt="show bugtracker example" title="" /></span></p>
+<p><strong>Details</strong></p>
 
-<p>This works by adding a new attribute to the AssemblyInfo.cs file for any project in CoApp :</p>
+<p>&nbsp;&nbsp;&nbsp;Monday, July 11th, 2011 <br> <br />&nbsp;&nbsp;&nbsp;14:00 PDT (that's 21:00 GMT)<br> </p>
 
+<p>You can listen in and attend by clicking <strong><a href="https://join.microsoft.com/meet/garretts/HZ96LF57">here</a></strong></p>
 
+<p>Or, join by Phone (Conference ID: 640823217)<br><br />&nbsp;&nbsp;&nbsp; Toll free +18883203585 <br><br />&nbsp;&nbsp;&nbsp; Local: +14257063500 <br> <br /><br /><a href="https://join.microsoft.com/dialin">Find a local number</a></p>
 
-<p>
-
-<p>
-
-<p>Using <code>--open-bugtracker</code> on the command line will now open the default (the one in the EXE, or the first DLL if the EXE doesn't have one) bug tracker for the tool in the default browser.</p> </div>
+<p>If this works out nicely, we'll do this more often--even once a week?</p> </div>
     <p class="postmetadata">
-        <a href="/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html#disqus_thread"  data-disqus-identifier="/news/2011-07-12-An-updated-feature-in-CoApp-Tools.html" title="Comment on An updated feature in CoApp tools">View Comments</a>
+        <a href="/news/2011-07-11-CoApp-Conference-Call-Today.html#disqus_thread"  data-disqus-identifier="/news/2011-07-11-CoApp-Conference-Call-Today.html" title="Comment on CoApp Conference Call Today">View Comments</a>
     </p> 
     <hr>
 
@@ -1130,36 +1513,6 @@ or
 <p><strong>Read the contest details on the <a href="/Contest/index.html">contest page</a></strong></p> </div>
     <p class="postmetadata">
         <a href="/news/2011-07-11-The-stick-a-fork-in-CoApp-Contest.html#disqus_thread"  data-disqus-identifier="/news/2011-07-11-The-stick-a-fork-in-CoApp-Contest.html" title="Comment on Announcing the Stick-a-fork-in-CoApp Contest!">View Comments</a>
-    </p> 
-    <hr>
-
-
-<span style="display:inline-block;">
-    <a href="/news/2011-07-11-CoApp-Conference-Call-Today.html" property="dc:title"><h2>CoApp Conference Call Today</h2></a>
-    Jul 11 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> news,contest,packages,developer</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-07-11-CoApp-Conference-Call-Today.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-07-11-CoApp-Conference-Call-Today.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>I'm hosting a CoApp conference call today--July 11th, 2011--to talk about where we are, and what's next<br />and to answer anyone's questions they may have.</p>
-
-<p>The conference call is using Microsoft Lync, you download the necessary bits <strong><a href="http://r.office.microsoft.com/r/rlidOC10?clid=1033&amp;p1=4&amp;p2=1041&amp;pc=oc&amp;ver=4&amp;subver=0&amp;bld=7185&amp;bldver=0">here</a></strong></p>
-
-<p><strong>Details</strong></p>
-
-<p>&nbsp;&nbsp;&nbsp;Monday, July 11th, 2011 <br> <br />&nbsp;&nbsp;&nbsp;14:00 PDT (that's 21:00 GMT)<br> </p>
-
-<p>You can listen in and attend by clicking <strong><a href="https://join.microsoft.com/meet/garretts/HZ96LF57">here</a></strong></p>
-
-<p>Or, join by Phone (Conference ID: 640823217)<br><br />&nbsp;&nbsp;&nbsp; Toll free +18883203585 <br><br />&nbsp;&nbsp;&nbsp; Local: +14257063500 <br> <br /><br /><a href="https://join.microsoft.com/dialin">Find a local number</a></p>
-
-<p>If this works out nicely, we'll do this more often--even once a week?</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2011-07-11-CoApp-Conference-Call-Today.html#disqus_thread"  data-disqus-identifier="/news/2011-07-11-CoApp-Conference-Call-Today.html" title="Comment on CoApp Conference Call Today">View Comments</a>
     </p> 
     <hr>
 
@@ -1707,577 +2060,6 @@ Already <span class="k">on</span> <span class="s1">&#39;master&#39;</span>
     <hr>
 
 
-<span style="display:inline-block;">
-    <a href="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html" property="dc:title"><h2>Binding Events to .NET 4.0 Tasks instead of Objects (Part 2)</h2></a>
-    Apr 13 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> developer,coding</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>In my <a href="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-1.html" title="Binding Events to .NET 4.0 Tasks instead of Objects (Part 1)">last post</a>, I showed how we're binding event handlers to the Task after it's already been started. This of course, is probably not what you want, as it's possible to lose some events if the task starts up quick enough.</p>
-
-<p>So, the <strong>CoTask</strong> task factory also lets you pass the event listeners as part of the task creation call, you just have to instantiate the TestEvents class and use an object initializer to set the value of the event handler:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="c1">// *** Example Two ***</span>
-<span class="c1">// Listening to events</span>
-<span class="c1">// but attaching before the task is started</span>
-<span class="n">var</span> <span class="n">taskTwo</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span><span class="p">--)</span> <span class="p">{</span>
-        <span class="c1">// simulate a longer running operation</span>
-        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
-
-        <span class="c1">// that occasionally notifies anyone who cares to listen.</span>
-        <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message From taskTwo&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">},</span> <span class="k">new</span> <span class="n">TestEvents</span> <span class="p">{</span>
-    <span class="n">Message1</span> <span class="p">=</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span> <span class="p">);</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\r\n(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</pre></div>
-
-<p>
-
-<p>In line 12 you can see where I just tack on the instance of the TestEvents class as the last parameter in the call to StartNew() .  By passing the event listener earlier, this allows the caller to not miss out on any events:</p>
-
-<p><span class="scrollcontainer"><img src="/images/blog/201104132_task_2.png" alt="task_0 output screenshot" title="" /></span></p>
-
-<p>Much Better!</p>
-
-<p>Now, what if the class that had the events in it had more than one event:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">TestEvents</span> <span class="p">:</span> <span class="n">MessageHandlers</span><span class="p">&lt;</span><span class="n">TestEvents</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">Message1</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message2</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message3</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>
-
-<p>Well, can go ahead and implement the ones you want, and leave the ones you don't:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="c1">// *** Example Three ***</span>
-<span class="c1">// Listening to multiple events</span>
-<span class="n">var</span> <span class="n">taskThree</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span><span class="p">--)</span> <span class="p">{</span>
-        <span class="c1">// simulate a longer running operation</span>
-        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
-
-        <span class="c1">// fire a different message for different values:</span>
-        <span class="k">switch</span><span class="p">(</span><span class="n">q</span> <span class="p">%</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">case</span> <span class="m">0</span><span class="p">:</span>
-                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message1 From taskThree&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="m">1</span><span class="p">:</span>
-                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message2</span><span class="p">(</span><span class="s">&quot;Message2 From taskThree&quot;</span><span class="p">,</span> <span class="s">&quot;Just more text&quot;</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="m">2</span><span class="p">:</span>
-                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message3</span><span class="p">(</span><span class="s">&quot;Message3 From taskThree&quot;</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">},</span> <span class="k">new</span> <span class="n">TestEvents</span> <span class="p">{</span>
-    <span class="n">Message1</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said a string and an int: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="n">Message2</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said two strings: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span> <span class="p">);</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\r\n(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</pre></div>
-
-<p>
-
-<p>And when you run that, you see that we're able to handle the messages that we're interested in:</p>
-
-<p><span class="scrollcontainer"><img src="/images/blog/201104132_task_3.png" alt="task_0 output screenshot" title="" /></span></p>
-
-<p>Note the lack of messages for <strong>Message3</strong>.</p>
-
-<p>You can also have the Task actually ask for a result from the listener as well-if nobody's listening, it'll return the 'default' value (0 or null) for the type requested:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">TestEvents</span> <span class="p">:</span> <span class="n">MessageHandlers</span><span class="p">&lt;</span><span class="n">TestEvents</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">Message1</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message2</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Message3</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;</span> <span class="n">ShouldWeCancel</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>
-
-<p>And, a little code showing how it's used:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="c1">// *** Example Four ***</span>
-<span class="c1">// Listening to multiple events</span>
-<span class="n">var</span> <span class="n">taskFour</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">100</span><span class="p">;</span> <span class="n">q</span><span class="p">++)</span> <span class="p">{</span>
-        <span class="c1">// simulate a longer running operation</span>
-        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
-
-        <span class="k">if</span><span class="p">(</span> <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">ShouldWeCancel</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="p">{</span>
-            <span class="c1">// Note: this is not a really good way to actually cancel a Task</span>
-            <span class="c1">//       you should really use a TaskCancellationSource object</span>
-            <span class="c1">//       and do it right.</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="c1">// fire a different message for different values:</span>
-        <span class="k">switch</span><span class="p">(</span><span class="n">q</span> <span class="p">%</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">case</span> <span class="m">0</span><span class="p">:</span>
-                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message1 From taskFour&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="m">1</span><span class="p">:</span>
-                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message2</span><span class="p">(</span><span class="s">&quot;Message2 From taskFour&quot;</span><span class="p">,</span> <span class="s">&quot;Just more text&quot;</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="m">2</span><span class="p">:</span>
-                <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message3</span><span class="p">(</span><span class="s">&quot;Message3 From taskFour&quot;</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">},</span> <span class="k">new</span> <span class="n">TestEvents</span> <span class="p">{</span>
-    <span class="n">Message1</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said a string and an int: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="n">Message2</span> <span class="p">=</span> <span class="p">(</span><span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said two strings: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="n">ShouldWeCancel</span> <span class="p">=</span> <span class="p">(</span><span class="n">anInt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span> <span class="n">anInt</span> <span class="p">&gt;</span> <span class="m">12</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span> <span class="p">);</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\r\n(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</pre></div>
-
-<p>
-
-<p>Voila! The task is now asking for information from the listener:</p>
-
-<p><span class="scrollcontainer"><img src="/images/blog/201104132_task_4.png" alt="task_0 output screenshot" title="" /></span></p>
-
-<p>You can see that the Task broke out of the loop when the listener responded to the ShouldWeCancel query with true.</p>
-
-<p>There are obviously a few limitations in using a function to get data back from the listener - it's only able to get a value back from the first listener that responds (I've got an idea for how to aggregate up stuff, but not an actual personal use case yet, so unless someone asks, that'll be on the 'todo later' list ... :D) ... and you can't tell the difference between a zero or null response and the lack of response. Still, kinda handy in a couple of cases.</p>
-
-<p>Next time, I'll show you how events bubble their way up - from any code that the Task ends up calling, as well as from any child tasks that are created.</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html#disqus_thread"  data-disqus-identifier="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-2.html" title="Comment on Binding Events to .NET 4.0 Tasks instead of Objects (Part 2)">View Comments</a>
-    </p> 
-    <hr>
-
-
-<span style="display:inline-block;">
-    <a href="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-1.html" property="dc:title"><h2>Binding Events to .NET 4.0 Tasks instead of Objects (Part 1)</h2></a>
-    Apr 13 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> developer,coding</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-1.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-1.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>During the development of CoApp, I've enthusiastically embraced the .NET 4.0 <a href="http://msdn.microsoft.com/en-us/library/dd460717.aspx">Task Parallel Library</a> (aka, the <strong>TPL</strong>).  It's a set of APIs that make developers more productive by significantly simplifying the process of adding parallelism and concurrency to applications. I got religion around this last fall when I saw the PDC presentation that Anders Hejlsberg gave on <a href="http://channel9.msdn.com/Events/PDC/PDC10/FT09">The Future of C# and VB</a>.  In there Anders talks about the shift to a fully asynchronous programming methodology. While the technology that he spoke of isn't yet ready for production use today, the Task Parallel Library in .NET 4.0 provides the underlying framework that we can take advantage of right now.<br />Before we get too deep...</p>
-
-<p>I should note that asynchronous code in .NET 4 make rather extensive use of <a href="http://blogs.msdn.com/b/ericwhite/archive/2006/10/03/lambda-expressions.aspx">Lambda Expressions</a> - If you're not familiar with lambdas, you'd better go get familiar, because this stuff is gonna be a tad hard to understand without it. It's ok, I'll wait...</p>
-
-<p>And, I'm not going to go into too much detail about <a href="http://msdn.microsoft.com/en-us/library/dd537609.aspx">the basics of using the TPL</a>; I recommend that you watch Ander's video (to get an idea of the motivation) and perhaps read thru <a href="http://blogs.msdn.com/b/ericlippert/archive/tags/async/">Eric Lippert's blog posts on Asynchrony</a> (and really, start with his earlier posts on <a href="http://blogs.msdn.com/b/ericlippert/archive/tags/continuation+passing+style/">Continuation Passing Style</a>)-if you are a .NET developer, this stuff will change your life.</p>
-
-<p>The following is a simple example for how we start an asynchronous task using the TPL:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="c1">// *** Example Zero ***</span>
-<span class="c1">// Starting a task using the TPL</span>
-<span class="n">var</span> <span class="n">taskZero</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span><span class="p">--)</span> <span class="p">{</span>
-        <span class="c1">// simulate a longer running operation</span>
-        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
-
-        <span class="c1">// Wish we could tell someone about</span>
-        <span class="c1">// what&#39;s going on in this operation</span>
-        <span class="c1">// and Writeline is hardly a good idea</span>
-        <span class="c1">// when you are in another thread.</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Progress Message from taskZero&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;(Main Thread Completed)======&gt;Press Enter to end.\r\n&quot;</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</pre></div>
-
-<p>
-
-<p>Which will produce output like:</p>
-
-<p><span class="scrollcontainer"><img src="/images/blog/201104131_task_0.png" alt="task_0 output screenshot" title="" /></span></p>
-
-<p>You'll notice that the main thread completes (and is sitting around waiting at the <strong>ReadLine()</strong>) while the Task executes.</p>
-
-<h2>And getting to the point</h2>
-
-<p>Ok, so now I can illustrate some code that I've written as part of CoApp that fills a void where I was creating complex asynchronous operations and wanted to be able to broadcast arbitrary events from that operation, without having to pass an object along to each step in the operation.</p>
-
-<p>Let me put this another way...</p>
-
-<p>I'd like to start an operation-say, "Install a package"-and I'd like the calling context to be able to subscribe to events for that particular operation (regardless of what events the operation directly (or indirectly) broadcasts.  Yes, I <strong>could</strong> create a class that has a bunch events, and pass that from function to function in the entire call tree for that operation, but that would be terribly unwieldy, and frankly, would be a real pain when I wanted to reuse other asynchronous tasks as child tasks, and they may not take the same class for events.</p>
-
-<p>Additionally, that asynchronous operation may spawn off additional asynchronous operations of its own-perhaps to download some dependencies-and it'd be nice to be able to pick up download progress notifications so we could show some UI that keeps the user informed as to what's actually going on.</p>
-
-<p>Hrm... Howsabout I explain this with some code.  Let's assume my little task has an event that it'd like to notify. First, we declare a class for the messages:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">TestEvents</span> <span class="p">:</span> <span class="n">MessageHandlers</span><span class="p">&lt;</span><span class="n">TestEvents</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">Message1</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>
-
-<p>And then an example of the task firing the event:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="c1">// *** Example One ***</span>
-<span class="c1">// Firing an event</span>
-<span class="n">var</span> <span class="n">taskOne</span> <span class="p">=</span> <span class="n">CoTask</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">q</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="n">q</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">q</span><span class="p">--)</span> <span class="p">{</span>
-        <span class="c1">// simulate a longer running operation</span>
-        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
-
-        <span class="c1">// that occasionally notifies anyone who cares to listen.</span>
-        <span class="n">TestEvents</span><span class="p">.</span><span class="n">Invoke</span><span class="p">.</span><span class="n">Message1</span><span class="p">(</span><span class="s">&quot;Message From taskOne&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-<p>
-
-<p>Now,  you should notice two things ('specially since I highlighted the lines...). First, I use my own <strong>CoTask</strong> Task factory instead of the TPL's Task-this just lets me track tasks a bit better, and handles some background work for all this stuff. Functionally, it should be identical, and still returns the same Task objects. Second, I can now use the class I created before to fire off a message (in this case, <strong>Message1</strong> takes a <strong>string</strong> and an <strong>int</strong> for parameters) using some mysterious static Invoke dohickey on my <strong>TestEvents</strong> class.</p>
-
-<p>Of course, nothing is listening to the events yet, let's wire that up:</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="c1">// perhaps we&#39;ll slack off for a while</span>
-<span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">400</span><span class="p">);</span>
-
-<span class="c1">// start listening to messages after the task has started.</span>
-<span class="c1">// (we probably missed some!)</span>
-<span class="p">((</span><span class="n">TestEvents</span><span class="p">)</span><span class="n">taskOne</span><span class="p">).</span><span class="n">Message1</span> <span class="p">+=</span> <span class="p">(</span><span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span> <span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;The Task said: [{0}] and [{1}] &quot;</span><span class="p">,</span> <span class="n">aString</span><span class="p">,</span> <span class="n">anInt</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;(Main Thread Completed)\r\n**Press Enter to end**&quot;</span><span class="p">)</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</pre></div>
-
-<p>
-
-<p>When we run this, we'll end up with some rather interesting output:</p>
-
-<p><span class="scrollcontainer"><img src="/images/blog/201104131_task_1.png" alt="task_1 output screenshot" title="" /></span></p>
-
-<p>Shiny! You'll notice in this example, that we've actually missed a couple of events (exacerbated by the <strong>Thread.Sleep()</strong> in line 2.). Regardless, the main thread completes and waits, and you can see my event handler in the lambda expression is getting called.</p>
-
-<p>The beauty of this approach is that we can see how I can launch a longer running operation, and accept events from it, without having to explicitly tell the code in the operation about the event listener.</p>
-
-<p>In the next part as I dig deeper, I'll show how we can ensure we never miss our messages, and how we can listen for more than one at a time.</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-1.html#disqus_thread"  data-disqus-identifier="/news/2011-04-13-Binding-events-to-NET-4-0-tasks-instead-of-objects-Part-1.html" title="Comment on Binding Events to .NET 4.0 Tasks instead of Objects (Part 1)">View Comments</a>
-    </p> 
-    <hr>
-
-
-<span style="display:inline-block;">
-    <a href="/news/2011-04-07-Simulating-symlinks-for-Windows-XP-2003.html" property="dc:title"><h2>Simulating Symlinks for Windows XP/2003</h2></a>
-    Apr 07 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> developer</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-04-07-Simulating-symlinks-for-Windows-XP-2003.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-04-07-Simulating-symlinks-for-Windows-XP-2003.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>(cross-posted to the <a href="/developers/email.html" title="Mailing Lists">mailing list</a>)</p>
-
-<p>As I mentioned in my last post, CoApp's design <a href="/news/2011-04-04-CoApp-package-composition.html" title="CoApp Package Composition">relies heavily</a> on the use of <a href="http://en.wikipedia.org/wiki/Symlinks">Symbolic Links</a> (symlinks)-a feature which is implemented fairly well in Windows Vista and beyond, but is missing in earlier versions of Windows.</p>
-
-<p>Cygwin tried to work around the limitation by using shortcuts (.LNK files), which are files used by the Windows Shell for all the shortcuts in the start menu.  Not a bad way to go, but unfortunately, not very compatible with a lot of things, since most programs don't specially recognize .LNK files, although the POSIX emulation in cygwin did.</p>
-
-<p>I was thinkin' that any acceptable solution should work with as much software as possible, without requiring special understanding, nor should any additional software be required (ie, a filter driver of some sort).</p>
-
-<p>Our options then, are somewhat limited. On Windows XP and Windows Server 2003 we <strong>do</strong> have features like junctions (like symlinks, but only for directories, and only on the same volume), hard links (where more than one directory entry points to the same physical file) and alternate streams (the ability to store extra data with a file).</p>
-
-<p>Hmmm.</p>
-
-<p>Junctions seem to work fairly well for directories, with the caveat that actually manipulating junctions requires some tricky code with DeviceIOControl calls.</p>
-
-<p>For file symlinks, I've used NTFS hardlinks, but when I create the link, I store some additional metadata with the file itself in an alternate stream (under the name "legacySymlinkInfo") which allows tools to find out what the canonical filename really is, and also to find out what other files are linked to the same physical file.</p>
-
-<p>Of course, non-CoApp software could still manipulate these files for little regard as to their status as 'symlinks', so the legacySymlinkInfo really can't always be relied upon. But we can make a pretty good effort to 'clean-as-we-go' to keep that information up-to-date. If a file gets renamed or moved, the metadata may not be entirely accurate, so when we check the data, we make an attempt to validate that it is accurate, and update it with what we know. If it sounds like this is dodgy, I wouldn't disagree, but in practice this seems to work really well.</p>
-
-<p>Lastly, we need to be able to redirect a symlink, even when it is in use.  This seems trivial enough to do with junctions, but with files, we have to resort to moving the file out of the way, and creating a new linked file (which we can do, even if the file locked).</p>
-
-<p>Admittedly, there are a few limitations that this design has:</p>
-
-<ul>
-<li>Symlinks are only supported on the local system (no cross volume links, nor can they link to UNC paths)</li>
-<li>Symlinks must be absolute references (not linking to relative paths)</li>
-<li>The relationship between the linked file and the canonical file is potentially ephemeral, but simple examination of the files allows us to rebuild the information.</li>
-<li>In the worst case scenario, if files get unlinked, they still work as regular files.</li>
-</ul>
-
-<p>Luckily, CoApp's requirements for what symbolic links need to do doesn't have to be as flexible as full blown symlinks, and these limitations are not a hindrance at all.</p>
-
-<p>I've just added this code to the CoApp toolkit (written in C#), and I'll be playing with it quite a bit over the next few weeks. Once I'm sure that everything works as I like, if there is interest, I may implement a pure native version of the code so that other utilities and software can do the same thing and play nice too.</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2011-04-07-Simulating-symlinks-for-Windows-XP-2003.html#disqus_thread"  data-disqus-identifier="/news/2011-04-07-Simulating-symlinks-for-Windows-XP-2003.html" title="Comment on Simulating Symlinks for Windows XP/2003">View Comments</a>
-    </p> 
-    <hr>
-
-
-<span style="display:inline-block;">
-    <a href="/news/2011-04-04-CoApp-package-composition.html" property="dc:title"><h2>CoApp Package Composition</h2></a>
-    Apr 04 2011 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> developer</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2011-04-04-CoApp-package-composition.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2011-04-04-CoApp-package-composition.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>(cross-posted to the <a href="/developers/email.html" title="Mailing Lists">mailing list</a>)</p>
-
-<p>When CoApp packages are installed, they install into a predetermined location based on the package metadata-this ensures that all packages play by the rules, and allow us to use Windows features to support things side-by-side installation of applications (ie, havin' two versions of the same application installed concurrently), and also to ensure that <strong>we never, ever require a reboot</strong> to install software (even if a previous version of the software is currently running).</p>
-
-<p>For most packages, this follows a format something like:</p>
-
-
-
-<p>
-<div class="highlight"><pre>c:\apps\.installed\PUBLISHERNAME\PRODUCT-VERSION-PLATFORM\
-</pre></div>
-
-<p>
-
-<p>which means that for a given package (say, CoApp's command line toolkit) the files would get installed into:</p>
-
-
-
-<p>
-<div class="highlight"><pre>c:\apps\.installed\OUTERCURVE FOUNDATION\coapp.toolkit-1.0.2.338-any
-c:\apps\.installed\OUTERCURVE FOUNDATION\coapp.toolkit-1.0.2.338-any\coapp.exe
-</pre></div>
-
-<p>
-
-<p>Of course, this predefined location is nether attractive, nor trivial for the end user (or other software) to use, so we like to ensure that packages can expose themselves in a consistent and familiar manner. The process that CoApp has to accomplish this is called <strong>Package Composition</strong>.</p>
-
-<p>In CoApp V1, Package Composition is fairly limited; it's intended to create canonical directories, EXE links and shortcuts for packages so that they can be easily be referenced by users and developers without much trouble. In CoApp V2, Package Composition will provide a method for publishers to define how third-party plugins, libraries and extensions can be cleanly published without polluting the application's install directory with files that really don't belong there.</p>
-
-<p>In CoApp V1, we see a package expose itself by creating a canonical location for the package and optionally publish EXEs in the PATH. The canonical location for a given (application) package follows the following format:</p>
-
-
-
-<p>
-<div class="highlight"><pre>c:\apps\PRODUCT\
-</pre></div>
-
-<p>
-
-<p>Pretty easy, eh? ... So that means we see CoApp's command line toolkit visible here:</p>
-
-
-
-<p>
-<div class="highlight"><pre>c:\apps\coapp.toolkit\
-c:\apps\coapp.toolkit\coapp.exe
-</pre></div>
-
-<p>
-
-<p>And the EXE should show itself in the PATH, by appearing in the common:</p>
-
-
-
-<p>
-<div class="highlight"><pre>c:\Apps\bin
-</pre></div>
-
-<p>
-
-<p>directory (which is placed in the PATH), like this:</p>
-
-
-
-<p>
-<div class="highlight"><pre>c:\Apps\bin\coapp.exe
-</pre></div>
-
-<p>
-
-<p>Of course, we really don't want multiple <em>copies</em> of all these things littering the drive, so we're using NTFS <a href="http://en.wikipedia.org/wiki/Symbolic_link">symbolic links</a> (aka symlinks) to have the file system merely appear that way (somewhat like UNIX).</p>
-
-<h2>Symlinks On Windows</h2>
-
-<p>Starting with Windows Vista, NTFS supports symbolic links (often called soft-links), in a manner extremely similar to UNIX (and brethren). Yay! This is awesome; we can easily use symlinks to redirect the files and directories that we're interested in back to the original installed location (c:\apps.installed...) and not duplicate files.</p>
-
-<p>This is also the secret mojo we've needed to allow applications to install side-by-side with other versions of itself. It turns out that if you run an EXE via a symlink, it doesn't lock the <strong>link</strong>, it locks the <strong>target</strong>. This means we can remove the linked version in c:\apps\bin and create a new link to the new version, and the currently running program doesn't freak out.</p>
-
-<p>Now, my pappy always used to say <strong>"this is all goin' down too easy; I'm still waitin' to find the mouse at the bottom of this can of beans!"</strong></p>
-
-<p>The proverbial mouse in this case is that Windows XP and Windows Server 2003 don't actually support symbolic links-but they do have a couple of thinks we can use to achieve nearly the same goal.</p>
-
-<p>For directories, there are <a href="http://en.wikipedia.org/wiki/NTFS_junction_point">junctions</a>. Junctions are really close to symbolic links (they have some limitations, like you can't have a junction to a file across UNC, and they have to be absolute paths). Fortunately, this is minor potatoes-we are only interested in having directories locally, and we don't need to use relative paths.</p>
-
-<p>For files, it was lookin' like we was plumb out of luck-except we do have something called <a href="http://en.wikipedia.org/wiki/Hard_link">hard links</a>. Hard links actually allow more than one directory entry on the hard disk to physically point to the same file on disk. While this gets around the trouble with actually duplicating the file on disk, if you run an application via the hard link (ie, run c:\apps\bin\coapp.exe ) and try to remove the link, it'll fail while the application is running.</p>
-
-<p>Luckily, there <strong>is</strong> something we can do to a file that is locked. We can move it - or rename it - <strong>even while it's in use</strong>. Using this, we can move the locked file out of the way, create a link to the new version, and we're happy as horses. If the file is locked, we'll queue it up to actually get deleted on reboot (by using <a href="http://msdn.microsoft.com/en-us/library/aa365240(v=vs.85">MoveFileEx</a>.aspx) which stuffs it into the registry at <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\PendingFileRenameOperations</code>).</p>
-
-<p>The only trouble that I can see is when you make a hard-link, there really isn't an efficient way to find out what else is pointing to the same file. We'd need to be able to find linked copies when we want to remove a package, so that the 'linked' versions get cleaned up at package removal time too.</p>
-
-<p>In order to address that, we use another NTFS feature - <a href="http://msdn.microsoft.com/en-us/library/Aa364404">alternate streams</a>. This lets us store a little bit of information with the file itself-in this case, we'll store the other known locations that are linked to the file-so that when we go to remove the 'official' version, we can clean up all the symlinked copies too.</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2011-04-04-CoApp-package-composition.html#disqus_thread"  data-disqus-identifier="/news/2011-04-04-CoApp-package-composition.html" title="Comment on CoApp Package Composition">View Comments</a>
-    </p> 
-    <hr>
-
-
-<span style="display:inline-block;">
-    <a href="/news/2010-12-09-How-to-create-unpack-zip-files-in-NET-without-GPL-code.html" property="dc:title"><h2>How to create/unpack zip files in .NET without GPL Code</h2></a>
-    Dec 09 2010 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> developer,coding</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2010-12-09-How-to-create-unpack-zip-files-in-NET-without-GPL-code.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2010-12-09-How-to-create-unpack-zip-files-in-NET-without-GPL-code.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>The question occasionally comes up regarding how to create Zip files from C# without using GPL (or LGPL) code. If license isn't an issue, the simple answer is always is to use <a href="http://www.icsharpcode.net/OpenSource/SharpZipLib/">ZipLib</a> which is a wonderful, and well known library for manipulating zip files.</p>
-
-<p>The other solution is to grab <a href="http://wix.codeplex.com/">WiX 3.5</a> and use the assemblies out of the WiX SDK:</p>
-
-<ul>
-<li><strong>Microsoft.Deployment.Compression.dll</strong></li>
-<li><strong>Microsoft.Deployment.Compression.Zip.dll</strong></li>
-</ul>
-
-<p>Which contain the classes you'd need to manipulate zip files (and really easy to boot!)</p>
-
-
-
-<p>
-<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.Deployment.Compression.Zip</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">TestZip</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Test</span> <span class="p">{</span>
-        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">var</span> <span class="n">zipFile</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ZipInfo</span><span class="p">(</span><span class="s">&quot;test.zip&quot;</span><span class="p">);</span>
-            <span class="n">var</span> <span class="n">filesToArchive</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()</span> <span class="p">{</span> <span class="s">@&quot;test.exe&quot;</span><span class="p">,</span> <span class="s">@&quot;test.cs&quot;</span> <span class="p">};</span>
-            <span class="n">zipFile</span><span class="p">.</span><span class="n">PackFiles</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">filesToArchive</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span> <span class="c1">//create the zip file</span>
-            <span class="n">zipFile</span><span class="p">.</span><span class="n">Unpack</span><span class="p">(</span><span class="s">@&quot;.\testfolder\&quot;</span><span class="p">);</span> <span class="c1">//unpack the zip file into a folder</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>
-
-<p>Pretty simple, eh?</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2010-12-09-How-to-create-unpack-zip-files-in-NET-without-GPL-code.html#disqus_thread"  data-disqus-identifier="/news/2010-12-09-How-to-create-unpack-zip-files-in-NET-without-GPL-code.html" title="Comment on How to create/unpack zip files in .NET without GPL Code">View Comments</a>
-    </p> 
-    <hr>
-
-
-<span style="display:inline-block;">
-    <a href="/news/2010-07-29-CoApp-FAQ-A-few-important-distinctions.html" property="dc:title"><h2>CoApp FAQ - A few important distinctions.</h2></a>
-    Jul 29 2010 by <b>Garrett Serack</b> <a href="http://twitter.com/#!/fearthecowboy">@fearthecowboy</a> <br>
-    <span class="label warning">Tags</span><span style="display:inline-block;"> developer,coding,faq</span> 
-</span>
-<span style="display:inline-block; float:right;">
-    <br><br>
-    <span style="margin-top:8px; height;100%; display:inline-block; "><g:plusone href="http://coapp.org/news/2010-07-29-CoApp-FAQ-A-few-important-distinctions.html"></g:plusone></span>
-    <div class="fb-like" style="top:-5px;" data-href="http://coapp.org/news/2010-07-29-CoApp-FAQ-A-few-important-distinctions.html" data-layout="button_count" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
-</span>  
-<hr>
-    <div id="post" class="post"> <p>(cross-posted to the <a href="/developers/email.html" title="Mailing Lists">mailing list</a>)</p>
-
-<p>It's been suggested a few times over the last several weeks that CoApp won't provide any value for the .NET community. With the emergence of several alternative projects to provide a form of package management (NPack, OpenWrap, nu-net, and others), I figured I'd better make some time to explain how CoApp and .NET get along.</p>
-
-<h2>Q: Isn't CoApp about packaging applications?</h2>
-
-<p>A: Well, oddly enough, the original vision for CoApp was less concerned about actually installing <strong>applications</strong>, but rather installing <strong>shared components</strong>.  The ability to install an application comes by virtue that applications tend to be collections of components (shared or private), and a decent package management system should cover these goals easily.</p>
-
-<h2>Q: If CoApp is such a great idea for .NET why is all the work focused on native applications?</h2>
-
-<p>A: The reasons that our initial work that we're doing is focused around native shared libraries and applications, is that they require quite a bit more adaptation to correctly work using modern C compilers and Side-by-Side technology. Once we've got the tools to build properly behaving projects to produce binaries that are useful in this fashion, we'll be in a good place to actually produce packages themselves.</p>
-
-<p>.NET Assemblies, by their very nature are already beautifully designed to be adapted into CoApp packages.  Strong-named assemblies install into the GAC-which is really just the .NET implementation of the Windows Side-by-Side technology-by design. CoApp .NET packages simply install the assemblies into the GAC, where all applications can share them in the way that was intended.</p>
-
-<h2>Q: What if I don't want stuff to be in the GAC?</h2>
-
-<p>A: I'd ask you to reconsider.  I can appreciate the desire to maintain control over every aspect of building and distributing your application.  On the other hand libraries that designed to be shared shouldn't require the consumer of the library to do anything, except for consume them.  The publisher of the shared library shoulders the responsibility of maintaining the library and publishing security updates as well new versions.  As with native Side-by-Side assemblies, the publisher can indicate what version of a library should be used when a particular version is requested.</p>
-
-<h2>Q: What possible reason should I choose using CoApp over another .NET package management?</h2>
-
-<p>A: Well, like I've said, a plethora of implementations is always a good thing. From what I can see, most of the other package management systems are focused on assisting developers in getting simplified access to shared .NET components.  CoApp takes a larger scope, hoping to serve developers, end-users, and IT administrators alike.  Our design includes the ability to update any components without the necessity of shutting down or rebooting processes (or even god-forbid, the system itself).  CoApp is designed to apply to software regardless of the language it's written in, from native (C,C++,etc) to managed code (.NET; C#, VB.NET, etc) ,to dynamic languages (Perl, Python, etc) and web apps (ASP.NET, PHP, and more).</p>
-
-<h2>Q: Why have you chosen MSI files rather than something simpler and more convenient (like Zip+Manifest)?</h2>
-
-<p>A: Oh, trust me, I really wanted to.  I realize that Windows Installer is kindof a bloated beast that has a lot of downsides; we've has chosen MSI as the packaging format because it is handles so many other situations very well-one noteable point, is that on XP &amp; Windows 2003, the only way to install a native Side-by-Side components is by using MSIs. We've taken steps to lessen the burden by deliberately limiting the scope of what we are using in MSI to not encumber packages in a painful mess.</p>
-
-<p>As well, by using MSIs we gain the ability to leverage things like group policies, Windows Logo certification, transactional installations, and trivial adoption by other non-CoApp consumers-there is nothing that would stop someone from using CoApp packages for some of their dependencies, and without having do anything other than install the MSIs.</p> </div>
-    <p class="postmetadata">
-        <a href="/news/2010-07-29-CoApp-FAQ-A-few-important-distinctions.html#disqus_thread"  data-disqus-identifier="/news/2010-07-29-CoApp-FAQ-A-few-important-distinctions.html" title="Comment on CoApp FAQ - A few important distinctions.">View Comments</a>
-    </p> 
-    <hr>
-
-
 </ul>
 </div>
 
@@ -2305,7 +2087,7 @@ c:\apps\coapp.toolkit\coapp.exe
         <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/pages/news.html.md.ejs">in the github repository.</a></sub>
         </p>
         <p style="float:right;">
-            This website was generated on Feb 17 2012 and has 140 documents
+            This website was generated on Apr 04 2012 and has 148 documents
         </p>
         </div>
     </footer>

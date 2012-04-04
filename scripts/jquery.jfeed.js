@@ -159,22 +159,26 @@
             this.published = entry.find('published').eq(0).text();
             this.author = new Person(entry.find('author').eq(0));
 
-            var links = this.links;
+            var links = new Array();
             entry.find('link').each(function () {
                 var link = jQuery(this);
                 if (link.attr('rel') == 'enclosure') {
                     links.push(new Link(jQuery(this)));
                 }
             });
+            this.links = links;
 
             this.link = entry.find('link').eq(0).attr('href');
             var desc = entry.find('content').eq(0);
             this.description = this.formatTextAsHtml(desc.text(), desc.attr('type'));
 
-            var categories = this.categories;
+            var categories = new Array();
             entry.find('category').each(function () {
                 categories.push(new Category(jQuery(this)));
             });
+            this.categories = categories;
+            
+            this.pkg = new Package(entry.find('[nodeName="coapp:Package"]').eq(0));
         }
     });
 
@@ -184,8 +188,8 @@
 
         init: function (entry) {
             if (entry != null) {
-                url = entry.attr('href');
-                title = entry.attr('title');
+                this.url = entry.attr('href');
+                this.title = entry.attr('title');
             }
         }
     });
@@ -197,24 +201,30 @@
 
         init: function (entry) {
             if (entry != null) {
-                term = entry.attr('term');
-                label = entry.attr('label');
-                scheme = entry.attr('scheme');
+                this.term = entry.attr('term');
+                this.label = entry.attr('label');
+                this.scheme = entry.attr('scheme');
             }
         }
     });
 
     var Package = Class.extend({
+        vendor: '',
         name: '',
         architecture: '',
         version: '',
         publicKeyToken: '',
         displayName: '',
         publisherDirectory: '',
+        
+        flavor: '',
+        variation: '',
+        shortName: '',
 
         bindingPolicyMinVersion: 0,
         bindingPolicyMaxVersion: 0,
 
+        roles: [],
         dependencies: [],
         features: [],
         requiredFeatures: [],
@@ -227,6 +237,132 @@
         stability: 0,
 
         init: function (entry) {
+            if (entry != null) {
+                this.vendor = entry.attr('Vendor');
+                this.name = entry.attr('Name');
+                this.architecture = entry.attr('Architecture');
+                this.version = entry.attr('Version');
+                this.publicKeyToken = entry.attr('PublicKeyToken');
+                this.displayName = entry.attr('DisplayName');
+                
+                this.bindingPolicyMinVersion = entry.find('[nodeName="coapp:BindingPolicyMinVersion"]').eq(0).text();
+                this.bindingPolicyMaxVersion = entry.find('[nodeName="coapp:BindingPolicyMaxVersion"]').eq(0).text();
+                
+                var dependencies = new Array();
+                entry.find('[nodeName="coapp:Dependencies"]').eq(0).find('[nodeName="coapp:guid"]').each(function () {
+                    dependencies.push( jQuery(this).text() );
+                });
+                this.dependencies = dependencies;
+                
+                var roles = new Array();
+                entry.find('[nodeName="coapp:Roles"]').eq(0).find('[nodeName="coapp:Role"]').each(function () {
+                    roles.push(new Role(jQuery(this)));
+                });
+                this.roles = roles;
+                
+                var packageFeeds = new Array();
+                entry.find('[nodeName="coapp:PackageFeeds"]').eq(0).find('[nodeName="coapp:string"]').each(function () {
+                    packageFeeds.push( jQuery(this).text() );
+                });
+                this.packageFeeds = packageFeeds;
+                
+                var details = entry.find('[nodeName="coapp:Details"]').eq(0);
+                
+                this.authorVersion = details.find('[nodeName="coapp:AuthorVersion"]').eq(0).text();
+                this.bugTracker = details.find('[nodeName="coapp:BugTracker"]').eq(0).text();
+                this.nsfw = details.find('[nodeName="coapp:IsNsfw"]').eq(0).text();
+                this.stability = details.find('[nodeName="coapp:Stability"]').eq(0).text();
+                
+                var licenses = new Array();
+                details.find('[nodeName="coapp:Licenses"]').eq(0).find('[nodeName="coapp:License"]').each(function () {
+                    licenses.push(new License(jQuery(this)));
+                });
+                this.licenses = licenses;
+                
+                //this.IconLocations = details.find('[nodeName="coapp:IconLocations"]').eq(0).text();
+                
+                var name = this.name;
+                var variation = '';
+                var flavor = '';
+                
+                var first_dash = name.indexOf('-');
+                
+                var last_begin_bracket = name.lastIndexOf('[');
+                var last_end_bracket = name.lastIndexOf(']');
+                
+                if(first_dash != -1)
+                {
+                    if(last_begin_bracket != -1)
+                    {
+                        if(first_dash > last_end_bracket)
+                        {
+                            variation = name.slice(first_dash + 1);
+                            
+                            if( check_variation_validity(variation) )
+                            {
+                                name = name.slice(0, first_dash);
+                            }
+                        }
+                        else if(first_dash < last_begin_bracket)
+                        {
+                            variation = name.slice(first_dash + 1, last_begin_bracket);
+                            
+                            if( check_variation_validity(variation) )
+                            {
+                                name = name.slice(0, first_dash) + name.slice(last_begin_bracket);
+                                
+                                var last_begin_bracket = name.lastIndexOf('[');
+                                var last_end_bracket = name.lastIndexOf(']');
+                            }
+                        }
+                    }
+                    else
+                    {
+                        variation = name.substr(first_dash + 1);
+                        
+                        if( check_variation_validity(variation) )
+                        {
+                            name = name.slice(0, first_dash);
+                        }
+                    }
+                }
+                
+                if(last_begin_bracket != -1)
+                {
+                    flavor = name.slice(last_begin_bracket + 1, last_end_bracket);
+                    name = name.slice(0, last_begin_bracket);
+                }
+                
+                this.shortName = name;
+                this.variation = variation;
+                this.flavor = flavor;
+            }
+        }
+    });
+    
+    var Role = Class.extend({
+        name: '',
+        packageRole: '',
+
+        init: function (entry) {
+            if (entry != null) {
+                this.name = entry.find('[nodeName="coapp:Name"]').eq(0).text();
+                this.packageRole = entry.find('[nodeName="coapp:PackageRole"]').eq(0).text();
+            }
+        }
+    });
+    
+    var License = Class.extend({
+        licenseId: '',
+        name: '',
+        licenseUrl: '',
+
+        init: function (entry) {
+            if (entry != null) {
+                this.licenseId = entry.find('[nodeName="coapp:LicenseId"]').eq(0).text();
+                this.name = entry.find('[nodeName="coapp:Name"]').eq(0).text();
+                this.licenseUrl = entry.find('[nodeName="coapp:LicenseUrl"]').eq(0).text();
+            }
         }
     });
 

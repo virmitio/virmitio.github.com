@@ -241,12 +241,12 @@ $(document).ready(function(){
 <li><a href="#Test-Target">test</a></li>
 <li><a href="#Package-Target">package</a></li>
 <li><a href="#Release-Target">release</a></li>
-<li><a href="#Sign-Target">sign</a></li>
 </ol>
 
 <p>The following targets <em>should</em> be implemented in the <code>.buildinfo</code> file.</p>
 
 <ol>
+<li><a href="#Sign-Target">sign</a></li>
 <li><a href="#Debug-Target">debug</a></li>
 <li><a href="#x86-Target">x86</a>  (if applicable)</li>
 <li><a href="#x64-Target">x64</a>  (if applicable)</li>
@@ -262,26 +262,26 @@ $(document).ready(function(){
 
 <p>
 <div class="highlight"><pre>test {
-    uses: release
+    uses: release;
     build-command: @&quot;call MyTestRoutine.bat
 mstest MyTestSuite.dll
-MyTestProg.exe -doStuff&quot;
-}
+MyTestProg.exe -doStuff&quot;;
+};
 </pre></div>
 
 <p>
 
 <h4><a id="Package-Target" href="#Package-Target">package</a> target</h4>
 
-<p>This required target must call the <a href="#Sign-Target">Sign</a> and <a href="#Release-Target">Release</a> targets (as appropriate for the <a href="#Sign-Target">Sign</a> target), followed by any post-build actions necessary to produce all intended final package files.  This includes running <code>AutoPackage</code> with any relevant <code>*.autopkg</code> files.</p>
+<p>This required target should call the <a href="#Sign-Target">Sign</a> target (if present) and <a href="#Release-Target">Release</a> target (as appropriate for the <a href="#Sign-Target">Sign</a> target), followed by any post-build actions necessary to produce all intended final package files.  This includes running <code>AutoPackage</code> with any relevant <code>*.autopkg</code> files.</p>
 
 <p>Example:</p>
 
 
 <p>
 <div class="highlight"><pre>package {
-    uses: sign
-    build-command: @&quot;autopackage.exe COPKG\*.autopkg&quot;
+    uses: sign;
+    build-command: @&quot;autopackage.exe COPKG\*.autopkg&quot;;
 }
 </pre></div>
 
@@ -296,9 +296,8 @@ MyTestProg.exe -doStuff&quot;
 
 <p>
 <div class="highlight"><pre>release {
-    set: BuildCfg=&quot;Release&quot;
-    uses: x86
-    uses: x64
+    set: BuildCfg=&quot;Release&quot;;
+    uses: {x86, x64};
 }
 </pre></div>
 
@@ -306,15 +305,15 @@ MyTestProg.exe -doStuff&quot;
 
 <h4><a id="Sign-Target" href="#Sign-Target">sign</a> target</h4>
 
-<p>This required target may operate in one of two ways at the developer's discretion:<br />1. This target may call the <a href="#Release-Target">Release</a> target, followed by a script to run <code>simplesigner</code> on all relevant output files.<br />2. This target may assume that the <a href="#Release-Target">Release</a> target has already been run and attempt to operate on the output files appropriately.</p>
+<p>This suggested target may operate in one of two ways at the developer's discretion:<br />1. This target may call the <a href="#Release-Target">Release</a> target, followed by a script to run <code>simplesigner</code> on all relevant output files.<br />2. This target may assume that the <a href="#Release-Target">Release</a> target has already been run and attempt to operate on the output files appropriately.</p>
 
 <p>Example:</p>
 
 
 <p>
 <div class="highlight"><pre>sign {
-    uses: release
-    build-command: @&quot;simplesigner.exe out\**.dll out\**.exe&quot;
+    uses: release;
+    build-command: @&quot;simplesigner.exe --nologo out\**.dll out\**.exe&quot;;
 }
 </pre></div>
 
@@ -329,8 +328,8 @@ MyTestProg.exe -doStuff&quot;
 
 <p>
 <div class="highlight"><pre>debug {
-    set: BuildCfg=&quot;Debug&quot;
-    uses: any
+    set: BuildCfg=&quot;Debug&quot;;
+    uses: any;
 }
 </pre></div>
 
@@ -348,8 +347,12 @@ MyTestProg.exe -doStuff&quot;
     targets:{
         MyLib.dll,
         MyProg.exe
-    }
-    build-command: @&quot;if defined BuildCfg (msbuild /p:Configuration=%BuildCfg% MyProject.sln) else (msbuild MyProject.sln)&quot;
+    };
+    build-command: @&quot;if defined BuildCfg (
+        msbuild /p:Configuration=%BuildCfg% MyProject.sln
+        ) else (
+        msbuild MyProject.sln
+        )&quot;;
 }
 </pre></div>
 
@@ -358,6 +361,84 @@ MyTestProg.exe -doStuff&quot;
 <h3>*.autopkg files</h3>
 
 <p>These need to be constructed to build any package files you wish to publish.  Proper procedure is to have one <code>*.autopkg</code> file for for each msi output.<br /><em>This section under construction</em></p>
+
+<h3>Recommended usage</h3>
+
+<p>There are a few conventions that the CoApp team suggests using, but which are neither required nor enforced.</p>
+
+<h4>Output files</h4>
+
+<p>For the ease of future maintainers, we recommend copying or moving all final output files from the build process to a directory named <code>output</code> (or similar) in the root of the project.  It is generally desirable to have a directory structure similar to that shown below to enable smooth operation of build automation:</p>
+
+
+<p>
+<div class="highlight"><pre>&lt;DIR&gt;  output
+    &lt;DIR&gt;  vc9
+        &lt;DIR&gt;  x86
+            &lt;DIR&gt;  Release
+        &lt;DIR&gt;  x64
+            &lt;DIR&gt;  Release
+    &lt;DIR&gt;  vc10
+      .
+      .
+      .      
+</pre></div>
+
+<p>
+
+<p>That is, the desired final location of a file to be packaged would be <code>.\output\{flavor}\{arch}\{configuration}\&lt;filename&gt;</code>.</p>
+
+<h4>Build variables</h4>
+
+<p>It is highly encouraged for package maintainers to use property sheet variables whenever possible for conditions which may change from one developer to the next or within the same common build command.  This would include such things as the compiler to build with, the architecture being targeted, and the type of build configuration (Debug or Release, for example).  Below we can see an example of how use of these variables can greatly reduce clutter and confusion within a .buildinfo file:</p>
+
+
+<p>
+<div class="highlight"><pre>test{
+    set: COMPILERS=&quot;${COMPILERS??vc8, vc9, vc10}&quot;; //If COMPILER is not assigned already, set it to &quot;vc8, vc9, vc10&quot;
+    uses: release;
+    build-command: @&quot;
+        for %%A in (${COMPILERS}) do (
+            pushd output\$$A\any\Release\
+            runTest.exe
+            popd
+        )
+    &quot;;
+};
+
+release{
+    set: COMPILERS=&quot;${COMPILERS??vc8, vc9, vc10}&quot;; //Same effect as in the &#39;test&#39; target
+    build-command: @&quot;
+        for %%A in (${COMPILERS}) do (
+            ptk build --CONFIG=Release --COMP=%%A
+        )
+    &quot;;
+};
+
+build{
+    set: {
+        CONFIG=&quot;${CONFIG??Debug}&quot;;
+        COMP=&quot;${COMP??vc10}&quot;;
+    }
+
+    compiler: ${COMP};
+    platform: any;
+
+    build-command: @&quot;
+        msbuild /p:Platform=&quot;Any CPU&quot; /p:Configuration=${CONFIG} windows\${COMP}\Project.sln
+        md output\${COMP}\any\${CONFIG}\
+        copy windows\${COMP}\bin\${CONFIG}\* output\${COMP}\any\${CONFIG}\
+    &quot;;
+}
+</pre></div>
+
+<p>
+
+<p>The above <code>.buildinfo</code> file is highly versatile, being able to build for any combination of compilers (not necessarily only the 3 already listed) and able to accommodate debugging out of the box and a <code>package</code> target can be readily added with only a few additional lines.</p>
+
+<p>To use the above <code>.buildinfo</code> file, we could use any of the following command line entries for varied results:</p>
+
+<p><code>ptk test</code>  ==> will build the project under VC8, VC9, and VC10 and will run the appropriate build of tests against each one<br /><code>ptk release --COMPILERS=vc9</code>  ==> will build a release version of the project in only VC9, no tests are run<br /><code>ptk build</code>  ==> will build a debug version of the project in VC10 (the listed default for that target)<br /><code>ptk release --COMPILERS="vc6, vc71"</code>  ==> assuming that the necessary solution files are in the correct locations, this will build release versions of the project in both VC6 and VC7.1 (VC 2003)</p>
 </div>
 
 <script>
@@ -402,7 +483,7 @@ $('video').mediaelementplayer({
         <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/developers/packagingbestpractices.html.md">in the github repository.</a></sub>
         </p>
         <p style="float:right;">
-            This website was generated on Feb 17 2012 and has 140 documents
+            This website was generated on Apr 04 2012 and has 148 documents
         </p>
         </div>
     </footer>
