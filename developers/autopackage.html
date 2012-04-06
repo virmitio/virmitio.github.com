@@ -211,80 +211,242 @@ $(document).ready(function(){
 
 <hr />
 
-<h2>Minimum required rules</h2>
+<ul>
+<li><a href="#required">Required rules</a>
+<ul><li><a href="#package-rule">Package</a></li>
+<li><a href="#files-rule">files[]</a></li>
+<li><a href="#composition-rule">Package-composition</a></li>
+<li><a href="#requires-rule">Requires</a></li>
+<li><a href="#manifest-rule">Manifest</a></li>
+<li><a href="#roles">Roles</a>
+<ul><li><a href="#application-role">application</a></li>
+<li><a href="#devlib-role">developer-library</a></li>
+<li><a href="#assembly-role">assembly</a></li></ul></li></ul></li>
+</ul>
 
-<h4>Package</h4>
+<hr />
+
+<h2><a id="required" href="#required">Minimum required rules</a></h2>
+
+<h4><a id="package-rule" href="#package-rule">Package</a></h4>
 
 <p>This contains much of the basic descriptive information about a package.</p>
 
 
 <p>
-<div class="highlight"><pre>package {
-    name: &quot;MyPackage&quot;;    // Name or title of package.  This is also called the &quot;common name&quot;
-    version: &quot;1.2.3.4&quot;;            /* Must be a 4-part version string:  &quot;a.b.c.d&quot;
-                                    a = Major version
-                                    b = Minor version
-                                    c = Revision (It is highly discouraged for binary-breaking changes 
-                                        to occur on a revision change.)
-                                    d = Build number (A change of build number should NEVER break binary
-                                        compatibility unless another part of the version number has also
-                                        changed.)
-                                */
-    arch: [x86 | x64 | any];    // Any particular package should be for exactly ONE of these architectures.
-}
+<div class="highlight"><pre><span class="n">package</span> <span class="p">{</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">&quot;MyPackage&quot;</span><span class="p">;</span>    <span class="c1">// Name or title of package.  This is also called the &quot;common name&quot;</span>
+    <span class="n">version</span><span class="p">:</span> <span class="s">&quot;1.2.3.4&quot;</span><span class="p">;</span>            <span class="cm">/* Must be a 4-part version string:  &quot;a.b.c.d&quot;</span>
+<span class="cm">                                    a = Major version</span>
+<span class="cm">                                    b = Minor version</span>
+<span class="cm">                                    c = Revision (It is highly discouraged for binary-breaking changes </span>
+<span class="cm">                                        to occur on a revision change.)</span>
+<span class="cm">                                    d = Build number (A change of build number should NEVER break binary</span>
+<span class="cm">                                        compatibility unless another part of the version number has also</span>
+<span class="cm">                                        changed.)</span>
+<span class="cm">                                   Software with only 2- or 3-part versions should be left-justified, with</span>
+<span class="cm">                                    the build and revision numbers padded out to form a 4-part version.</span>
+<span class="cm">                                   As a general rule, the build number should never be less than &quot;1&quot;.</span>
+<span class="cm">                                */</span>
+    <span class="n">arch</span><span class="p">:</span> <span class="p">[</span><span class="n">x86</span> <span class="p">|</span> <span class="n">x64</span> <span class="p">|</span> <span class="n">any</span><span class="p">];</span>    <span class="c1">// Any particular package should be for exactly ONE of these architectures.</span>
+<span class="p">}</span>
 </pre></div>
 
 <p>
 
-<h4>files[]</h4>
+<h4><a id="files-rule" href="#files-rule">files[]</a></h4>
 
 <p>This rule can be declared multiple times, each with a different <code>reference_name</code>.  This is used to group similar files to be referenced by other rules.  While not strictly necessary by itself, the use of it is <em>highly encouraged</em> to improve the readability of the .autopkg file.</p>
 
 
 <p>
-<div class="highlight"><pre>files[AppFiles] {
-    root: @&quot;..\output&quot;;        // The location to start looking for files in, relative to the COPKG dir.
+<div class="highlight"><pre><span class="n">files</span><span class="p">[</span><span class="n">AppFiles</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">root</span><span class="p">:</span> <span class="s">@&quot;..\output&quot;</span><span class="p">;</span>        <span class="c1">// The location to start looking for files in, relative to the COPKG dir.</span>
 
-    include: {
-        &quot;*&quot;,                // include all files in this directory in the group
-        &quot;**.exe&quot;            // include all files with a &quot;.exe&quot; extention from this and all subdirectories
-    }
+    <span class="n">include</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;*&quot;</span><span class="p">,</span>                <span class="c1">// include all files in this directory in the group</span>
+        <span class="s">&quot;**.exe&quot;</span>            <span class="c1">// include all files with a &quot;.exe&quot; extention from this and all subdirectories</span>
+    <span class="p">}</span>
 
-    trim-path: [minimal, all];    /* select directory heirarchy for this group of files:
-                                    minimal = This will keep the directory structure relative to the files&#39;
-                                                present locations.
-                                                (eg. ../output/bin/stuff.exe will be stored as ./bin/stuff.exe)
-                                    all = This will flatten any directory structure present.
-                                                (eg. ../output/bin/stuff.exe will be stored as ./stuff.exe)
-                                */
+    <span class="n">trim</span><span class="p">-</span><span class="n">path</span><span class="p">:</span> <span class="p">[</span><span class="n">minimal</span><span class="p">,</span> <span class="n">all</span><span class="p">];</span>    <span class="cm">/* select directory heirarchy for this group of files:</span>
+<span class="cm">                                    minimal = This will keep the directory structure relative to the files&#39;</span>
+<span class="cm">                                                present locations.</span>
+<span class="cm">                                                (eg. ../output/bin/stuff.exe will be stored as ./bin/stuff.exe)</span>
+<span class="cm">                                    all = This will flatten any directory structure present.</span>
+<span class="cm">                                                (eg. ../output/bin/stuff.exe will be stored as ./stuff.exe)</span>
+<span class="cm">                                */</span>
 
-    destination:  &quot;bin&quot;;    /* This is generally omitted, but can be used to set the root output path for
-                                this group of files at the output location.
-                            */
-}
+    <span class="n">destination</span><span class="p">:</span>  <span class="s">&quot;bin&quot;</span><span class="p">;</span>    <span class="cm">/* This is generally omitted, but can be used to set the root output path for</span>
+<span class="cm">                                this group of files at the output location.</span>
+<span class="cm">                            */</span>
+<span class="p">}</span>
 </pre></div>
 
 <p>
 
-<h4>Requires</h4>
+<h4><a id="composition-rule" href="#composition-rule">Package-composition</a></h4>
+
+<p>This is a critical part of any <a href="#application-role">application</a> package, though it is generally omitted in <a href="#assembly-role">assembly</a> packages.</p>
+
+
+<p>
+<div class="highlight"><pre><span class="n">package</span><span class="p">-</span><span class="n">composition</span> <span class="p">{</span>
+    <span class="cm">/*  Sections which operate on files follow the following syntax:</span>
+<span class="cm">            &lt;file_group_reference&gt;  =&gt;  ( &lt;output&gt; | &lt;operations on each file&gt; )</span>
+<span class="cm">    */</span>
+    <span class="n">file</span><span class="p">-</span><span class="n">rewrite</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="cm">/* Files in this section are passed through the CoApp macro parser and the</span>
+<span class="cm">            resulting files are output with the filenames as specified.</span>
+<span class="cm">        */</span>
+        <span class="n">config</span><span class="p">-</span><span class="n">files</span> <span class="p">=&gt;</span> <span class="s">&quot;rw_${each.Name}&quot;</span>
+        <span class="cm">/* Every file that was specified in a &quot;files[config-files]&quot; rule will be read,</span>
+<span class="cm">            any known variables (eg. ${bin}, ${appdir}, etc.) will be processed, and</span>
+<span class="cm">            the resulting output file will be written in the same location with filename</span>
+<span class="cm">            prefixed with &quot;rw_&quot;.</span>
+<span class="cm">        */</span>
+    <span class="p">};</span>
+
+    <span class="n">file</span><span class="p">-</span><span class="n">copy</span><span class="p">:</span> <span class="p">{</span>  
+        <span class="cm">/* These files will be copied to the specified directory, as is.  No parsing</span>
+<span class="cm">            will be done on these files, although this method may be used to rename them.</span>
+<span class="cm">        */</span>
+        <span class="n">config</span><span class="p">-</span><span class="n">files</span> <span class="p">=&gt;</span> <span class="s">&quot;${appdir}\config\${each.Name}&quot;</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="n">symlinks</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="cm">/* If the application needs to be present in the path, or if a script or .ini file</span>
+<span class="cm">            needs to be reachable in a specific location, this will add a symlink in that</span>
+<span class="cm">            location which points to the actual file listed.  This is typcially used with</span>
+<span class="cm">            file groups.</span>
+<span class="cm">        */</span>
+        <span class="n">exes</span> <span class="p">=&gt;</span> <span class="s">@&quot;${bin}\${each.name}&quot;</span> <span class="p">=</span> <span class="s">@&quot;${appdir}\${each.name}&quot;</span><span class="p">;</span>
+        <span class="n">scripts</span> <span class="p">=&gt;</span> <span class="s">@&quot;${coapp}\scripts\powershell\${each.name}&quot;</span> <span class="p">=</span> <span class="s">@&quot;${appdir}\scripts\${each.name}&quot;</span><span class="p">;</span>
+    <span class="p">}</span>    
+
+    <span class="n">environment</span><span class="p">-</span><span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// This sets system-wide environment variables.  These are *NOT* user specific.</span>
+        <span class="s">&quot;RUBYPATH&quot;</span> <span class="p">=</span> <span class="s">&quot;${appdir}&quot;</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="n">registry</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="cm">/* This will set a key in the Windows Registry.  These are always set in:</span>
+<span class="cm">                HKey_Local_Machine\Software\</span>
+<span class="cm">           CoApp will also redirect the key as appropriate for x86 and x64 applications</span>
+<span class="cm">            to match Windows&#39; built-in registry redirection.</span>
+<span class="cm">           The syntax is:</span>
+<span class="cm">            @&quot;&lt;Keyname&gt;\&lt;subkey&gt;#&lt;value_name&gt;&quot; = @&quot;&lt;value&gt;&quot;;</span>
+<span class="cm">           Which will result in the following registry key:</span>
+<span class="cm">            HKLM\Software\&lt;Keyname&gt;\&lt;subkey&gt; : &lt;value_name&gt; = &lt;value&gt;</span>
+<span class="cm">        */</span>
+        <span class="s">@&quot;MyApp#InstallLocation&quot;</span> <span class="p">=</span> <span class="s">@&quot;${APPDIR}&quot;</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<h4><a id="requires-rule" href="#requires-rule">Requires</a></h4>
 
 <p>This rule is necessary if this package depends on other CoApp packages.</p>
 
 
 <p>
-<div class="highlight"><pre>requires {
-    package: &quot;MyLib-1.2.3-any-aaaabbbbccccdddd&quot;;
-    // or
-    package: {
-        &quot;LibA-2-x86-1111222233334444&quot;,
-        &quot;LibB-9.1-x86-ffff0000ffff0000&quot;
-    };
-}
+<div class="highlight"><pre><span class="n">requires</span> <span class="p">{</span>
+    <span class="n">package</span><span class="p">:</span> <span class="s">&quot;MyLib-1.2.3-any-aaaabbbbccccdddd&quot;</span><span class="p">;</span>
+    <span class="c1">// or</span>
+    <span class="n">package</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;LibA-2-x86-1111222233334444&quot;</span><span class="p">,</span>
+        <span class="s">&quot;LibB-9.1-x86-ffff0000ffff0000&quot;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
 </pre></div>
 
 <p>
 
 <p><span class="label warning">Note!</span>  Please note that the version listed is a partial version and not a 4-part version.  Providing a full 4-part version in the package identifier will bind against that <strong>EXACT</strong> version, and will not accept an alternate (binary compatable) installation.  By providing a partial version, CoApp will look for any binary compatable version of the package specified that is at least the version specified.</p>
+
+<h4><a id="manifest-rule" href="#manifest-rule">Manifest[]</a></h4>
+
+<p>If your package links to assemblies in another CoApp package, it may be necessary to embed a manifest into any files from this package which uses those other assemblies.  If your files need to link to multiple other assemblies, one <code>manifest[]</code> section will be required for each other assembly.</p>
+
+
+<p>
+<div class="highlight"><pre><span class="n">manifest</span><span class="p">[</span><span class="n">zlib</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">assembly</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// This is the assembly name to reference.</span>
+        <span class="c1">// It must be the name of an assembly from a package in the &quot;requires&quot; rule. (see �/*(kt):(assembly role)*/�#assembly-role� below)</span>
+        <span class="s">&quot;zlib[vc10]&quot;</span>
+    <span class="p">};</span>
+
+    <span class="n">include</span> <span class="p">{</span>
+        <span class="c1">// This is the set of files which need to reference the above assembly.</span>
+        <span class="c1">// It can be a single file, a list of files, or the name of a file group.</span>
+        <span class="s">&quot;AppFiles&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<h3><a id="roles" href="#roles">Roles</a></h3>
+
+<p>Roles are a specific type of rule that provides context to CoApp and AutoPackage about the package being created or installed.  At least one role must be present in an AutoPackage file, though having more than one is allowed.  Any place where a <code>&lt;set_of_files&gt;</code> is specified, the section will accept a single file, a list of files, or the name of a file group defined elsewhere.</p>
+
+<h4><a id="application-role" href="#application-role">application</a></h4>
+
+<p>This role is used to package an executable application.  Frequently an application package will depend upon many <a href="#assembly-role">assembly</a> packages, which must be listed in a <a href="#requires-rule">requires</a> rule and referenced by way of <a href="#manifest-rule">manifest</a> rules.</p>
+
+
+<p>
+<div class="highlight"><pre><span class="n">application</span><span class="p">[</span><span class="n">AppName</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">include</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// Files listed here will be installed to an application folder.</span>
+        <span class="p">&lt;</span><span class="n">set_of_files</span><span class="p">&gt;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<h4><a id="assembly-role" href="#assembly-role">assembly</a></h4>
+
+<p>This role specifies shared libraries which are dynamically linked to by other assemblies and <a href="#application-role">applications</a>.</p>
+
+
+<p>
+<div class="highlight"><pre><span class="n">assembly</span><span class="p">[&lt;</span><span class="n">AssemblyName</span><span class="p">&gt;]</span> <span class="p">{</span>
+    <span class="n">include</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="c1">// These files will be stored in Side-by-Side as a versioned assembly named &lt;AssemblyName&gt;</span>
+        <span class="p">&lt;</span><span class="n">set_of_files</span><span class="p">&gt;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
+<h4><a id="devlib-role" href="#devlib-role">developer-library</a></h4>
+
+<p>Used to specify a developer link-library and associated headers.  Typically a package with this role will either include an <a href="#assembly-role">assembly</a> role containing the related end-user library or will list the package containing it in a <a href="#requires-rule">requires</a> rule.</p>
+
+
+<p>
+<div class="highlight"><pre><span class="n">developer</span><span class="p">-</span><span class="n">library</span><span class="p">[&lt;</span><span class="n">LibName</span><span class="p">&gt;]</span> <span class="p">{</span>
+    <span class="n">headers</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="c1">// These will automatically have links made in %AllUsersProfile%\include\&lt;LibName&gt;\</span>
+        <span class="p">&lt;</span><span class="n">set_of_files</span><span class="p">&gt;</span>
+    <span class="p">}</span>
+    <span class="n">libraries</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="c1">// These will automatically have links made in %AllUsersProfile%\lib\${package.arch}\</span>
+        <span class="p">&lt;</span><span class="n">set_of_files</span><span class="p">&gt;</span>
+    <span class="p">}</span>
+    <span class="n">docs</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="p">&lt;</span><span class="n">set_of_files</span><span class="p">&gt;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+
 </div>
 
 <script>
