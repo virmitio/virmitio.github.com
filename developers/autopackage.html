@@ -207,12 +207,12 @@ $(document).ready(function(){
 </span>  
 
 <div id="post" class="post">
-    <p>This document details the thought process for generating a <code>.autopkg</code> file to produce the desired output.  For details on all possible fields of an AutoPackage file, <a href="/reference/autopackage.html">look here</a>.</p>
+    <p>This document details the thought process for generating a <code>.autopkg</code> file to produce the desired output.  For details on all possible fields of an AutoPackage file, <a href="/reference/autopackage.html#autopkg">look here</a>.</p>
 
 <hr />
 
 <ul>
-<li><a href="#required">Required rules</a>
+<li><a href="#required">Required Rules</a>
 <ul><li><a href="#package-rule">Package</a></li>
 <li><a href="#files-rule">files[]</a></li>
 <li><a href="#composition-rule">Package-composition</a></li>
@@ -222,11 +222,13 @@ $(document).ready(function(){
 <ul><li><a href="#application-role">application</a></li>
 <li><a href="#devlib-role">developer-library</a></li>
 <li><a href="#assembly-role">assembly</a></li></ul></li></ul></li>
+<li><a href="#frequent">Frequently Used Rules</a></li>
+<li><a href="#optional">Other Optional Rules</a></li>
 </ul>
 
 <hr />
 
-<h2><a id="required" href="#required">Minimum required rules</a></h2>
+<h2><a id="required" href="#required">Minimum Required Rules</a></h2>
 
 <h4><a id="package-rule" href="#package-rule">Package</a></h4>
 
@@ -374,7 +376,7 @@ $(document).ready(function(){
 <div class="highlight"><pre><span class="n">manifest</span><span class="p">[</span><span class="n">zlib</span><span class="p">]</span> <span class="p">{</span>
     <span class="n">assembly</span> <span class="p">:</span> <span class="p">{</span>
         <span class="c1">// This is the assembly name to reference.</span>
-        <span class="c1">// It must be the name of an assembly from a package in the &quot;requires&quot; rule. (see �/*(kt):(assembly role)*/�#assembly-role� below)</span>
+        <span class="c1">// It must be the name of an assembly from a package in the &quot;requires&quot; rule. (see �assembly role�#assembly-role� below)</span>
         <span class="s">&quot;zlib[vc10]&quot;</span>
     <span class="p">};</span>
 
@@ -447,6 +449,25 @@ $(document).ready(function(){
 
 <p>
 
+<h2><a id="frequent" href="#frequent">Frequently Used Rules</a></h2>
+
+<h4>metadata</h4>
+
+<h4>compatability-policy</h4>
+
+<h4>signing</h4>
+
+<h4>license</h4>
+
+<h4>#define</h4>
+
+<h2><a id="optional" href="#optional">Other Optional Rules</a></h2>
+
+<h4>identity</h4>
+
+<h4>provides</h4>
+
+<p><span class="label success">Coming soon!</span></p>
 </div>
 
 <script>
