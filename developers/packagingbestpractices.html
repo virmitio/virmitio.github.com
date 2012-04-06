@@ -211,7 +211,17 @@ $(document).ready(function(){
 
 <p>This document sets forth the standard guidelines the CoApp team uses for package building and publishing.  If you are a package developer and wish to have your package considered for direct publishing by the CoApp project, your package <strong>must</strong> follow these guidelines.</p>
 
-<h3>File locations</h3>
+<hr />
+
+<ul>
+<li><a href="#files">File Locations</a></li>
+<li><a href="#buildinfo">The .buildinfo file</a></li>
+<li><a href="#autopkg">*.autopkg files</a></li>
+</ul>
+
+<h2>* <a href="#recommendations">General Recommendations</a></h2>
+
+<h3>File locations<a id="files" href="#files"></a></h3>
 
 <p>All build and configuration files for CoApp tools must reside in the <code>COPKG</code> subdirectory of the project root.  The location of any other files is left to the discretion of the developer.  <em>Developers forking existing software projects should make an active effort to change as little as possible from the original project files outside of the <code>COPKG</code> directory.  This will allow for easier updates and merges from the upstream project over time.</em></p>
 
@@ -233,7 +243,7 @@ $(document).ready(function(){
 
 <p>At a minimum, there must exist a <code>.buildinfo</code> file and at least one autopackage file (e.g. <code>MyProject.autopkg</code>).</p>
 
-<h3>The .buildinfo file</h3>
+<h3>The .buildinfo file<a id="buildinfo" href="#buildinfo"></a></h3>
 
 <p>The following targets <strong>must</strong> be implemented in the <code>.buildinfo</code> file in any order.</p>
 
@@ -358,7 +368,7 @@ MyTestProg.exe -doStuff&quot;;
 
 <p>
 
-<h3>*.autopkg files</h3>
+<h3>*.autopkg files<a id="autopkg" href="#autopkg"></a></h3>
 
 <p>Proper procedure dictates one <code>*.autopkg</code> file for for each type of package to be produced.  For example, if one wishes to package up a dynamically linked library for use by other software, this would typically have three (3) seperate <code>.autopkg</code> files.  Assuming that the library is titled <code>MyLib</code>, we would expect to see the following <code>.autopkg</code> files in the <code>COPKG</code> directory:</p>
 
@@ -407,7 +417,7 @@ package {
 
 <p>
 
-<h3>Recommended usage</h3>
+<h3>General Recommendations<a id="recommendations" href="#recommendations"></a></h3>
 
 <p>There are a few conventions that the CoApp team suggests using, but which are neither required nor enforced.</p>
 
