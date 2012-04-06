@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width">
-    <title>CoApp - XXXXXX</title>
+    <title>CoApp - Making AutoPackage Files</title>
     <meta name="description" content="">
     <meta name="author" content="CoApp Project">
 
-    <meta property="og:title" content="CoApp - XXXXXX"/>
+    <meta property="og:title" content="CoApp - Making AutoPackage Files"/>
     
         <meta property="og:type" content="article"/>
     
@@ -197,8 +197,8 @@ $(document).ready(function(){
 
 
 <span style="display:inline-block;">
-    <h1>XXXXXX</h1>
-    <h4>Version:0</h4>
+    <h1>Making AutoPackage Files</h1>
+    <h4>Version:0.5</h4>
 </span>
 <span style="display:inline-block; float:right;">
     <br><br>
@@ -207,17 +207,84 @@ $(document).ready(function(){
 </span>  
 
 <div id="post" class="post">
-    <div class="alert-message warning">
-    <p>This is a placeholder document -- actual content coming soon</p>
-</div>
+    <p>This document details the thought process for generating a <code>.autopkg</code> file to produce the desired output.  For details on all possible fields of an AutoPackage file, <a href="/reference/autopackage.html">look here</a>.</p>
 
-<h3>Requirements</h3>
+<hr />
 
-<p>...</p>
+<h2>Minimum required rules</h2>
 
-<h3>XXXXX</h3>
+<h4>Package</h4>
 
-<p>...</p>
+<p>This contains much of the basic descriptive information about a package.</p>
+
+
+<p>
+<div class="highlight"><pre>package {
+    name: &quot;MyPackage&quot;;    // Name or title of package.  This is also called the &quot;common name&quot;
+    version: &quot;1.2.3.4&quot;;            /* Must be a 4-part version string:  &quot;a.b.c.d&quot;
+                                    a = Major version
+                                    b = Minor version
+                                    c = Revision (It is highly discouraged for binary-breaking changes 
+                                        to occur on a revision change.)
+                                    d = Build number (A change of build number should NEVER break binary
+                                        compatibility unless another part of the version number has also
+                                        changed.)
+                                */
+    arch: [x86 | x64 | any];    // Any particular package should be for exactly ONE of these architectures.
+}
+</pre></div>
+
+<p>
+
+<h4>files[]</h4>
+
+<p>This rule can be declared multiple times, each with a different <code>reference_name</code>.  This is used to group similar files to be referenced by other rules.  While not strictly necessary by itself, the use of it is <em>highly encouraged</em> to improve the readability of the .autopkg file.</p>
+
+
+<p>
+<div class="highlight"><pre>files[AppFiles] {
+    root: @&quot;..\output&quot;;        // The location to start looking for files in, relative to the COPKG dir.
+
+    include: {
+        &quot;*&quot;,                // include all files in this directory in the group
+        &quot;**.exe&quot;            // include all files with a &quot;.exe&quot; extention from this and all subdirectories
+    }
+
+    trim-path: [minimal, all];    /* select directory heirarchy for this group of files:
+                                    minimal = This will keep the directory structure relative to the files&#39;
+                                                present locations.
+                                                (eg. ../output/bin/stuff.exe will be stored as ./bin/stuff.exe)
+                                    all = This will flatten any directory structure present.
+                                                (eg. ../output/bin/stuff.exe will be stored as ./stuff.exe)
+                                */
+
+    destination:  &quot;bin&quot;;    /* This is generally omitted, but can be used to set the root output path for
+                                this group of files at the output location.
+                            */
+}
+</pre></div>
+
+<p>
+
+<h4>Requires</h4>
+
+<p>This rule is necessary if this package depends on other CoApp packages.</p>
+
+
+<p>
+<div class="highlight"><pre>requires {
+    package: &quot;MyLib-1.2.3-any-aaaabbbbccccdddd&quot;;
+    // or
+    package: {
+        &quot;LibA-2-x86-1111222233334444&quot;,
+        &quot;LibB-9.1-x86-ffff0000ffff0000&quot;
+    };
+}
+</pre></div>
+
+<p>
+
+<p><span class="label warning">Note!</span>  Please note that the version listed is a partial version and not a 4-part version.  Providing a full 4-part version in the package identifier will bind against that <strong>EXACT</strong> version, and will not accept an alternate (binary compatable) installation.  By providing a partial version, CoApp will look for any binary compatable version of the package specified that is at least the version specified.</p>
 </div>
 
 <script>
@@ -237,9 +304,9 @@ $('video').mediaelementplayer({
 
     // The following are highly recommended additional parameters. Remove the slashes in front to use.
     
-    var disqus_identifier = "/developers/autopackage.html/0";
-    var disqus_url = 'http://www.coapp.org/developers/autopackage.html?version=0';
-    var disqus_title = "XXXXXX/0";
+    var disqus_identifier = "/developers/autopackage.html/0.5";
+    var disqus_url = 'http://www.coapp.org/developers/autopackage.html?version=0.5';
+    var disqus_title = "Making AutoPackage Files/0.5";
     var disqus_developer = 0; 
     
     /* * * DON'T EDIT BELOW THIS LINE * * */
