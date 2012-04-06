@@ -213,7 +213,7 @@ $(document).ready(function(){
 
 <h3>File locations</h3>
 
-<p>All build and configuration files for CoApp tools must reside in the <code>COPKG</code> subdirectory of the project root.  The location of any other files is left to the discretion of the developer.</p>
+<p>All build and configuration files for CoApp tools must reside in the <code>COPKG</code> subdirectory of the project root.  The location of any other files is left to the discretion of the developer.  <em>Developers forking existing software projects should make an active effort to change as little as possible from the original project files outside of the <code>COPKG</code> directory.  This will allow for easier updates and merges from the upstream project over time.</em></p>
 
 <p>e.g.</p>
 
@@ -360,7 +360,52 @@ MyTestProg.exe -doStuff&quot;;
 
 <h3>*.autopkg files</h3>
 
-<p>These need to be constructed to build any package files you wish to publish.  Proper procedure is to have one <code>*.autopkg</code> file for for each msi output.<br /><em>This section under construction</em></p>
+<p>Proper procedure dictates one <code>*.autopkg</code> file for for each type of package to be produced.  For example, if one wishes to package up a dynamically linked library for use by other software, this would typically have three (3) seperate <code>.autopkg</code> files.  Assuming that the library is titled <code>MyLib</code>, we would expect to see the following <code>.autopkg</code> files in the <code>COPKG</code> directory:</p>
+
+
+<p>
+<div class="highlight"><pre>MyLib.autopkg                &lt;== Will produce packages containing the end-user dlls
+MyLib-dev.autopkg            &lt;== Will produce packages containing developer linking libraries (.lib files)
+MyLib-dev-common.autopkg    &lt;== Will produce a package containing all relavent headers/include files.
+                                    Generally also includes any developer documentation.
+</pre></div>
+
+<p>
+
+<p>AutoPackage files may be constructed as described in the <a href="/developers/autopackage.html">AutoPackage</a> and <a href="/developers/autopackage-forks.html">AutoPackage-Forks</a> pages.</p>
+
+<p>Package developers and maintainers wishing to have the CoApp team build their packages should make an active effort to provide for future extendability in their AutoPackage files.  By this it is meant that <code>.autopkg</code> files should be designed to accept and operate based upon variable input for the package flavor information (eg. <code>vc10</code>) and the system archetecture (eg. <code>x64</code>) as appropriate.  In addition, packaging information that is likely to change over time (such as the package version information) should be placed in a seperate file to be included by the AutoPackage files.</p>
+
+<p>Example <code>version.inc</code> - Defines version info:</p>
+
+
+<p>
+<div class="highlight"><pre>#define { package-version: &quot;1.12.3.45&quot;; } 
+</pre></div>
+
+<p>
+
+<p>Partial example <code>MyLib.autopkg</code> - Includes version info and uses variables to produce package:</p>
+
+
+<p>
+<div class="highlight"><pre>@import &quot;version.inc&quot;;
+
+#define { 
+    flavor: &quot;${comp??vc10}&quot;; 
+    arch : &quot;${plat??x86}&quot;;
+}
+
+package {
+    name: &quot;MyLib[${flavor}]&quot;;
+    version: &quot;${package-version}&quot;;
+    arch : &quot;${arch}&quot;;
+}
+
+...
+</pre></div>
+
+<p>
 
 <h3>Recommended usage</h3>
 
@@ -483,7 +528,7 @@ $('video').mediaelementplayer({
         <br><sub>The source for this page can be found <a href="https://github.com/coapp/coapp.org/blob/master/src/dynamic/developers/packagingbestpractices.html.md">in the github repository.</a></sub>
         </p>
         <p style="float:right;">
-            This website was generated on Apr 04 2012 and has 148 documents
+            This website was generated on Apr 06 2012 and has 148 documents
         </p>
         </div>
     </footer>
